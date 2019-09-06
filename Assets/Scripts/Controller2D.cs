@@ -18,24 +18,35 @@ public class Controller2D : MonoBehaviour
     float horizontalRaySpacing;
     float verticalRaySpacing;
 
-    BoxCollider2D collider;
+    public BoxCollider2D collider;
     RaycastOrigins raycastOrigins;
 
     public CollisionInfo collisions;
+    [HideInInspector]
+    public Vector2 playerInput;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
-        collider = GetComponent<BoxCollider2D> ();
         CalculateRaySpacing();
     }
 
-    // Update is called once per frame
+    void Awake()
+    {
+        collider = GetComponent<BoxCollider2D> ();
+    }
 
+    // Update is called once per frame
     public void Move(Vector3 velocity)
+    {
+        Move(velocity, Vector2.zero);
+    }
+
+    public void Move(Vector3 velocity, Vector2 input)
     {
         UpdateRaycastOrigins();
         collisions.Reset();
+        playerInput = input;
 
         if(velocity.y < 0)
         {
@@ -112,6 +123,14 @@ public class Controller2D : MonoBehaviour
 
             if (hit)
             {
+                if(hit.collider.tag == "OneWay")
+                {
+                    if(directionY == 1 || hit.distance == 0)
+                    {
+                        continue;
+                    }
+                }
+
                 velocity.y = (hit.distance - skinWidth) * directionY;
                 rayLength = hit.distance;
 

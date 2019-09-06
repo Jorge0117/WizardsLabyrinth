@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 182642598}
   m_Layer: 9
   m_Name: Tilemap
-  m_TagString: Untagged
+  m_TagString: OneWay
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -915,6 +915,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -930,6 +931,24 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a94cf7873903fd41bfe176abe894601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1124122521}
+  verticalOffset: 1
+  focusAreaSize: {x: 3, y: 4}
+  lookAheadDstX: 1.5
+  lookSmoothTimeX: 0.4
+  verticalSmoothTime: 0.2
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1126,7 +1145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa561172f0c93464eab0d4036941a359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 3.5
+  maxJumpHeight: 4
+  minJumpHeight: 1
   timeToJumpApex: 0.35
   moveSpeed: 6
 --- !u!114 &1124122521
@@ -1146,6 +1166,8 @@ MonoBehaviour:
     m_Bits: 512
   horizontalRayCount: 4
   verticalRayCount: 4
+  collider: {fileID: 0}
+  playerInput: {x: 0, y: 0}
 --- !u!61 &1124122522
 BoxCollider2D:
   m_ObjectHideFlags: 0
