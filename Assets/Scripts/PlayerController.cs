@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     GameObject chawa;
     float chawaXScale;
     float chawaYScale;
+
+    Vector2 positionBeforeJump;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +44,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         if(controller.collisions.below)
@@ -55,7 +56,12 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            animator.SetBool("isFalling", true);
+            if (!animator.GetBool("isFalling"))
+            {
+                animator.SetBool("isFalling", true);
+                positionBeforeJump = chawa.transform.position;
+            }
+            
         }
         
         if(Input.GetButtonUp("Jump"))
