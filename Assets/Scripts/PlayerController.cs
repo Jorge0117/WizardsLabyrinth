@@ -17,6 +17,11 @@ public class PlayerController : MonoBehaviour
 
     Controller2D controller;
     SpriteRenderer spriteRenderer;
+    Animator animator;
+
+    GameObject chawa;
+    float chawaXScale;
+    float chawaYScale;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +31,12 @@ public class PlayerController : MonoBehaviour
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
         minJumpHeight = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
+
+        chawa = GameObject.Find("Chawa");
+        chawaXScale = chawa.transform.localScale.x;
+        chawaYScale = chawa.transform.localScale.y;
+
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -34,25 +45,45 @@ public class PlayerController : MonoBehaviour
 
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        if (Input.GetButtonDown("Jump") && controller.collisions.below)
+        if(controller.collisions.below)
         {
-            velocity.y = maxJumpVelocity;
+            animator.SetBool("isFalling", false);
+            if (Input.GetButtonDown("Jump"))
+            {
+                velocity.y = maxJumpVelocity;
+            }
         }
+        else
+        {
+            animator.SetBool("isFalling", true);
+        }
+        
         if(Input.GetButtonUp("Jump"))
         {
             if(velocity.y > minJumpVelocity)
                 velocity.y = minJumpVelocity;
         }
 
+        if (Input.GetButtonDown("Fire1"))
+        {
+            animator.SetTrigger("attack");
+        }
+
         velocity.x = input.x * moveSpeed;
         velocity.y += gravity * Time.deltaTime;
         if(velocity.x > 0)
         {
-            spriteRenderer.flipX = false;
+            chawa.transform.localScale = new Vector3(chawaXScale, chawaYScale, 1);
+            animator.SetBool("isWalking", true);
         }
         else if(velocity.x < 0)
         {
-            spriteRenderer.flipX = true;
+            chawa.transform.localScale = new Vector3(-chawaXScale, chawaYScale, 1);
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
         }
 
         controller.Move(velocity * Time.deltaTime, input);
