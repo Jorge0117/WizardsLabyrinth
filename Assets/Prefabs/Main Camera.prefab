@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  verticalOffset: 1
+  verticalOffset: 0.5
   focusAreaSize: {x: 3, y: 4}
   lookAheadDstX: 1.5
   lookSmoothTimeX: 0.4
