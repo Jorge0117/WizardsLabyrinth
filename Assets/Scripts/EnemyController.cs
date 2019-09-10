@@ -47,7 +47,6 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("X: " + jugador.transform.position.x);
         bool visibleChawa = false;
         float distanciachawaenemigo = jugador.transform.position.x - enemigoTransform.position.x;
 
@@ -68,15 +67,15 @@ public class EnemyController : MonoBehaviour
         this.x_impulso = impulso.x;
         this.y_impulso = impulso.y;
 
+        // 10% de proba que salte cuando el jugador presiona saltar, 10% de que salte por su cuenta
+        if ( (Input.GetButtonDown("Jump") && controller.collisions.below && Random.Range(0f, 1f) < 0.10f) ||
+             (controller.collisions.below && Random.Range(0f, 1f) < 0.10f) )
+        {
+            velocity.y = jumpVelocity;
+        }
+
         // 25% de proba que intente cambiar la direccion para donde va
         if(Random.Range(0f, 1f) > 0.75f && !visibleChawa){
-	        // 10% de proba que salte cuando el jugador presiona saltar, 10% de que salte por su cuenta
-	        if ( (Input.GetButtonDown("Jump") && controller.collisions.below && Random.Range(0f, 1f) < 0.10f) ||
-	        	 (controller.collisions.below && Random.Range(0f, 1f) < 0.10f) )
-	        {
-	            velocity.y = jumpVelocity;
-	        }
-
 	        velocity.x = impulso.x * moveSpeed;
 	        velocity.y += gravity * Time.deltaTime;
 	        controller.Move(velocity * Time.deltaTime);
