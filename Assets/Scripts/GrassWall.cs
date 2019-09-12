@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrassWall_ChangeSprite : MonoBehaviour
+public class GrassWall : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

@@ -33,7 +33,7 @@ AnimatorController:
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Hited
-    m_Type: 3
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -73,7 +73,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -6714711922450043465}
   m_Tag: 
-  m_SpeedParameter: Hited 0
+  m_SpeedParameter: Hited
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
