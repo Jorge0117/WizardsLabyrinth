@@ -29,6 +29,11 @@ public class EnemyController : MonoBehaviour
 
     Transform enemigoTransform;
 
+    private int maxHealth = 6;
+    private int currentHealth;
+
+    private bool isTakingDamage = false;
+    public int invencibilitySeconds = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +47,8 @@ public class EnemyController : MonoBehaviour
 
         izq_visible = distanciaVisivilidadChawa / -2;
         der_visible = distanciaVisivilidadChawa / -2;
+
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -53,7 +60,6 @@ public class EnemyController : MonoBehaviour
 
         if( izq_visible <=  distanciachawaenemigo && der_visible <= distanciachawaenemigo){
             visibleChawa = true;
-            Debug.Log("Lo estoy viendo");
         }
 
         if (controller.collisions.above || controller.collisions.below)
@@ -75,27 +81,54 @@ public class EnemyController : MonoBehaviour
         }
 
         // 25% de proba que intente cambiar la direccion para donde va
-        if(Random.Range(0f, 1f) > 0.75f && !visibleChawa){
-	        velocity.x = impulso.x * moveSpeed;
-	        velocity.y += gravity * Time.deltaTime;
-	        controller.Move(velocity * Time.deltaTime);
-	    }else{
-	        if(visibleChawa){
-	            if( jugador.transform.position.x < enemigoTransform.position.x ){
-	                //mover hacia la izq
-	                impulso.x = Random.Range(-1.0f, 0f);
-	                velocity.x = impulso.x * moveSpeed;
-	                this.x_impulso = impulso.x;
-	            }else{
-	                //mover hacia la der
-	                impulso.x = Random.Range(0f, 1f);
+        if (Random.Range(0f, 1f) > 0.75f && !visibleChawa)
+        {
+            velocity.x = impulso.x * moveSpeed;
+            velocity.y += gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
+        }
+        else
+        {
+            if (visibleChawa)
+            {
+                if (jugador.transform.position.x < enemigoTransform.position.x)
+                {
+                    //mover hacia la izq
+                    impulso.x = Random.Range(-1.0f, 0f);
                     velocity.x = impulso.x * moveSpeed;
                     this.x_impulso = impulso.x;
-	            }
-	        }
-	    	velocity.y += gravity * Time.deltaTime;
-	        controller.Move(velocity * Time.deltaTime);
-	    }
+                }
+                else
+                {
+                    //mover hacia la der
+                    impulso.x = Random.Range(0f, 1f);
+                    velocity.x = impulso.x * moveSpeed;
+                    this.x_impulso = impulso.x;
+                }
+            }
+            velocity.y += gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
+        }
+    }
 
+    public void takeDamage(int damage)
+    {
+        if(!isTakingDamage)
+        {
+            Debug.Log("Ow");
+            isTakingDamage = true;
+            currentHealth -= damage;
+            if (currentHealth <= 0)
+            {
+                Destroy(gameObject);
+            }
+            StartCoroutine(wait(invencibilitySeconds));
+        }
+    }
+
+    IEnumerator wait(int seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        isTakingDamage = false;
     }
 }

@@ -4,41 +4,48 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private float timeBtwAttack;
-    public float startTimeBtwAttack;
+    public float framesBtwAttack;
+    private float currentFramesBtwAttack;
 
     public Transform attackPos;
     public LayerMask whatIsEnemy;
     public float attackRange;
     public int damage;
 
+    Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
+        currentFramesBtwAttack = framesBtwAttack;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(timeBtwAttack <= 0)
+        if(currentFramesBtwAttack >= framesBtwAttack)
         {
-            if(Input.GetButton("Fire1"))
+            if (Input.GetButton("Fire1"))
             {
-                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange);
-                for(int i=0; i<enemiesToDamage.Length; ++i)
-                {
-                    Debug.Log("Attack");
-                    //enemiesToDamage[i].GetComponent<Enemy>
-                    
-                }
+                animator.SetTrigger("attack");
+                currentFramesBtwAttack = 0;
             }
-
-            timeBtwAttack = startTimeBtwAttack;
         }
         else
         {
-            timeBtwAttack -= Time.deltaTime;
+            currentFramesBtwAttack += 1;
         }
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemy);
+            for (int i = 0; i < enemiesToDamage.Length; ++i)
+            {
+                enemiesToDamage[i].GetComponent<EnemyController>().takeDamage(2);
+            }
+        }
+
     }
 
     void OnDrawGizmosSelected()

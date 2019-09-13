@@ -70,11 +70,6 @@ public class PlayerController : MonoBehaviour
                 velocity.y = minJumpVelocity;
         }
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            animator.SetTrigger("attack");
-        }
-
         velocity.x = input.x * moveSpeed;
         velocity.y += gravity * Time.deltaTime;
         if(velocity.x > 0)
