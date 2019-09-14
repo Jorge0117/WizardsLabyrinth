@@ -34,6 +34,9 @@ public class EnemyController : MonoBehaviour
 
     private bool isTakingDamage = false;
     public int invencibilitySeconds = 1;
+
+    int x;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +52,8 @@ public class EnemyController : MonoBehaviour
         der_visible = distanciaVisivilidadChawa / -2;
 
         currentHealth = maxHealth;
+
+        x = 0;
     }
 
     // Update is called once per frame
@@ -60,6 +65,7 @@ public class EnemyController : MonoBehaviour
 
         if( izq_visible <=  distanciachawaenemigo && der_visible <= distanciachawaenemigo){
             visibleChawa = true;
+            Debug.Log("Lo estoy viendo");
         }
 
         if (controller.collisions.above || controller.collisions.below)
@@ -84,8 +90,6 @@ public class EnemyController : MonoBehaviour
         if (Random.Range(0f, 1f) > 0.75f && !visibleChawa)
         {
             velocity.x = impulso.x * moveSpeed;
-            velocity.y += gravity * Time.deltaTime;
-            controller.Move(velocity * Time.deltaTime);
         }
         else
         {
@@ -106,9 +110,23 @@ public class EnemyController : MonoBehaviour
                     this.x_impulso = impulso.x;
                 }
             }
-            velocity.y += gravity * Time.deltaTime;
-            controller.Move(velocity * Time.deltaTime);
         }
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+
+        if ( x == 10){
+                x = 0;
+                //girar el dibujo
+                if ( velocity.x < 0 ){
+                    enemigoTransform.localScale = new Vector3(enemigoTransform.localScale.x, enemigoTransform.localScale.y, 1);
+                }
+                if ( velocity.x > 0 ){
+                    enemigoTransform.localScale = new Vector3(enemigoTransform.localScale.x * -1, enemigoTransform.localScale.y, 1);
+                }
+            }
+
+
+            x++;
     }
 
     public void takeDamage(int damage)
