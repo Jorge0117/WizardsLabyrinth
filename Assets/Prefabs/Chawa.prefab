@@ -126,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 4608
   horizontalRayCount: 4
   verticalRayCount: 4
   collider: {fileID: 0}
@@ -159,13 +159,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1518e1458de21924b9e23a0fe5ee882b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  framesBtwAttack: 30
+  framesBtwAttack: 15
   attackPos: {fileID: 2874129798516561134}
   whatIsEnemy:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   attackRange: 0.7
-  damage: 1
+  damage: 2
+  fireball: {fileID: 3414297260585760921, guid: 69c4ed2710855994498872cef5929e34,
+    type: 3}
 --- !u!95 &7502981343636629904
 Animator:
   serializedVersion: 3

@@ -14,11 +14,20 @@ public class PlayerAttack : MonoBehaviour
 
     Animator animator;
 
+    private bool isAttacking = false;
+
+
+    private spells[] unlockedSpells;
+    private spells equipedSpell;
+    public GameObject fireball;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         currentFramesBtwAttack = framesBtwAttack;
+
+        equipedSpell = spells.Fire;
     }
 
     // Update is called once per frame
@@ -30,6 +39,15 @@ public class PlayerAttack : MonoBehaviour
             {
                 animator.SetTrigger("attack");
                 currentFramesBtwAttack = 0;
+            }
+
+            if (Input.GetButton("Fire2"))
+            {
+                if (equipedSpell == spells.Fire)
+                {
+                    Instantiate(fireball, attackPos.transform);
+                    currentFramesBtwAttack = 0;
+                }
             }
         }
         else
@@ -53,4 +71,11 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
     }
+
+    enum spells
+    {
+        Fire, Ice, Air
+    };
+
 }
+
