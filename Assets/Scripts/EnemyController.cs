@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public float jumpHeight = 4;
+
     public float timeToJumpApex = .4f;
 
     public float moveSpeed = 6;
@@ -15,6 +16,12 @@ public class EnemyController : MonoBehaviour
     public float y_impulso = 0;
 
     public float distanciaVisivilidadChawa = 8;
+
+    public float probaSaltarSiJugadorSalta = 0.1f;
+    public float probaSaltar = 0.05f;
+
+    public float probaCambiarDireccion = 0.25f;
+    public float probaCambiarDireccionChawaVisible = 0.1f;
 
     float izq_visible;
     float der_visible;
@@ -65,7 +72,7 @@ public class EnemyController : MonoBehaviour
 
         if( izq_visible <=  distanciachawaenemigo && der_visible <= distanciachawaenemigo){
             visibleChawa = true;
-            Debug.Log("Lo estoy viendo");
+            //Debug.Log("Lo estoy viendo");
         }
 
         if (controller.collisions.above || controller.collisions.below)
@@ -79,15 +86,17 @@ public class EnemyController : MonoBehaviour
         this.x_impulso = impulso.x;
         this.y_impulso = impulso.y;
 
-        // 10% de proba que salte cuando el jugador presiona saltar, 10% de que salte por su cuenta
-        if ( (Input.GetButtonDown("Jump") && controller.collisions.below && Random.Range(0f, 1f) < 0.10f) ||
-             (controller.collisions.below && Random.Range(0f, 1f) < 0.10f) )
+        // proba que salte cuando el jugador presiona saltar
+        // proba que salte por su cuenta
+        if ( (Input.GetButtonDown("Jump") && controller.collisions.below && Random.Range(0f, 1f) < probaSaltarSiJugadorSalta) ||
+             (controller.collisions.below && Random.Range(0f, 1f) < probaSaltar) )
         {
             velocity.y = jumpVelocity;
         }
 
-        // 25% de proba que intente cambiar la direccion para donde va
-        if (Random.Range(0f, 1f) > 0.75f && !visibleChawa)
+        // Proba de que intente cambiar la direccion sin chawa visible
+        // Proba de que intente cambiar la direccion con chawa visible
+        if ( (Random.Range(0f, 1f) < probaCambiarDireccion && !visibleChawa) || (Random.Range(0f, 1f) < probaCambiarDireccionChawaVisible && visibleChawa) )
         {
             velocity.x = impulso.x * moveSpeed;
         }
@@ -115,18 +124,15 @@ public class EnemyController : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
 
         if ( x == 10){
-                x = 0;
-                //girar el dibujo
-                if ( velocity.x < 0 ){
-                    enemigoTransform.localScale = new Vector3(enemigoTransform.localScale.x, enemigoTransform.localScale.y, 1);
-                }
-                if ( velocity.x > 0 ){
-                    enemigoTransform.localScale = new Vector3(enemigoTransform.localScale.x * -1, enemigoTransform.localScale.y, 1);
-                }
+            x = 0;
+            //girar el dibujo
+            if ( velocity.x < 0 && enemigoTransform.localScale.x < 0 || velocity.x > 0 && enemigoTransform.localScale.x > 0 ){
+                enemigoTransform.localScale = new Vector3(enemigoTransform.localScale.x * -1, enemigoTransform.localScale.y, 1);
             }
+        }
 
 
-            x++;
+        x++;
     }
 
     public void takeDamage(int damage)
