@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 3478559321523315311}
   m_Layer: 12
   m_Name: GrassWall
-  m_TagString: Untagged
+  m_TagString: GrassWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

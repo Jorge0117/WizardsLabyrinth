@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - OneWay
+  - GrassWall
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
     Vector3 velocity;
 
     Controller2D controller;
-    SpriteRenderer spriteRenderer;
     Animator animator;
 
     GameObject chawa;
@@ -28,11 +27,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<Controller2D> ();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
-        minJumpHeight = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
+        minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
 
         chawa = GameObject.Find("Chawa");
         chawaXScale = chawa.transform.localScale.x;
@@ -93,5 +90,10 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = 0;
         }
+    }
+
+    public void returnToGround()
+    {
+        gameObject.transform.position = positionBeforeJump;
     }
 }

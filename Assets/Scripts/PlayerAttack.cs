@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public float framesBtwAttack;
-    private float currentFramesBtwAttack;
-
     public Transform attackPos;
     public LayerMask whatIsEnemy;
     public float attackRange;
@@ -14,45 +11,41 @@ public class PlayerAttack : MonoBehaviour
 
     Animator animator;
 
-    private bool isAttacking = false;
-
-
+    public float basicAttackCoolDown = 0.5f;
+    private float nextBasicAttackTime;
+    public float fireballCoolDown = 2f;
+    private float nextFireballTime;
+    
     private spells[] unlockedSpells;
     private spells equipedSpell;
     public GameObject fireball;
+    private static readonly int Attack = Animator.StringToHash("attack");
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        currentFramesBtwAttack = framesBtwAttack;
-
         equipedSpell = spells.Fire;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(currentFramesBtwAttack >= framesBtwAttack)
-        {
-            if (Input.GetButton("Fire1"))
-            {
-                animator.SetTrigger("attack");
-                currentFramesBtwAttack = 0;
-            }
 
-            if (Input.GetButton("Fire2"))
-            {
-                if (equipedSpell == spells.Fire)
-                {
-                    Instantiate(fireball, attackPos.transform);
-                    currentFramesBtwAttack = 0;
-                }
-            }
-        }
-        else
+        if (Input.GetButton("Fire1") && Time.time >= nextBasicAttackTime)
         {
-            currentFramesBtwAttack += 1;
+            nextBasicAttackTime = Time.time + basicAttackCoolDown;
+            
+            animator.SetTrigger(Attack);
+        }
+
+        if (Input.GetButton("Fire2"))
+        {
+            if (equipedSpell == spells.Fire && Time.time >= nextFireballTime)
+            {
+                nextFireballTime = Time.time + fireballCoolDown;
+                Instantiate(fireball, attackPos.transform);
+            }
         }
 
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
@@ -60,10 +53,14 @@ public class PlayerAttack : MonoBehaviour
             Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemy);
             for (int i = 0; i < enemiesToDamage.Length; ++i)
             {
-                enemiesToDamage[i].GetComponent<EnemyController>().takeDamage(2);
+                enemiesToDamage[i].GetComponent<EnemyController>().takeDamage(damage);
             }
         }
 
+        if (Input.GetKey("c"))
+        {
+            gameObject.GetComponent<PlayerController>().returnToGround();
+        }
     }
 
     void OnDrawGizmosSelected()

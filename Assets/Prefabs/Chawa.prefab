@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxJumpHeight: 4
-  minJumpHeight: 1
+  minJumpHeight: 0.3
   timeToJumpApex: 0.4
   moveSpeed: 7
 --- !u!114 &1234897905
@@ -159,13 +159,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1518e1458de21924b9e23a0fe5ee882b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  framesBtwAttack: 15
   attackPos: {fileID: 2874129798516561134}
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 1024
   attackRange: 0.7
   damage: 2
+  basicAttackCoolDown: 0.5
   fireball: {fileID: 3414297260585760921, guid: 69c4ed2710855994498872cef5929e34,
     type: 3}
 --- !u!95 &7502981343636629904

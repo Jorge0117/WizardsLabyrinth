@@ -1,15 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerFireBall : MonoBehaviour
 {
-    BoxCollider2D collider;
-    public LayerMask grassWallLayer;
+    public GameObject fireParticles;
+    
     // Start is called before the first frame update
     void Start()
     {
-        collider = GetComponent<BoxCollider2D>();
+        Instantiate(fireParticles, gameObject.transform.position, Quaternion.identity);
     }
 
     // Update is called once per frame
@@ -18,8 +19,17 @@ public class PlayerFireBall : MonoBehaviour
         //Debug.Log(collider.IsTouchingLayers(grassWallLayer));
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("pls");
+        if (other.gameObject.CompareTag("GrassWall"))
+        {
+            other.gameObject.GetComponent<GrassWall>().burn();
+        }
+
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            other.gameObject.GetComponent<EnemyController>().takeDamage(3);
+        }
     }
+    
 }
