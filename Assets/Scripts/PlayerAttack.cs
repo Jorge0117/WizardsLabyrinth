@@ -44,7 +44,11 @@ public class PlayerAttack : MonoBehaviour
             if (equipedSpell == spells.Fire && Time.time >= nextFireballTime)
             {
                 nextFireballTime = Time.time + fireballCoolDown;
-                Instantiate(fireball, attackPos.transform);
+                var position = attackPos.position;
+                GameObject spell = Instantiate(fireball, new Vector2(position.x + 2*Mathf.Sign(gameObject.transform.localScale.x), position.y ), Quaternion.identity);
+                Vector3 spellScale = spell.transform.localScale;
+                spell.transform.localScale = new Vector3(spellScale.x * Mathf.Sign(gameObject.transform.localScale.x), spellScale.y, spellScale.z);
+                //Instantiate(fireball, attackPos.transform);
             }
         }
 

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5854e7f9-c159-45da-a6d2-ae339121e259" name="Default Changelist" comment="" />
@@ -10,9 +10,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Control/DestroyParticles.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerAttack.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerFireBall.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -20,8 +22,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerAttack.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerFireBall.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerAttack.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Control/DestroyParticles.cs" />
       </list>
     </option>
   </component>
@@ -72,6 +75,7 @@
       <option name="presentableId" value="Default" />
       <updated>1568606948306</updated>
       <workItem from="1568606969621" duration="5120000" />
+      <workItem from="1568744081104" duration="162000" />
     </task>
     <servers />
   </component>
@@ -85,7 +89,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
