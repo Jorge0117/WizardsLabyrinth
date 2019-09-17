@@ -11,10 +11,14 @@ public class GrassWall : MonoBehaviour
 
     public bool isBurning = false;
 
+    public ParticleSystem particles;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+
+        particles.Stop();
     }
 
     // Update is called once per frame
@@ -24,6 +28,7 @@ public class GrassWall : MonoBehaviour
         {
             anim.SetBool("Hited", false);
         }
+
     }
 
     void OnMouseDown()
@@ -37,6 +42,7 @@ public class GrassWall : MonoBehaviour
         isBurning = true;
 
         StartCoroutine(wait(2));
+        particles.Play();
     }
 
     void OnDrawGizmosSelected()
