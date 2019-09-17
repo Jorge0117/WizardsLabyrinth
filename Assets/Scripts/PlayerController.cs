@@ -16,21 +16,20 @@ public class PlayerController : MonoBehaviour
     Vector3 velocity;
 
     Controller2D controller;
-    SpriteRenderer spriteRenderer;
     Animator animator;
 
     GameObject chawa;
     float chawaXScale;
     float chawaYScale;
+
+    Vector2 positionBeforeJump;
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<Controller2D> ();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
-        minJumpHeight = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
+        minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
 
         chawa = GameObject.Find("Chawa");
         chawaXScale = chawa.transform.localScale.x;
@@ -42,7 +41,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         if(controller.collisions.below)
@@ -55,18 +53,18 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            animator.SetBool("isFalling", true);
+            if (!animator.GetBool("isFalling"))
+            {
+                animator.SetBool("isFalling", true);
+                positionBeforeJump = chawa.transform.position;
+            }
+            
         }
         
         if(Input.GetButtonUp("Jump"))
         {
             if(velocity.y > minJumpVelocity)
                 velocity.y = minJumpVelocity;
-        }
-
-        if (Input.GetButtonDown("Fire1"))
-        {
-            animator.SetTrigger("attack");
         }
 
         velocity.x = input.x * moveSpeed;
@@ -92,5 +90,10 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = 0;
         }
+    }
+
+    public void returnToGround()
+    {
+        gameObject.transform.position = positionBeforeJump;
     }
 }

@@ -4762,7 +4762,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4395258261679055369}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4796,9 +4796,9 @@ GameObject:
   - component: {fileID: 5354235129044609693}
   - component: {fileID: 5116947141313150026}
   - component: {fileID: 3478559321523315311}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: GrassWall
-  m_TagString: Untagged
+  m_TagString: GrassWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4903,7 +4903,7 @@ MonoBehaviour:
   burnRange: 1.1
   whatIsGrassWall:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 4096
   isBurning: 0
   particles: {fileID: 3422842352865994844}
 --- !u!61 &3478559321523315311
