@@ -24,16 +24,6 @@ public class GrassWall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.N))
-        {
-            anim.SetBool("Hited", false);
-        }
-
-    }
-
-    void OnMouseDown()
-    {
-        burn();
     }
 
     public void burn()
