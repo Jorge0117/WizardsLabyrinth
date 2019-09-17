@@ -115,7 +115,7 @@ public class EnemyController : MonoBehaviour
     {
         if(!isTakingDamage)
         {
-            Debug.Log("Ow");
+            Debug.Log("Damage: " + damage);
             isTakingDamage = true;
             currentHealth -= damage;
             if (currentHealth <= 0)
