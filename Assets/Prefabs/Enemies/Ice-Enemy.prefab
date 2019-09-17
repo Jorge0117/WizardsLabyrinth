@@ -140,10 +140,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c9849f76b4ac1438a253cad12d74bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  size: 7
   jumpHeight: 3
   timeToJumpApex: 0.35
   moveSpeed: 6
   x_impulso: 0
   y_impulso: 0
   distanciaVisivilidadChawa: 8
+  probaSaltarSiJugadorSalta: 0.1
+  probaSaltar: 0.05
+  probaCambiarDireccion: 0.25
+  probaCambiarDireccionChawaVisible: 0.1
   invencibilitySeconds: 1
