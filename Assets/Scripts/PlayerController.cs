@@ -96,4 +96,14 @@ public class PlayerController : MonoBehaviour
     {
         gameObject.transform.position = positionBeforeJump;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "1")
+        {
+            transform.parent = collision.transform;
+            Debug.Log("Llama al metodo");
+        }
+        Debug.Log("Llama al metodo");
+    }
 }

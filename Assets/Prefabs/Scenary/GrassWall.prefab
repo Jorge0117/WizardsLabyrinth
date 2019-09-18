@@ -151,7 +151,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   isBurning: 0
-  particles: {fileID: 0}
+  smokeParticles: {fileID: 8278650339760316680, guid: 8e8766301b5e7074a8fe0900088d7b7b,
+    type: 3}
 --- !u!61 &3478559321523315311
 BoxCollider2D:
   m_ObjectHideFlags: 0
