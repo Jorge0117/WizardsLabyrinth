@@ -77,18 +77,16 @@ public class EnemyController : MonoBehaviour
             bool visibleChawa = false;
             float distanciachawaenemigo = jugador.transform.position.x - enemigoTransform.position.x;
 
-
+            //Vemos si chawa esta visible
             if (izq_visible <= distanciachawaenemigo && der_visible <= distanciachawaenemigo)
             {
                 visibleChawa = true;
-                //Debug.Log("Lo estoy viendo");
             }
-
+            //Se quita velocidad y en caso de haber choque arriba o abajo
             if (controller.collisions.above || controller.collisions.below)
             {
                 velocity.y = 0.0f;
             }
-
             //Moverse random
             Vector2 impulso = new Vector2(Random.Range(-1.0f, 1f), 0.0f);
             float anterior = this.x_impulso;
@@ -138,12 +136,12 @@ public class EnemyController : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
         
         //Para girar el dibujo cada 10 frames
-        if ( x == 10 && !isTakingDamage)
+        if ( x >= 10)
         {
             x = 0;
-            //girar el dibujo
-            if ( velocity.x < 0 && enemigoTransform.localScale.x < 0 || velocity.x > 0 && enemigoTransform.localScale.x > 0 ){
-                enemigoTransform.localScale = new Vector3(enemigoTransform.localScale.x * -1, enemigoTransform.localScale.y, 1);
+            //girar el dibujo, SOLO  cuando no esta recibiendo daño
+            if ( !isTakingDamage && (velocity.x < 0 && enemigoTransform.localScale.x < 0 || velocity.x > 0 && enemigoTransform.localScale.x > 0) ){
+                enemigoTransform.localScale = new Vector3(enemigoTransform.localScale.x * -1, enemigoTransform.localScale.y, 1);                
             }
         }
 
@@ -155,7 +153,6 @@ public class EnemyController : MonoBehaviour
     {
         if(!isTakingDamage)
         {
-            Debug.Log("Damage: " + damage);
             isTakingDamage = true;
             currentHealth -= damage;
             if (currentHealth <= 0)
