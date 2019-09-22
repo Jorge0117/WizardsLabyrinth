@@ -9,77 +9,89 @@ public class EnemyAabbeell : MonoBehaviour
     Controller2D controller;
     
     //Controlador de enemigo
-    EnemyController 
+    private EnemyController enemyController;
     
+    //Transform del enemigo
+    Transform enemyTransform;
     
+    //Jugador
+    GameObject jugador;
+    
+    //Gravedad
+    float gravity;
+    
+    //Altura de salto
     public float jumpHeight = 4;
-
+    
+    //Tiempo del salto
     public float timeToJumpApex = .4f;
 
-    public float moveSpeed = 6;
-
-    public float x_impulso = 0;
-
-    public float y_impulso = 0;
-
-    public float distanciaVisivilidadChawa = 8;
-
-    public float probaSaltarSiJugadorSalta = 0.1f;
-    public float probaSaltar = 0.05f;
-
-    public float probaCambiarDireccion = 0.25f;
-    public float probaCambiarDireccionChawaVisible = 0.1f;
-
-    float izq_visible;
-    float der_visible;
-
-    float gravity;
+    //Velocidad de salto
     float jumpVelocity;
-    Vector3 velocity;
-
     
-
-    GameObject jugador;
-
-    Transform enemigoTransform;
-
+    //Distancia a la que chawa esta visible
+    public float distanceChawaVisivility = 8;
     
-    public float recoilVelocity = 0.9f;
+    //Punto a la izquierda para ver si chawa está visible
+    float left_visible;
+    
+    //Punto a la izquierda para ver si chawa está visible
+    float right_visible;
+    
+    //Contador de frame
+    int frame;
+    
+    //Velocidad de movimiento
+    float moveSpeed;
 
-    int x;
+    //Probabilidad de saltar si chawa salta
+    public float ProbaJumpIfChawaJumps = 0.1f;
+    
+    //Probabilidad de saltar
+    public float ProbaJump = 0.05f;
 
+    //Probabilidad de cambiar la direccion a la que va aabbeell
+    public float ProbaChangeDirection = 0.25f;
+    
+    //Probabilidad de cambiar la direccion de aabbeell si chawa esta visible
+    public float ProbaChangeDirectionIfChawaVisible = 0.1f;
+    
+    
+    
+    
+    
+    
+    
+    
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<Controller2D> ();
+        enemyController = GetComponent<EnemyController> ();
+        moveSpeed = enemyController.moveSpeed;
         jugador = GameObject.Find("Chawa");
-
-        enemigoTransform = GetComponent<Transform> ();
-
+        enemyTransform = GetComponent<Transform> ();
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
-
-        izq_visible = distanciaVisivilidadChawa / -2;
-        der_visible = distanciaVisivilidadChawa / -2;
-
-        x = 0;
+        left_visible = distanceChawaVisivility / -2;
+        right_visible = distanceChawaVisivility / -2;
+        frame = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Velocidad del enemigo
+        Vector3 velocity = new Vector3(0,0,1);
+        
         //Mover el enemigo cuando esta recibiendo daño, para simular que retrocede
-        if (isTakingDamage)
-        {
-            velocity.x = (jugador.transform.position.x < enemigoTransform.position.x ? recoilVelocity: recoilVelocity * -1)  * moveSpeed;
-        }
-        else
+        if (!enemyController.isTakingDamage)
         {
             bool visibleChawa = false;
-            float distanciachawaenemigo = jugador.transform.position.x - enemigoTransform.position.x;
+            float distanciachawaenemigo = jugador.transform.position.x - enemyTransform.position.x;
 
             //Vemos si chawa esta visible
-            if (izq_visible <= distanciachawaenemigo && der_visible <= distanciachawaenemigo)
+            if (left_visible <= distanciachawaenemigo && right_visible <= distanciachawaenemigo)
             {
                 visibleChawa = true;
             }
@@ -90,23 +102,21 @@ public class EnemyAabbeell : MonoBehaviour
             }
             //Moverse random
             Vector2 impulso = new Vector2(Random.Range(-1.0f, 1f), 0.0f);
-            float anterior = this.x_impulso;
-            this.x_impulso = impulso.x;
-            this.y_impulso = impulso.y;
 
             // proba que salte cuando el jugador presiona saltar
             // proba que salte por su cuenta
             if ((Input.GetButtonDown("Jump") && controller.collisions.below &&
-                 Random.Range(0f, 1f) < probaSaltarSiJugadorSalta) ||
-                (controller.collisions.below && Random.Range(0f, 1f) < probaSaltar))
+                 Random.Range(0f, 1f) < ProbaJumpIfChawaJumps) ||
+                (controller.collisions.below && Random.Range(0f, 1f) < ProbaJump))
             {
                 velocity.y = jumpVelocity;
+                Debug.Log("Salte");
             }
 
             // Proba de que intente cambiar la direccion sin chawa visible
             // Proba de que intente cambiar la direccion con chawa visible
-            if ((Random.Range(0f, 1f) < probaCambiarDireccion && !visibleChawa) ||
-                (Random.Range(0f, 1f) < probaCambiarDireccionChawaVisible && visibleChawa))
+            if ((Random.Range(0f, 1f) < ProbaChangeDirection && !visibleChawa) ||
+                (Random.Range(0f, 1f) < ProbaChangeDirectionIfChawaVisible && visibleChawa))
             {
                 velocity.x = impulso.x * moveSpeed;
             }
@@ -114,19 +124,17 @@ public class EnemyAabbeell : MonoBehaviour
             {
                 if (visibleChawa)
                 {
-                    if (jugador.transform.position.x < enemigoTransform.position.x)
+                    if (jugador.transform.position.x < enemyTransform.position.x)
                     {
                         //mover hacia la izq
                         impulso.x = Random.Range(-1.0f, 0f);
                         velocity.x = impulso.x * moveSpeed;
-                        this.x_impulso = impulso.x;
                     }
                     else
                     {
                         //mover hacia la der
                         impulso.x = Random.Range(0f, 1f);
                         velocity.x = impulso.x * moveSpeed;
-                        this.x_impulso = impulso.x;
                     }
                 }
             }
@@ -137,16 +145,16 @@ public class EnemyAabbeell : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
         
         //Para girar el dibujo cada 10 frames
-        if ( x >= 10)
+        if ( frame >= 10)
         {
-            x = 0;
+            frame = 0;
             //girar el dibujo, SOLO  cuando no esta recibiendo daño
-            if ( !isTakingDamage && (velocity.x < 0 && enemigoTransform.localScale.x < 0 || velocity.x > 0 && enemigoTransform.localScale.x > 0) ){
-                enemigoTransform.localScale = new Vector3(enemigoTransform.localScale.x * -1, enemigoTransform.localScale.y, 1);                
+            if ( !enemyController.isTakingDamage && (velocity.x < 0 && enemyTransform.localScale.x < 0 || velocity.x > 0 && enemyTransform.localScale.x > 0) ){
+                enemyTransform.localScale = new Vector3(enemyTransform.localScale.x * -1, enemyTransform.localScale.y, 1);                
             }
         }
 
 
-        x++;
+        frame++;
     }
 }
