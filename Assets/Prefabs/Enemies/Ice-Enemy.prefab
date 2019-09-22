@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5220260252041831745}
   - component: {fileID: 5220260252041831751}
   - component: {fileID: 5220260252041831749}
-  - component: {fileID: 5220260252041831748}
   - component: {fileID: 5743357435474159006}
+  - component: {fileID: 8649705842819027214}
   m_Layer: 10
   m_Name: Ice-Enemy
   m_TagString: Enemy
@@ -129,31 +129,6 @@ MonoBehaviour:
   verticalRayCount: 4
   collider: {fileID: 0}
   playerInput: {x: 0, y: 0}
---- !u!114 &5220260252041831748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5220260252041831744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5c9849f76b4ac1438a253cad12d74bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpHeight: 3
-  timeToJumpApex: 0.35
-  moveSpeed: 6
-  x_impulso: 0
-  y_impulso: 0
-  distanciaVisivilidadChawa: 8
-  probaSaltarSiJugadorSalta: 0.1
-  probaSaltar: 0.05
-  probaCambiarDireccion: 0.25
-  probaCambiarDireccionChawaVisible: 0.1
-  maxHealth: 6
-  recoilVelocity: 0.9
-  invencibilitySeconds: 1
 --- !u!114 &5743357435474159006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,3 +141,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d68669389602c1245af0d9238aa0eb28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpHeight: 4
+  timeToJumpApex: 0.4
+  distanceChawaVisivility: 20
+  ProbaJumpIfChawaJumps: 0.1
+  ProbaJump: 0.05
+  ProbaChangeDirection: 0.25
+  ProbaChangeDirectionIfChawaVisible: 0.1
+--- !u!114 &8649705842819027214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5220260252041831744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c9849f76b4ac1438a253cad12d74bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  isTakingDamage: 0
+  invencibilitySeconds: 1
+  recoilVelocity: 0.9
+  moveSpeed: 6

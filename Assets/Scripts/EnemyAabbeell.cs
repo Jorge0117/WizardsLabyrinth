@@ -30,7 +30,7 @@ public class EnemyAabbeell : MonoBehaviour
     float jumpVelocity;
     
     //Distancia a la que chawa esta visible
-    public float distanceChawaVisivility = 8;
+    public float distanceChawaVisivility = 20;
     
     //Punto a la izquierda para ver si chawa está visible
     float left_visible;
@@ -56,7 +56,8 @@ public class EnemyAabbeell : MonoBehaviour
     //Probabilidad de cambiar la direccion de aabbeell si chawa esta visible
     public float ProbaChangeDirectionIfChawaVisible = 0.1f;
     
-    
+    //Velocidad del enemigo
+    Vector3 velocity;
     
     
     
@@ -81,9 +82,6 @@ public class EnemyAabbeell : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Velocidad del enemigo
-        Vector3 velocity = new Vector3(0,0,1);
-        
         //Mover el enemigo cuando esta recibiendo daño, para simular que retrocede
         if (!enemyController.isTakingDamage)
         {
@@ -110,7 +108,6 @@ public class EnemyAabbeell : MonoBehaviour
                 (controller.collisions.below && Random.Range(0f, 1f) < ProbaJump))
             {
                 velocity.y = jumpVelocity;
-                Debug.Log("Salte");
             }
 
             // Proba de que intente cambiar la direccion sin chawa visible
@@ -138,6 +135,12 @@ public class EnemyAabbeell : MonoBehaviour
                     }
                 }
             }
+        }
+        else
+        {
+            //Este caso se pone para que no agarre la velocidad x que tenia antes,
+            //porque entonces puede hacer que aabbeell no retroceda lo suficiente
+            velocity.x = 0;
         }
 
         //Realiza el movimiento

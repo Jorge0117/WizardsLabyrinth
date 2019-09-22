@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour
     Controller2D controller;
     
     //Vida inicial de enemigo
-    public int maxHealth = 6;
+    public int maxHealth = 100;
     
     //Vida del enemigo
     private int currentHealth;
@@ -33,7 +33,7 @@ public class EnemyController : MonoBehaviour
     public float moveSpeed = 6;
 
 
-    private Vector3 velocity;
+    public Vector3 velocity;
 
     // Start is called before the first frame update
     void Start()
