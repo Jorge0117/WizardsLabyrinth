@@ -62500,5 +62500,10 @@ PrefabInstance:
       propertyPath: distanciaVisivilidadChawa
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 5220260252041831748, guid: ac35c382fc4caf94a8df17aebc03ac02,
+        type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac35c382fc4caf94a8df17aebc03ac02, type: 3}

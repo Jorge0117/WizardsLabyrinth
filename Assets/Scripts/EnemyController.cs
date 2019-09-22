@@ -36,7 +36,8 @@ public class EnemyController : MonoBehaviour
 
     Transform enemigoTransform;
 
-    private int maxHealth = 6;
+    public int maxHealth = 6;
+    public float recoilVelocity = 0.9f;
     private int currentHealth;
 
     private bool isTakingDamage = false;
@@ -66,64 +67,79 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool visibleChawa = false;
-        float distanciachawaenemigo = jugador.transform.position.x - enemigoTransform.position.x;
-
-
-        if( izq_visible <=  distanciachawaenemigo && der_visible <= distanciachawaenemigo){
-            visibleChawa = true;
-            //Debug.Log("Lo estoy viendo");
-        }
-
-        if (controller.collisions.above || controller.collisions.below)
+        //Mover el enemigo cuando esta recibiendo daño, para simular que retrocede
+        if (isTakingDamage)
         {
-            velocity.y = 0.0f;
-        }
-
-        //Moverse random
-        Vector2 impulso = new Vector2(Random.Range(-1.0f, 1f), 0.0f);
-        float anterior = this.x_impulso;
-        this.x_impulso = impulso.x;
-        this.y_impulso = impulso.y;
-
-        // proba que salte cuando el jugador presiona saltar
-        // proba que salte por su cuenta
-        if ( (Input.GetButtonDown("Jump") && controller.collisions.below && Random.Range(0f, 1f) < probaSaltarSiJugadorSalta) ||
-             (controller.collisions.below && Random.Range(0f, 1f) < probaSaltar) )
-        {
-            velocity.y = jumpVelocity;
-        }
-
-        // Proba de que intente cambiar la direccion sin chawa visible
-        // Proba de que intente cambiar la direccion con chawa visible
-        if ( (Random.Range(0f, 1f) < probaCambiarDireccion && !visibleChawa) || (Random.Range(0f, 1f) < probaCambiarDireccionChawaVisible && visibleChawa) )
-        {
-            velocity.x = impulso.x * moveSpeed;
+            velocity.x = (jugador.transform.position.x < enemigoTransform.position.x ? recoilVelocity: recoilVelocity * -1)  * moveSpeed;
         }
         else
         {
-            if (visibleChawa)
+            bool visibleChawa = false;
+            float distanciachawaenemigo = jugador.transform.position.x - enemigoTransform.position.x;
+
+
+            if (izq_visible <= distanciachawaenemigo && der_visible <= distanciachawaenemigo)
             {
-                if (jugador.transform.position.x < enemigoTransform.position.x)
+                visibleChawa = true;
+                //Debug.Log("Lo estoy viendo");
+            }
+
+            if (controller.collisions.above || controller.collisions.below)
+            {
+                velocity.y = 0.0f;
+            }
+
+            //Moverse random
+            Vector2 impulso = new Vector2(Random.Range(-1.0f, 1f), 0.0f);
+            float anterior = this.x_impulso;
+            this.x_impulso = impulso.x;
+            this.y_impulso = impulso.y;
+
+            // proba que salte cuando el jugador presiona saltar
+            // proba que salte por su cuenta
+            if ((Input.GetButtonDown("Jump") && controller.collisions.below &&
+                 Random.Range(0f, 1f) < probaSaltarSiJugadorSalta) ||
+                (controller.collisions.below && Random.Range(0f, 1f) < probaSaltar))
+            {
+                velocity.y = jumpVelocity;
+            }
+
+            // Proba de que intente cambiar la direccion sin chawa visible
+            // Proba de que intente cambiar la direccion con chawa visible
+            if ((Random.Range(0f, 1f) < probaCambiarDireccion && !visibleChawa) ||
+                (Random.Range(0f, 1f) < probaCambiarDireccionChawaVisible && visibleChawa))
+            {
+                velocity.x = impulso.x * moveSpeed;
+            }
+            else
+            {
+                if (visibleChawa)
                 {
-                    //mover hacia la izq
-                    impulso.x = Random.Range(-1.0f, 0f);
-                    velocity.x = impulso.x * moveSpeed;
-                    this.x_impulso = impulso.x;
-                }
-                else
-                {
-                    //mover hacia la der
-                    impulso.x = Random.Range(0f, 1f);
-                    velocity.x = impulso.x * moveSpeed;
-                    this.x_impulso = impulso.x;
+                    if (jugador.transform.position.x < enemigoTransform.position.x)
+                    {
+                        //mover hacia la izq
+                        impulso.x = Random.Range(-1.0f, 0f);
+                        velocity.x = impulso.x * moveSpeed;
+                        this.x_impulso = impulso.x;
+                    }
+                    else
+                    {
+                        //mover hacia la der
+                        impulso.x = Random.Range(0f, 1f);
+                        velocity.x = impulso.x * moveSpeed;
+                        this.x_impulso = impulso.x;
+                    }
                 }
             }
         }
+
+        //Realiza el movimiento
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
-
-        if ( x == 10){
+        
+        //Para girar el dibujo cada 10 frames
+        if ( x == 10 && !isTakingDamage)
+        {
             x = 0;
             //girar el dibujo
             if ( velocity.x < 0 && enemigoTransform.localScale.x < 0 || velocity.x > 0 && enemigoTransform.localScale.x > 0 ){
