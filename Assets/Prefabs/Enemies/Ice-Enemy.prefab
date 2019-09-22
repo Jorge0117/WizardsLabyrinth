@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5220260252041831751}
   - component: {fileID: 5220260252041831749}
   - component: {fileID: 5220260252041831748}
+  - component: {fileID: 5743357435474159006}
   m_Layer: 10
   m_Name: Ice-Enemy
   m_TagString: Enemy
@@ -140,7 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c9849f76b4ac1438a253cad12d74bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 7
   jumpHeight: 3
   timeToJumpApex: 0.35
   moveSpeed: 6
@@ -151,4 +151,18 @@ MonoBehaviour:
   probaSaltar: 0.05
   probaCambiarDireccion: 0.25
   probaCambiarDireccionChawaVisible: 0.1
+  maxHealth: 6
+  recoilVelocity: 0.9
   invencibilitySeconds: 1
+--- !u!114 &5743357435474159006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5220260252041831744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68669389602c1245af0d9238aa0eb28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
