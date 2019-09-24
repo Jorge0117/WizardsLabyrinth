@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour
     Controller2D controller;
     
     //Vida inicial de enemigo
-    public int maxHealth = 100;
+    public int maxHealth = 5;
     
     //Vida del enemigo
     private int currentHealth;
@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour
     public bool isTakingDamage = false;
     
     //Tiempo en que no se recibe mas daño
-    public int invencibilitySeconds = 1;
+    public float invencibilitySeconds = 0.5f;
     
     //Velocidad de retroceso al recibir daño
     public float recoilVelocity = 0.9f;
@@ -55,6 +55,7 @@ public class EnemyController : MonoBehaviour
             velocity.x = (jugador.transform.position.x < enemyTransform.position.x
                              ? recoilVelocity
                              : recoilVelocity * -1) * moveSpeed;
+            velocity.y = 13;
             controller.Move(velocity * Time.deltaTime);
         }
     }
@@ -73,7 +74,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    IEnumerator wait(int seconds)
+    IEnumerator wait(float seconds)
     {
         yield return new WaitForSeconds(seconds);
         isTakingDamage = false;

@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5220260252041831744}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.87, y: 1.2, z: 0}
   m_LocalScale: {x: 7, y: 7, z: 1}
   m_Children: []
@@ -160,8 +160,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c9849f76b4ac1438a253cad12d74bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 5
   isTakingDamage: 0
-  invencibilitySeconds: 1
-  recoilVelocity: 0.9
+  invencibilitySeconds: 0.5
+  recoilVelocity: 1.5
   moveSpeed: 6
+  velocity: {x: 0, y: 0, z: 0}
