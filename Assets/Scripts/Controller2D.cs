@@ -3,37 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent (typeof (BoxCollider2D))]
-public class Controller2D : MonoBehaviour
+public class Controller2D : RaycastController
 {
-
-    public LayerMask collisionMask;
-
-    const float skinWidth = 0.015f;
-    public int horizontalRayCount = 4;
-    public int verticalRayCount = 4;
-
     float maxClimbAngle = 80;
     float maxDescentAngle = 75;
-
-    float horizontalRaySpacing;
-    float verticalRaySpacing;
-
-    public BoxCollider2D collider;
-    RaycastOrigins raycastOrigins;
 
     public CollisionInfo collisions;
     [HideInInspector]
     public Vector2 playerInput;
 
     // Start is called before the first frame update
-    public virtual void Start()
+    public override void Start()
     {
-        CalculateRaySpacing();
+        base.Start();
     }
 
-    void Awake()
+    private void Awake()
     {
-        collider = GetComponent<BoxCollider2D> ();
+        collider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
