@@ -229,4 +229,14 @@ public class Controller2D : MonoBehaviour
             slopeAngle = 0;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "MovingPlatform")
+        {
+            transform.parent = collision.transform;
+        }
+        Debug.Log("Llama al metodo");
+    }
+
 }

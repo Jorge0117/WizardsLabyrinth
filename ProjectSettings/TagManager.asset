@@ -7,6 +7,8 @@ TagManager:
   - OneWay
   - GrassWall
   - Enemy
+  - MovingPlatform
+  - 1
   layers:
   - Default
   - TransparentFX
