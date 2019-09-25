@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isWalking", false);
         }
 
-        controller.Move(velocity * Time.deltaTime, input);
+        controller.Move(velocity * Time.deltaTime);
 
         if (controller.collisions.above || controller.collisions.below)
         {
@@ -95,15 +95,5 @@ public class PlayerController : MonoBehaviour
     public void returnToGround()
     {
         gameObject.transform.position = positionBeforeJump;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.transform.tag == "1")
-        {
-            transform.parent = collision.transform;
-            Debug.Log("Llama al metodo");
-        }
-        Debug.Log("Llama al metodo");
     }
 }

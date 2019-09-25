@@ -20,7 +20,6 @@ public class PlatformController : RaycastController
 
     void Update()
     {
-
         UpdateRaycastOrigins();
 
         Vector3 velocity = move * Time.deltaTime;
