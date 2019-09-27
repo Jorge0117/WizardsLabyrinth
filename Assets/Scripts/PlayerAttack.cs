@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -25,7 +27,10 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        equipedSpell = spells.Fire;
+        if (unlockedSpells.Contains(spells.Fire))
+        {
+            equipedSpell = spells.Fire;
+        }
     }
 
     // Update is called once per frame
