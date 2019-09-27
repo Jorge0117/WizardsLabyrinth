@@ -17,6 +17,9 @@ public class PlayerAttack : MonoBehaviour
     private float nextBasicAttackTime;
     public float fireballCoolDown = 2f;
     private float nextFireballTime;
+
+    private float spellChangeCoolDown = 0.5f;
+    private float nextSpellChange = 0.5f;
     
     private spells[] unlockedSpells;
     private spells equipedSpell;
@@ -26,6 +29,11 @@ public class PlayerAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        unlockedSpells = new spells[3];
+        unlockedSpells[0] = spells.Fire;
+        unlockedSpells[1] = spells.Ice;
+        unlockedSpells[2] = spells.Air;
+        
         animator = GetComponent<Animator>();
         if (unlockedSpells.Contains(spells.Fire))
         {
@@ -36,7 +44,6 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetButton("Fire1") && Time.time >= nextBasicAttackTime)
         {
             nextBasicAttackTime = Time.time + basicAttackCoolDown;
@@ -54,6 +61,33 @@ public class PlayerAttack : MonoBehaviour
                 Vector3 spellScale = spell.transform.localScale;
                 spell.transform.localScale = new Vector3(spellScale.x * Mathf.Sign(gameObject.transform.localScale.x), spellScale.y, spellScale.z);
                 //Instantiate(fireball, attackPos.transform);
+            }
+        }
+
+        if (Input.GetKey("e") && Time.time > nextSpellChange)
+        {
+            if (unlockedSpells.Length > 0)
+            {
+                nextSpellChange = Time.time + spellChangeCoolDown;
+                int index = Array.IndexOf(unlockedSpells, equipedSpell);
+                index = (index + 1) % unlockedSpells.Length;
+
+                equipedSpell = unlockedSpells[index];
+                Debug.Log(equipedSpell);
+            }
+        }
+        
+        if (Input.GetKey("q") && Time.time > nextSpellChange)
+        {
+            if (unlockedSpells.Length > 0)
+            {
+                nextSpellChange = Time.time + spellChangeCoolDown;
+                int index = Array.IndexOf(unlockedSpells, equipedSpell);
+                index = (index - 1) % unlockedSpells.Length;
+                if (index == -1)
+                    index = 2;
+                equipedSpell = unlockedSpells[index];
+                Debug.Log(equipedSpell);
             }
         }
 
