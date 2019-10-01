@@ -23,6 +23,12 @@ public class PlayerController : MonoBehaviour
     float chawaYScale;
 
     Vector2 positionBeforeJump;
+
+    //Se esta recibiendo daño?
+    private bool isTakingDamage = false;
+    
+    //Tiempo en que no se recibe mas daño
+    public float invencibilitySeconds = 0.5f;
     
     int maxHealth = 5;
     int currentHealth;
@@ -109,5 +115,25 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Llama al metodo");
         }
         Debug.Log("Llama al metodo");
+    }
+    
+    public void takeDamage(int damage)
+    {
+        if(!isTakingDamage)
+        {
+            isTakingDamage = true;
+            currentHealth -= damage;
+            if (currentHealth <= 0)
+            {
+                Destroy(gameObject);
+            }
+            StartCoroutine(wait(invencibilitySeconds));
+        }
+    }
+
+    IEnumerator wait(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        isTakingDamage = false;
     }
 }
