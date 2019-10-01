@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     float chawaYScale;
 
     Vector2 positionBeforeJump;
+    
+    int maxHealth = 5;
+    int currentHealth;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour
         chawaYScale = chawa.transform.localScale.y;
 
         animator = GetComponent<Animator>();
+        currentHealth = 5;
     }
 
     // Update is called once per frame
