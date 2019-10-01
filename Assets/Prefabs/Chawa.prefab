@@ -126,9 +126,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 4608
+    m_Bits: 4624
   horizontalRayCount: 4
   verticalRayCount: 4
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
   collider: {fileID: 0}
   playerInput: {x: 0, y: 0}
 --- !u!114 &118777639717713784
@@ -166,6 +168,7 @@ MonoBehaviour:
   attackRange: 0.7
   damage: 2
   basicAttackCoolDown: 0.5
+  fireballCoolDown: 2
   fireball: {fileID: 3414297260585760921, guid: 69c4ed2710855994498872cef5929e34,
     type: 3}
 --- !u!95 &7502981343636629904

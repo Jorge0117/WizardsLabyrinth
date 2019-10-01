@@ -8,7 +8,7 @@ TagManager:
   - GrassWall
   - Enemy
   - MovingPlatform
-  - 1
+  - Water
   layers:
   - Default
   - TransparentFX
