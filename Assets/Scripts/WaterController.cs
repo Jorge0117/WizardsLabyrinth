@@ -23,11 +23,25 @@ public class WaterController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update(){}
+    void Update(){
+        if (Input.GetKey(KeyCode.H))
+        {
+            if (gameObject.layer == LayerMask.NameToLayer("Obstacles"))
+            {
+                gameObject.layer = LayerMask.NameToLayer("Water");
+                spriteR.sprite = water;
+            }
+            else
+            {
+                gameObject.layer = LayerMask.NameToLayer("Obstacles");
+                spriteR.sprite = ice;
+            }
+        }
+    }
 
     private void OnMouseDown()
     {
-        freeze();
+        //freeze();
     }
 
     public void freeze()
