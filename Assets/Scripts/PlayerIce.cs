@@ -22,9 +22,9 @@ public class PlayerIce : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float velocityX = Mathf.Round(Mathf.Cos(Mathf.PI * angle / 180)) * velocity;
+        float velocityX = Mathf.Cos(Mathf.PI * angle / 180) * velocity;
         //Debug.Log(velocityX);
-        float velocityY = Mathf.Round(Mathf.Sin(Mathf.PI * angle / 180)) * velocity;
+        float velocityY = Mathf.Sin(Mathf.PI * angle / 180) * velocity;
         transform.position = new Vector2(transform.position.x + velocityX * dir, transform.position.y + velocityY);
     }
 }
