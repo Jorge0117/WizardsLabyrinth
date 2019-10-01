@@ -142,6 +142,7 @@ public class EnemyBat : MonoBehaviour
             //Este caso se pone para que no agarre la velocidad x que tenia antes,
             //porque entonces puede hacer que aabbeell no retroceda lo suficiente
             velocity.x = 0;
+            velocity.y = 0;
             //Cuando recibe daño lo hago subir como para evitar que lo sigan atacando
             velocity.y = Random.Range(2 * maxImpulseY, 4 * maxImpulseY);
         }
