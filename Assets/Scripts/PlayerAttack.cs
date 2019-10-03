@@ -91,8 +91,6 @@ public class PlayerAttack : MonoBehaviour
                 
                 Vector3 spellScale = spell.transform.localScale;
                 spell.transform.localScale = new Vector3(spellScale.x * Mathf.Sign(gameObject.transform.localScale.x), spellScale.y, spellScale.z);
-
-                //Instantiate(fireball, attackPos.transform);
             }
         }
 
