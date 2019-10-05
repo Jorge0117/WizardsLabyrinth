@@ -62365,6 +62365,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice-Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5220260252041831744, guid: ac35c382fc4caf94a8df17aebc03ac02,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5220260252041831750, guid: ac35c382fc4caf94a8df17aebc03ac02,
         type: 3}
       propertyPath: m_LocalPosition.x

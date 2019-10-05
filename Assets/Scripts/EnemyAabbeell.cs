@@ -60,7 +60,7 @@ public class EnemyAabbeell : MonoBehaviour
     Vector3 velocity;
     
     //Siguiente ataque
-    private float nextBasicAttackTime;
+    public float nextBasicAttackTime;
     
     //Tiempo de daño
     public float basicAttackCoolDown = 1.5f;

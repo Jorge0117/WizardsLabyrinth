@@ -31,7 +31,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 72.46, y: 6.02, z: 0}
   m_LocalScale: {x: 7, y: 7, z: 7}
-  m_Children: []
+  m_Children:
+  - {fileID: 11999594139777974}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -163,6 +164,44 @@ MonoBehaviour:
   ProbaChangeDirection: 0.25
   ProbaChangeDirectionIfChawaVisible: 0.1
   minImpulseX: 0
-  maxImpulseX: 1
+  maxImpulseX: 2
   minImpulseY: 0
-  maxImpulseY: 1
+  maxImpulseY: 2
+  attackRange: 1
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 256
+  nextBasicAttackTime: 0.5
+  basicAttackCoolDown: 1
+  attackPos: {fileID: 11999594139777974}
+  basicAttackDamage: 1
+--- !u!1 &4576975257408845296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 11999594139777974}
+  m_Layer: 8
+  m_Name: AttackPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &11999594139777974
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4576975257408845296}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2856122976156770560}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
