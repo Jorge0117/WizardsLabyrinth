@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 5743357435474159006}
   - component: {fileID: 8649705842819027214}
   - component: {fileID: 5046700253598957210}
-  - component: {fileID: 1627586291417142922}
   m_Layer: 10
   m_Name: Ice-Enemy
   m_TagString: Enemy
@@ -151,6 +150,14 @@ MonoBehaviour:
   ProbaJump: 0.05
   ProbaChangeDirection: 0.25
   ProbaChangeDirectionIfChawaVisible: 0.1
+  basicAttackCoolDown: 0.5
+  probaBasicAttack: 0.9
+  basicAttackDamage: 2
+  attackPos: {fileID: 6048570102359092684}
+  attackRange: 1.1
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &8649705842819027214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,28 +195,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1627586291417142922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5220260252041831744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 553582ea791c91243b91d418cb8441fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackPos: {fileID: 6048570102359092684}
-  whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 256
-  attackRange: 1.1
-  damage: 2
-  basicAttackCoolDown: 0.5
-  fireballCoolDown: 2
-  fireball: {fileID: 3414297260585760921, guid: 69c4ed2710855994498872cef5929e34,
-    type: 3}
 --- !u!1 &8238394086227625670
 GameObject:
   m_ObjectHideFlags: 0

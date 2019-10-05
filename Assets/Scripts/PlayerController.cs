@@ -30,8 +30,8 @@ public class PlayerController : MonoBehaviour
     //Tiempo en que no se recibe mas daño
     public float invencibilitySeconds = 0.5f;
     
-    int maxHealth = 5;
-    int currentHealth;
+    public int maxHealth = 5;
+    public int currentHealth;
     // Start is called before the first frame update
     void Start()
     {

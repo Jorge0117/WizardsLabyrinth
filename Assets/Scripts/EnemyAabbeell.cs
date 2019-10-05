@@ -59,8 +59,35 @@ public class EnemyAabbeell : MonoBehaviour
     //Velocidad del enemigo
     Vector3 velocity;
     
+    //Siguiente ataque
+    private float nextBasicAttackTime;
     
+    //Tiempo de daño
+    public float basicAttackCoolDown = 1.5f;
     
+    //proba de ataque basico
+    public float probaBasicAttack = .9f;
+    
+    //daño basico
+    public int basicAttackDamage = 1;
+
+    //Para las animaciones
+    private Animator enemyAnimator;
+    
+    //animacion de ataque
+    private static readonly int Attack = Animator.StringToHash("Attack");
+
+    //Controlador del jugador(chawa)
+    private PlayerController jugadorPlayerController;
+    
+    //Posicion de ataque
+    public Transform attackPos;
+    
+    //rango de ataque
+    public float attackRange = 1.1f;
+    
+    //enemigos
+    public LayerMask whatIsEnemy;
     
     
     
@@ -71,7 +98,9 @@ public class EnemyAabbeell : MonoBehaviour
         enemyController = GetComponent<EnemyController> ();
         moveSpeed = enemyController.moveSpeed;
         jugador = GameObject.Find("Chawa");
+        jugadorPlayerController = jugador.GetComponent<PlayerController>();
         enemyTransform = GetComponent<Transform> ();
+        enemyAnimator = GetComponent<Animator>();
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
         left_visible = distanceChawaVisivility / -2;
@@ -82,7 +111,7 @@ public class EnemyAabbeell : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Mover el enemigo cuando esta recibiendo daño, para simular que retrocede
+        //Cuando no esta recibiendo daño, 
         if (!enemyController.isTakingDamage)
         {
             bool visibleChawa = false;
@@ -132,6 +161,23 @@ public class EnemyAabbeell : MonoBehaviour
                         //mover hacia la der
                         impulso.x = Random.Range(0f, 1f);
                         velocity.x = impulso.x * moveSpeed;
+                    }
+
+                    if (distanciachawaenemigo>=-1.0f && distanciachawaenemigo<=1.0f)
+                    {
+                        //Debug.Log("visible al:" + distanciachawaenemigo);
+                        //Ataque
+                        if ( Random.Range(0f, 1f) < probaBasicAttack && Time.time >= nextBasicAttackTime)
+                        {
+                            nextBasicAttackTime = Time.time + basicAttackCoolDown;
+                            enemyAnimator.SetTrigger(Attack);
+                            //Mandar a hacer daño
+                            Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemy);
+                            for (int i = 0; i < enemiesToDamage.Length; ++i)
+                            {
+                                enemiesToDamage[i].GetComponent<PlayerController>().takeDamage(basicAttackDamage);
+                            }
+                        }
                     }
                 }
             }
