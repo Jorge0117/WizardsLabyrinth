@@ -84,7 +84,7 @@ public class EnemyAabbeell : MonoBehaviour
     public Transform attackPos;
     
     //rango de ataque
-    public float attackRange = 1.1f;
+    public float attackRange = 1.4f;
     
     //enemigos
     public LayerMask whatIsEnemy;
@@ -162,10 +162,9 @@ public class EnemyAabbeell : MonoBehaviour
                         impulso.x = Random.Range(0f, 1f);
                         velocity.x = impulso.x * moveSpeed;
                     }
-
-                    if (distanciachawaenemigo>=-1.0f && distanciachawaenemigo<=1.0f)
+                    //atacar si esta chawa al alcance
+                    if (distanciachawaenemigo >= (attackRange + .1f) * -1 && distanciachawaenemigo <= attackRange + .1f)
                     {
-                        //Debug.Log("visible al:" + distanciachawaenemigo);
                         //Ataque
                         if ( Random.Range(0f, 1f) < probaBasicAttack && Time.time >= nextBasicAttackTime)
                         {

@@ -148,6 +148,9 @@ MonoBehaviour:
   minJumpHeight: 0.3
   timeToJumpApex: 0.4
   moveSpeed: 7
+  invencibilitySeconds: 0.5
+  maxHealth: 5
+  currentHealth: 0
 --- !u!114 &1234897905
 MonoBehaviour:
   m_ObjectHideFlags: 0
