@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5743357435474159006}
   - component: {fileID: 8649705842819027214}
   - component: {fileID: 5046700253598957210}
+  - component: {fileID: 3904629821626231587}
   m_Layer: 10
   m_Name: Enemy-Fire
   m_TagString: Enemy
@@ -196,6 +197,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3904629821626231587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5220260252041831744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8b460f33da26f49b675b46f3eb272b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPos: {fileID: 6048570102359092684}
+  fireballCoolDown: 2
+  fireball: {fileID: 3414297260585760921, guid: 69c4ed2710855994498872cef5929e34,
+    type: 3}
 --- !u!1 &8238394086227625670
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,8 +222,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6048570102359092684}
-  m_Layer: 8
-  m_Name: AttackPos
+  m_Layer: 10
+  m_Name: AttackPos-Enemy-Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

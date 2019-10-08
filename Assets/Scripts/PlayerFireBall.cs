@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerFireBall : MonoBehaviour
 {
     public GameObject fireParticles;
+
+    public string enemy;
     
     // Start is called before the first frame update
     void Start()
@@ -27,9 +29,17 @@ public class PlayerFireBall : MonoBehaviour
             other.gameObject.GetComponent<GrassWall>().burn();
         }
 
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag(enemy))
         {
-            other.gameObject.GetComponent<EnemyController>().takeDamage(3);
+            if (enemy.CompareTo("Enemy") == 0)
+            {
+                other.gameObject.GetComponent<EnemyController>().takeDamage(3);
+            }
+            if (enemy.CompareTo("Player") == 0)
+            {
+                Debug.Log("llegue aqui");
+                other.gameObject.GetComponent<PlayerController>().takeDamage(3);
+            }
         }
     }
     
