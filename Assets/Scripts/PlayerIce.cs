@@ -35,7 +35,6 @@ public class PlayerIce : MonoBehaviour
     {
         if (LayerMask.LayerToName(other.gameObject.layer) == "Obstacles")
         {
-            Debug.Log("Entro");
             Destroy(gameObject);
         }
         if (other.gameObject.CompareTag("GrassWall"))

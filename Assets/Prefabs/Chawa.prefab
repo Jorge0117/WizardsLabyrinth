@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxJumpHeight: 4
-  minJumpHeight: 0.3
+  minJumpHeight: 1
   timeToJumpApex: 0.4
   moveSpeed: 7
 --- !u!114 &1234897905
@@ -171,7 +171,7 @@ MonoBehaviour:
   iceCoolDown: 2
   fireball: {fileID: 3414297260585760921, guid: 69c4ed2710855994498872cef5929e34,
     type: 3}
-  ice: {fileID: 0}
+  ice: {fileID: 9065008747380130482, guid: 862c1320ec3b8dd47917d77310e4efca, type: 3}
   iceAngle: 25
 --- !u!95 &7502981343636629904
 Animator:
@@ -287,7 +287,7 @@ Transform:
   m_GameObject: {fileID: 8000096944645712168}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.07, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 118777639717713783}
   m_RootOrder: 0
