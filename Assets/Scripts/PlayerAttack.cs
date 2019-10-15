@@ -28,6 +28,8 @@ public class PlayerAttack : MonoBehaviour
     private spells equipedSpell;
     public GameObject fireball;
     public GameObject ice;
+    public float iceAngle = 30;
+    
     private static readonly int Attack = Animator.StringToHash("attack");
 
     // Start is called before the first frame update
@@ -75,19 +77,20 @@ public class PlayerAttack : MonoBehaviour
                 GameObject spell2 = Instantiate(ice, new Vector2(position.x + 2*Mathf.Sign(gameObject.transform.localScale.x), position.y ), Quaternion.identity);
                 GameObject spell3 = Instantiate(ice, new Vector2(position.x + 2*Mathf.Sign(gameObject.transform.localScale.x), position.y ), Quaternion.identity);
 
-                spell2.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 30);
-                spell3.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 320);
+                if (Mathf.Sign(transform.localScale.x) > 0)
+                {
+                    spell2.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, iceAngle);
+                    spell3.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 360 - iceAngle);
+                }
+                else
+                {
+                    spell.GetComponent<Transform>().rotation = Quaternion.Euler(0,0,180);
+                    spell2.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 180 + iceAngle);
+                    spell3.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 180 - iceAngle);
+                }
                 
                 Vector3 spellScale = spell.transform.localScale;
                 spell.transform.localScale = new Vector3(spellScale.x * Mathf.Sign(gameObject.transform.localScale.x), spellScale.y, spellScale.z);
-                spell.GetComponent<PlayerIce>().dir = (int)Mathf.Sign(transform.localScale.x);
-                
-                spell2.transform.localScale = new Vector3(spellScale.x * Mathf.Sign(gameObject.transform.localScale.x), spellScale.y, spellScale.z);
-                spell2.GetComponent<PlayerIce>().dir = (int)Mathf.Sign(transform.localScale.x);
-                
-                spell3.transform.localScale = new Vector3(spellScale.x * Mathf.Sign(gameObject.transform.localScale.x), spellScale.y, spellScale.z);
-                spell3.GetComponent<PlayerIce>().dir = (int)Mathf.Sign(transform.localScale.x);
-                //Instantiate(fireball, attackPos.transform);
             }
         }
 

@@ -170,8 +170,11 @@ MonoBehaviour:
   damage: 2
   basicAttackCoolDown: 0.5
   fireballCoolDown: 2
+  iceCoolDown: 2
   fireball: {fileID: 3414297260585760921, guid: 69c4ed2710855994498872cef5929e34,
     type: 3}
+  ice: {fileID: 0}
+  iceAngle: 25
 --- !u!95 &7502981343636629904
 Animator:
   serializedVersion: 3
