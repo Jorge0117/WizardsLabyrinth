@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
 
     Vector2 positionBeforeJump;
     
-    int maxHealth = 5;
-    int currentHealth;
+    public int maxHealth = 5;
+    public int currentHealth;
     // Start is called before the first frame update
     void Start()
     {
@@ -109,5 +109,10 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Llama al metodo");
         }
         Debug.Log("Llama al metodo");
+    }
+
+    public int getHealth()
+    {
+        return this.currentHealth;
     }
 }
