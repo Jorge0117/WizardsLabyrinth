@@ -7,7 +7,8 @@ public class WaterController : MonoBehaviour
     private SpriteRenderer spriteR;
     public Sprite water;
     public Sprite ice;
-    public bool isFreezing = false;
+    public bool isFreeze = false;
+    public bool isWater = true;
 
     public Transform pos;
     public float freezeRange;
@@ -26,14 +27,14 @@ public class WaterController : MonoBehaviour
     void Update(){
         if (Input.GetKey(KeyCode.H))
         {
-            if (gameObject.layer == LayerMask.NameToLayer("Obstacles"))
+            if (gameObject.layer == LayerMask.NameToLayer("Ice"))
             {
                 gameObject.layer = LayerMask.NameToLayer("Water");
                 spriteR.sprite = water;
             }
             else
             {
-                gameObject.layer = LayerMask.NameToLayer("Obstacles");
+                gameObject.layer = LayerMask.NameToLayer("Ice");
                 spriteR.sprite = ice;
             }
         }
@@ -41,13 +42,23 @@ public class WaterController : MonoBehaviour
 
     private void OnMouseDown()
     {
-        //freeze();
+        Debug.Log("Si entra");
+        change();
     }
 
-    public void freeze()
+    public void change()
     {
         anim.SetBool("isFreezing", true);
-        isFreezing = true;
+        if (isFreeze)
+        {
+            isWater = true;
+            isFreeze = false;
+        }
+        else
+        {
+            isFreeze = true;
+            isWater = false;
+        }
 
         StartCoroutine(wait(2));
     }
@@ -63,25 +74,38 @@ public class WaterController : MonoBehaviour
         yield return new WaitForSeconds(seconds);
 
         Collider2D[] waterToFreeze = Physics2D.OverlapCircleAll(pos.position, freezeRange, whatIsWater);
-        for (int i = 0; i < waterToFreeze.Length; i++)
+
+        if (isWater)
         {
-            if (!waterToFreeze[i].GetComponent<WaterController>().isFreezing)
+            for (int i = 0; i < waterToFreeze.Length; i++)
             {
-                waterToFreeze[i].GetComponent<WaterController>().freeze();
+                if (!waterToFreeze[i].GetComponent<WaterController>().isFreeze)
+                {
+                    waterToFreeze[i].GetComponent<WaterController>().change();
+                }
             }
-        }
 
-        yield return new WaitForSeconds(seconds / 2);
+            yield return new WaitForSeconds(seconds / 2);
 
-        if (gameObject.layer == LayerMask.NameToLayer("Obstacles"))
-        {
+            anim.SetBool("isFreezing", false);
             gameObject.layer = LayerMask.NameToLayer("Water");
-            spriteR.sprite = water;
+            //spriteR.sprite = water;
         }
         else
         {
-            gameObject.layer = LayerMask.NameToLayer("Obstacles");
-            spriteR.sprite = ice;
+            for (int i = 0; i < waterToFreeze.Length; i++)
+            {
+                if (!waterToFreeze[i].GetComponent<WaterController>().isFreeze)
+                {
+                    waterToFreeze[i].GetComponent<WaterController>().change();
+                }
+            }
+
+            yield return new WaitForSeconds(seconds / 2);
+
+            anim.SetBool("isFreezing", false);
+            gameObject.layer = LayerMask.NameToLayer("Ice");
+            //spriteR.sprite = ice;
         }
     }
 }

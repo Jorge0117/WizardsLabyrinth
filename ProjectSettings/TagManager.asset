@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - MovingPlatform
   - Water
+  - Ice
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Enemy
   - Wall-enemy
   - GrassWall
-  - 
+  - Ice
   - 
   - 
   - 

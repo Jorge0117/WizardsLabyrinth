@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3131243393402657026
+--- !u!1 &3781464777890696457
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4826763383963991329}
-  - component: {fileID: 8988996561303062499}
-  - component: {fileID: -7480228127565084190}
-  - component: {fileID: -3451869323163452556}
-  - component: {fileID: 1879870685131439021}
-  m_Layer: 13
-  m_Name: Ice
-  m_TagString: Water
+  - component: {fileID: 8105005896122860009}
+  - component: {fileID: 8932150279732866792}
+  - component: {fileID: 4326545735406994045}
+  m_Layer: 0
+  m_Name: IceBook
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4826763383963991329
+--- !u!4 &8105005896122860009
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3131243393402657026}
+  m_GameObject: {fileID: 3781464777890696457}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.101941, y: 0.85892576, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalPosition: {x: 10.395517, y: 0.7639869, z: -3.0860195}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8988996561303062499
+--- !u!212 &8932150279732866792
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3131243393402657026}
+  m_GameObject: {fileID: 3781464777890696457}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -72,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7560284153744367771, guid: 20728bee6838fe449b5254c28f49a2f6,
+  m_Sprite: {fileID: -4717609700255948120, guid: 3b96e218baa2b0e4a9cc92c6aa34d2e6,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -84,64 +82,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &-7480228127565084190
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3131243393402657026}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &-3451869323163452556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3131243393402657026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e31b3584a19ec34c9af62387ae69edf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  water: {fileID: -6278239303427718194, guid: 731176e516fafbc498ea10910986b6e3, type: 3}
-  ice: {fileID: -7560284153744367771, guid: 20728bee6838fe449b5254c28f49a2f6, type: 3}
-  isFreeze: 0
-  isWater: 1
-  pos: {fileID: 4826763383963991329}
-  freezeRange: 1.21
-  whatIsWater:
-    serializedVersion: 2
-    m_Bits: 16
---- !u!95 &1879870685131439021
+--- !u!95 &4326545735406994045
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3131243393402657026}
+  m_GameObject: {fileID: 3781464777890696457}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 83f4447f062e3064cb7140f39724b49b, type: 2}
+  m_Controller: {fileID: 9100000, guid: e5f26bcde3f024249b941c662a0738e1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
