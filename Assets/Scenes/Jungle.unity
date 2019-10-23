@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -695,12 +695,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2787093913971655094, guid: 0294f40282ede0448802a26d01055412,
     type: 3}
   m_PrefabInstance: {fileID: 423529724}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &424606704 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2874129798516561134, guid: 0e2e41301b1204647b6d019d28697641,
-    type: 3}
-  m_PrefabInstance: {fileID: 765882121}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &466401553
 GameObject:
@@ -8553,21 +8547,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chawa
       objectReference: {fileID: 0}
-    - target: {fileID: 2874129798516561134, guid: 0e2e41301b1204647b6d019d28697641,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2874129798516561134, guid: 0e2e41301b1204647b6d019d28697641,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2874129798516561134, guid: 0e2e41301b1204647b6d019d28697641,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 118777639717713783, guid: 0e2e41301b1204647b6d019d28697641,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8623,43 +8602,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1234897905, guid: 0e2e41301b1204647b6d019d28697641, type: 3}
-      propertyPath: attackPos
-      value: 
-      objectReference: {fileID: 424606704}
-    - target: {fileID: 1234897905, guid: 0e2e41301b1204647b6d019d28697641, type: 3}
-      propertyPath: startTimeBtwAttack
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1234897905, guid: 0e2e41301b1204647b6d019d28697641, type: 3}
-      propertyPath: whatIsEnemy.m_Bits
-      value: 1024
-      objectReference: {fileID: 0}
-    - target: {fileID: 118777639717713784, guid: 0e2e41301b1204647b6d019d28697641,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 118777639717713784, guid: 0e2e41301b1204647b6d019d28697641,
-        type: 3}
-      propertyPath: minJumpHeight
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 118777639717713786, guid: 0e2e41301b1204647b6d019d28697641,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8300221192268864397, guid: 0e2e41301b1204647b6d019d28697641,
-        type: 3}
-      propertyPath: startTimeBtwAttack
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 118777639717713782, guid: 0e2e41301b1204647b6d019d28697641,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e2e41301b1204647b6d019d28697641, type: 3}
 --- !u!1001 &805248248
@@ -18892,41 +18834,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4539394805572183845, guid: 0013ebf820c1d4a4e856fb66a42924f0,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4539394805572183845, guid: 0013ebf820c1d4a4e856fb66a42924f0,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4539394805572184026, guid: 0013ebf820c1d4a4e856fb66a42924f0,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.3882353
-      objectReference: {fileID: 0}
-    - target: {fileID: 4539394805572184026, guid: 0013ebf820c1d4a4e856fb66a42924f0,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0.60784316
-      objectReference: {fileID: 0}
-    - target: {fileID: 4539394805572184026, guid: 0013ebf820c1d4a4e856fb66a42924f0,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4539394805572184027, guid: 0013ebf820c1d4a4e856fb66a42924f0,
         type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 1234897901}
-    - target: {fileID: 4539394805572184027, guid: 0013ebf820c1d4a4e856fb66a42924f0,
-        type: 3}
-      propertyPath: verticalOffset
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0013ebf820c1d4a4e856fb66a42924f0, type: 3}
 --- !u!114 &1234897901 stripped
