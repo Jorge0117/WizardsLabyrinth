@@ -21,6 +21,9 @@ public class PlayerAttack : MonoBehaviour
     public float iceCoolDown = 2f;
     private float nextIceTime;
 
+    public float dashCoolDown = 3f;
+    private float nextDashTime;
+
     private float spellChangeCoolDown = 0.5f;
     private float nextSpellChange = 0.5f;
     
@@ -31,6 +34,8 @@ public class PlayerAttack : MonoBehaviour
     public float iceAngle = 30;
     
     private static readonly int Attack = Animator.StringToHash("attack");
+
+    //private PlayerController playerController;
 
     // Start is called before the first frame update
     void Start()
@@ -91,6 +96,12 @@ public class PlayerAttack : MonoBehaviour
                 
                 Vector3 spellScale = spell.transform.localScale;
                 spell.transform.localScale = new Vector3(spellScale.x * Mathf.Sign(gameObject.transform.localScale.x), spellScale.y, spellScale.z);
+            }
+
+            if (equipedSpell == spells.Air && Time.time >= nextDashTime)
+            {
+                nextDashTime = Time.time + dashCoolDown;
+                animator.SetBool("isDashing", true);
             }
         }
 

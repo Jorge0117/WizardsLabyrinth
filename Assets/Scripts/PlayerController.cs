@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float timeToJumpApex = .4f;
 
     public float moveSpeed = 6;
+    public float dashSpeed = 2;
     float gravity;
     float maxJumpVelocity;
     float minJumpVelocity;
@@ -26,6 +27,15 @@ public class PlayerController : MonoBehaviour
     
     int maxHealth = 5;
     int currentHealth;
+
+    [HideInInspector]
+    public bool isDashing = false;
+
+    private float dashAngle;
+
+    public float dashDuration = 0.5f;
+
+    private float stopDashTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,54 +55,76 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        if (!animator.GetBool("isDashing"))
+        {
+            Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        if(controller.collisions.below)
-        {
-            animator.SetBool("isFalling", false);
-            if (Input.GetButtonDown("Jump"))
+            if(controller.collisions.below)
             {
-                velocity.y = maxJumpVelocity;
+                animator.SetBool("isFalling", false);
+                if (Input.GetButtonDown("Jump"))
+                {
+                    velocity.y = maxJumpVelocity;
+                }
             }
-        }
-        else
-        {
-            if (!animator.GetBool("isFalling"))
+            else
             {
-                animator.SetBool("isFalling", true);
-                positionBeforeJump = chawa.transform.position;
-            }
+                if (!animator.GetBool("isFalling"))
+                {
+                    animator.SetBool("isFalling", true);
+                    positionBeforeJump = chawa.transform.position;
+                }
             
-        }
+            }
         
-        if(Input.GetButtonUp("Jump"))
-        {
-            if(velocity.y > minJumpVelocity)
-                velocity.y = minJumpVelocity;
-        }
+            if(Input.GetButtonUp("Jump"))
+            {
+                if(velocity.y > minJumpVelocity)
+                    velocity.y = minJumpVelocity;
+            }
 
-        velocity.x = input.x * moveSpeed;
-        velocity.y += gravity * Time.deltaTime;
-        if(velocity.x > 0)
-        {
-            chawa.transform.localScale = new Vector3(chawaXScale, chawaYScale, 1);
-            animator.SetBool("isWalking", true);
-        }
-        else if(velocity.x < 0)
-        {
-            chawa.transform.localScale = new Vector3(-chawaXScale, chawaYScale, 1);
-            animator.SetBool("isWalking", true);
+            velocity.x = input.x * moveSpeed;
+            velocity.y += gravity * Time.deltaTime;
+            if(velocity.x > 0)
+            {
+                chawa.transform.localScale = new Vector3(chawaXScale, chawaYScale, 1);
+                animator.SetBool("isWalking", true);
+            }
+            else if(velocity.x < 0)
+            {
+                chawa.transform.localScale = new Vector3(-chawaXScale, chawaYScale, 1);
+                animator.SetBool("isWalking", true);
+            }
+            else
+            {
+                animator.SetBool("isWalking", false);
+            }
+
+            controller.Move(velocity * Time.deltaTime, input);
+
+            if (controller.collisions.above || controller.collisions.below)
+            {
+                velocity.y = 0;
+            }
         }
         else
         {
-            animator.SetBool("isWalking", false);
-        }
+            if (!isDashing)
+            {
+                if (controller.collisions.below)
+                {
+                    dashAngle = 0;
+                    stopDashTime = Time.time + dashDuration;
+                }
+            }
+            velocity.x = Mathf.Cos(Mathf.PI * dashAngle / 180) * dashSpeed * Mathf.Sign(gameObject.transform.localScale.x);
+            velocity.y = Mathf.Sin(Mathf.PI * dashAngle / 180) * dashSpeed;
+            controller.Move(velocity);
 
-        controller.Move(velocity * Time.deltaTime, input);
-
-        if (controller.collisions.above || controller.collisions.below)
-        {
-            velocity.y = 0;
+            if (Time.time > stopDashTime)
+            {
+                animator.SetBool("isDashing", false);
+            }
         }
     }
 
