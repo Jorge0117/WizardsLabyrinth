@@ -148,6 +148,9 @@ MonoBehaviour:
   minJumpHeight: 1
   timeToJumpApex: 0.4
   moveSpeed: 7
+  dashSpeed: 0.5
+  isDashing: 0
+  dashDuration: 0.2
 --- !u!114 &1234897905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +172,7 @@ MonoBehaviour:
   basicAttackCoolDown: 0.5
   fireballCoolDown: 2
   iceCoolDown: 2
+  dashCoolDown: 3
   fireball: {fileID: 3414297260585760921, guid: 69c4ed2710855994498872cef5929e34,
     type: 3}
   ice: {fileID: 9065008747380130482, guid: 862c1320ec3b8dd47917d77310e4efca, type: 3}

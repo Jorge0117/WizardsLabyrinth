@@ -28,7 +28,9 @@ public class PlayerIce : MonoBehaviour
         float velocityX = Mathf.Cos(Mathf.PI * angle / 180) * velocity;
         //Debug.Log(velocityX);
         float velocityY = Mathf.Sin(Mathf.PI * angle / 180) * velocity;
-        transform.position = new Vector2(transform.position.x + velocityX * dir, transform.position.y + velocityY);
+        var position = transform.position;
+        position = new Vector2(position.x + velocityX * dir, position.y + velocityY);
+        transform.position = position;
     }
     
     void OnTriggerEnter2D(Collider2D other)
@@ -36,10 +38,6 @@ public class PlayerIce : MonoBehaviour
         if (LayerMask.LayerToName(other.gameObject.layer) == "Obstacles")
         {
             Destroy(gameObject);
-        }
-        if (other.gameObject.CompareTag("GrassWall"))
-        {
-            other.gameObject.GetComponent<GrassWall>().burn();
         }
 
         if (other.gameObject.CompareTag("Enemy"))

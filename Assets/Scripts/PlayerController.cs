@@ -36,6 +36,11 @@ public class PlayerController : MonoBehaviour
     public float dashDuration = 0.5f;
 
     private float stopDashTime;
+
+    private static readonly int IsDashing = Animator.StringToHash("isDashing");
+    private static readonly int IsFalling = Animator.StringToHash("isFalling");
+    private static readonly int IsWalking = Animator.StringToHash("isWalking");
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,9 +73,9 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                if (!animator.GetBool("isFalling"))
+                if (!animator.GetBool(IsFalling))
                 {
-                    animator.SetBool("isFalling", true);
+                    animator.SetBool(IsFalling, true);
                     positionBeforeJump = chawa.transform.position;
                 }
             
@@ -87,16 +92,16 @@ public class PlayerController : MonoBehaviour
             if(velocity.x > 0)
             {
                 chawa.transform.localScale = new Vector3(chawaXScale, chawaYScale, 1);
-                animator.SetBool("isWalking", true);
+                animator.SetBool(IsWalking, true);
             }
             else if(velocity.x < 0)
             {
                 chawa.transform.localScale = new Vector3(-chawaXScale, chawaYScale, 1);
-                animator.SetBool("isWalking", true);
+                animator.SetBool(IsWalking, true);
             }
             else
             {
-                animator.SetBool("isWalking", false);
+                animator.SetBool(IsWalking, false);
             }
 
             controller.Move(velocity * Time.deltaTime, input);
@@ -147,7 +152,7 @@ public class PlayerController : MonoBehaviour
             if (Time.time > stopDashTime)
             {
                 isDashing = false;
-                animator.SetBool("isDashing", false);
+                animator.SetBool(IsDashing, false);
                 gameObject.transform.rotation = Quaternion.Euler(0,0,0);
             }
         }
@@ -163,8 +168,15 @@ public class PlayerController : MonoBehaviour
         if (collision.transform.tag == "1")
         {
             transform.parent = collision.transform;
-            Debug.Log("Llama al metodo");
         }
-        Debug.Log("Llama al metodo");
+    }
+    
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Collision");
+        if (other.gameObject.CompareTag("Enemy") && isDashing)
+        {
+            other.gameObject.GetComponent<EnemyController>().takeDamage(3);
+        }
     }
 }
