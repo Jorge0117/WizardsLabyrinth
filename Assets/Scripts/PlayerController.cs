@@ -55,10 +55,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         if (!animator.GetBool("isDashing"))
         {
-            Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
             if(controller.collisions.below)
             {
                 animator.SetBool("isFalling", false);
@@ -111,11 +110,35 @@ public class PlayerController : MonoBehaviour
         {
             if (!isDashing)
             {
+                isDashing = true;
                 if (controller.collisions.below)
                 {
                     dashAngle = 0;
-                    stopDashTime = Time.time + dashDuration;
                 }
+
+                if (input.x != 0 && input.y > 0)
+                {
+                    dashAngle = 45;
+                    //gameObject.transform.rotation = Quaternion.Euler(0,0,45);
+                }
+                else if (input.x != 0 && input.y < 0)
+                {
+                    dashAngle = -45;
+                }
+                else if (input.x == 0 && input.y > 0)
+                {
+                    dashAngle = 90;
+                }
+                else if (input.x == 0 && input.y < 0)
+                {
+                    dashAngle = 270;
+                }
+                else if (input.x != 0 && input.y == 0)
+                {
+                    dashAngle = 0;
+                }
+
+                stopDashTime = Time.time + dashDuration;
             }
             velocity.x = Mathf.Cos(Mathf.PI * dashAngle / 180) * dashSpeed * Mathf.Sign(gameObject.transform.localScale.x);
             velocity.y = Mathf.Sin(Mathf.PI * dashAngle / 180) * dashSpeed;
@@ -123,7 +146,9 @@ public class PlayerController : MonoBehaviour
 
             if (Time.time > stopDashTime)
             {
+                isDashing = false;
                 animator.SetBool("isDashing", false);
+                gameObject.transform.rotation = Quaternion.Euler(0,0,0);
             }
         }
     }
