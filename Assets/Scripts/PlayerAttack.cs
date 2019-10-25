@@ -69,6 +69,8 @@ public class PlayerAttack : MonoBehaviour
                 nextFireballTime = Time.time + fireballCoolDown;
                 var position = attackPos.position;
                 GameObject spell = Instantiate(fireball, new Vector2(position.x + 2*Mathf.Sign(gameObject.transform.localScale.x), position.y ), Quaternion.identity);
+                PlayerFireBall spellController = spell.GetComponent<PlayerFireBall>();
+                spellController.enemy = "Enemy";
                 Vector3 spellScale = spell.transform.localScale;
                 spell.transform.localScale = new Vector3(spellScale.x * Mathf.Sign(gameObject.transform.localScale.x), spellScale.y, spellScale.z);
                 //Instantiate(fireball, attackPos.transform);

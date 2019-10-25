@@ -45,17 +45,31 @@ public class EnemyBat : MonoBehaviour
     public float minImpulseX = 0f;
         
     //Maximo impulso en X
-    public float maxImpulseX = 1f;
+    public float maxImpulseX = 2f;
     
     //Minimo impulso en Y
     public float minImpulseY = 0f;
         
     //Maximo impulso en Y
-    public float maxImpulseY = 1f;
+    public float maxImpulseY = 2f;
     
+    //rango de ataque
+    public float attackRange = 1f;
     
+    //enemigos
+    public LayerMask whatIsEnemy;
     
+    //Siguiente ataque
+    public float nextBasicAttackTime = .5f;
     
+    //Tiempo de daño
+    public float basicAttackCoolDown = 1f;
+    
+    //Posicion de ataque
+    public Transform attackPos;
+    
+    //daño basico
+    public int basicAttackDamage = 2;
     
     
     // Start is called before the first frame update
@@ -134,6 +148,21 @@ public class EnemyBat : MonoBehaviour
                         impulso.y = Random.Range(minImpulseY, maxImpulseY);
                         velocity.y = impulso.y * moveSpeed;
                     }
+                    //atacar si choca con chawa
+                    if (distanciachawaenemigo >= attackRange * -1 && distanciachawaenemigo <= attackRange)
+                    {
+                        //Ataque
+                        if (Time.time >= nextBasicAttackTime)
+                        {
+                            nextBasicAttackTime = Time.time + basicAttackCoolDown;
+                            //Mandar a hacer daño
+                            Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemy);
+                            for (int i = 0; i < enemiesToDamage.Length; ++i)
+                            {
+                                enemiesToDamage[i].GetComponent<PlayerController>().takeDamage(basicAttackDamage);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -142,6 +171,7 @@ public class EnemyBat : MonoBehaviour
             //Este caso se pone para que no agarre la velocidad x que tenia antes,
             //porque entonces puede hacer que aabbeell no retroceda lo suficiente
             velocity.x = 0;
+            velocity.y = 0;
             //Cuando recibe daño lo hago subir como para evitar que lo sigan atacando
             velocity.y = Random.Range(2 * maxImpulseY, 4 * maxImpulseY);
         }
