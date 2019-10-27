@@ -24,11 +24,16 @@ public class Controller2D : RaycastController
     }
 
     // Update is called once per frame
-    public void Move(Vector3 velocity, bool standingOnPlatform = false)
+    public void Move(Vector3 velocity)
+    {
+        Move(velocity, Vector2.zero);
+    }
+
+    public void Move(Vector3 velocity, Vector2 input, bool standingOnPlatform = false)
     {
         UpdateRaycastOrigins();
         collisions.Reset();
-        collisions.velocityOld = velocity;
+        playerInput = input;
 
         if (velocity.y < 0)
         {
