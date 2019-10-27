@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -7480228127565084190}
   - component: {fileID: -3451869323163452556}
   - component: {fileID: 1879870685131439021}
-  m_Layer: 13
+  m_Layer: 4
   m_Name: Ice
   m_TagString: Water
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7560284153744367771, guid: 20728bee6838fe449b5254c28f49a2f6,
+  m_Sprite: {fileID: -6278239303427718194, guid: 731176e516fafbc498ea10910986b6e3,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -122,15 +122,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e31b3584a19ec34c9af62387ae69edf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  water: {fileID: -6278239303427718194, guid: 731176e516fafbc498ea10910986b6e3, type: 3}
-  ice: {fileID: -7560284153744367771, guid: 20728bee6838fe449b5254c28f49a2f6, type: 3}
-  isFreeze: 0
-  isWater: 1
   pos: {fileID: 4826763383963991329}
-  freezeRange: 1.21
+  range: 0.63
+  whatIsIce:
+    serializedVersion: 2
+    m_Bits: 8192
   whatIsWater:
     serializedVersion: 2
     m_Bits: 16
+  smokeParticles: {fileID: 0}
 --- !u!95 &1879870685131439021
 Animator:
   serializedVersion: 3

@@ -22,10 +22,10 @@ AnimationClip:
     - time: 0
       value: {fileID: -7560284153744367771, guid: 20728bee6838fe449b5254c28f49a2f6,
         type: 3}
-    attribute: water
+    attribute: m_Sprite
     path: 
-    classID: 114
-    script: {fileID: 11500000, guid: 3e31b3584a19ec34c9af62387ae69edf, type: 3}
+    classID: 212
+    script: {fileID: 0}
   m_SampleRate: 1
   m_WrapMode: 0
   m_Bounds:
@@ -35,10 +35,10 @@ AnimationClip:
     genericBindings:
     - serializedVersion: 2
       path: 0
-      attribute: 4214428890
-      script: {fileID: 11500000, guid: 3e31b3584a19ec34c9af62387ae69edf, type: 3}
-      typeID: 114
-      customType: 0
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: -7560284153744367771, guid: 20728bee6838fe449b5254c28f49a2f6, type: 3}

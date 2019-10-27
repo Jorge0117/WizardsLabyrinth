@@ -4,108 +4,100 @@ using UnityEngine;
 
 public class WaterController : MonoBehaviour
 {
-    private SpriteRenderer spriteR;
-    public Sprite water;
-    public Sprite ice;
-    public bool isFreeze = false;
-    public bool isWater = true;
-
-    public Transform pos;
-    public float freezeRange;
-    public LayerMask whatIsWater;
-
     Animator anim;
+    public Transform pos;
+    public float range;
+    public LayerMask whatIsIce;
+    public LayerMask whatIsWater;
+    private SpriteRenderer spriteR;
+    bool isIce;
+    bool isWater;
+
+    bool isMelting = false;
+    bool isFreezing = false;
+
+    public GameObject smokeParticles;
 
     // Start is called before the first frame update
     void Start()
     {
-        spriteR = gameObject.GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        isWater = true;
+        isIce = false;
+        anim.SetBool("isWater", true);
     }
 
     // Update is called once per frame
-    void Update(){
-        if (Input.GetKey(KeyCode.H))
+    void Update()
+    {
+    }
+
+
+    public void melt()
+    {
+        if (isWater)
         {
-            if (gameObject.layer == LayerMask.NameToLayer("Ice"))
-            {
-                gameObject.layer = LayerMask.NameToLayer("Water");
-                spriteR.sprite = water;
-            }
-            else
-            {
-                gameObject.layer = LayerMask.NameToLayer("Ice");
-                spriteR.sprite = ice;
-            }
+            anim.SetBool("isChanging", true);
+            isFreezing = true;
+            isIce = true;
+            isWater = false;
         }
+        else
+        {
+            anim.SetBool("isChanging", true);
+            isMelting = true;
+            isIce = false;
+            isWater = true;
+        }
+        //Instantiate(smokeParticles, gameObject.transform.position, Quaternion.identity);
+
+        StartCoroutine(wait(2));
     }
 
     private void OnMouseDown()
     {
-        Debug.Log("Si entra");
-        change();
-    }
-
-    public void change()
-    {
-        anim.SetBool("isFreezing", true);
-        if (isFreeze)
-        {
-            isWater = true;
-            isFreeze = false;
-        }
-        else
-        {
-            isFreeze = true;
-            isWater = false;
-        }
-
-        StartCoroutine(wait(2));
+        melt();
     }
 
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(pos.position, freezeRange);
+        Gizmos.DrawWireSphere(pos.position, range);
     }
 
     IEnumerator wait(int seconds)
     {
         yield return new WaitForSeconds(seconds);
 
-        Collider2D[] waterToFreeze = Physics2D.OverlapCircleAll(pos.position, freezeRange, whatIsWater);
-
         if (isWater)
         {
-            for (int i = 0; i < waterToFreeze.Length; i++)
+            Collider2D[] iceToMelt = Physics2D.OverlapCircleAll(pos.position, range, whatIsIce);
+            for (int i = 0; i < iceToMelt.Length; i++)
             {
-                if (!waterToFreeze[i].GetComponent<WaterController>().isFreeze)
+                if (!iceToMelt[i].GetComponent<WaterController>().isMelting)
                 {
-                    waterToFreeze[i].GetComponent<WaterController>().change();
+                    iceToMelt[i].GetComponent<WaterController>().melt();
                 }
             }
-
-            yield return new WaitForSeconds(seconds / 2);
-
-            anim.SetBool("isFreezing", false);
+            anim.SetBool("isChanging", false);
+            isFreezing = false;
             gameObject.layer = LayerMask.NameToLayer("Water");
-            //spriteR.sprite = water;
+            yield return new WaitForSeconds(seconds / 2);
         }
         else
         {
+            Collider2D[] waterToFreeze = Physics2D.OverlapCircleAll(pos.position, range, whatIsWater);
             for (int i = 0; i < waterToFreeze.Length; i++)
             {
-                if (!waterToFreeze[i].GetComponent<WaterController>().isFreeze)
+                if (!waterToFreeze[i].GetComponent<WaterController>().isFreezing)
                 {
-                    waterToFreeze[i].GetComponent<WaterController>().change();
+                    waterToFreeze[i].GetComponent<WaterController>().melt();
                 }
             }
-
-            yield return new WaitForSeconds(seconds / 2);
-
-            anim.SetBool("isFreezing", false);
+            anim.SetBool("isChanging", false);
+            isMelting = false;
             gameObject.layer = LayerMask.NameToLayer("Ice");
-            //spriteR.sprite = ice;
+            yield return new WaitForSeconds(seconds / 2);
         }
     }
 }
