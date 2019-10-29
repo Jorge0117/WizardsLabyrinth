@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     float chawaYScale;
 
     Vector2 positionBeforeJump;
+
+    public GameObject angry_fish;
+    private bool acercarse = false;
     
     int maxHealth = 5;
     int currentHealth;
@@ -93,6 +96,20 @@ public class PlayerController : MonoBehaviour
         if (controller.collisions.above || controller.collisions.below)
         {
             velocity.y = 0;
+        }
+
+        if (Input.GetKey(KeyCode.J))
+        {
+            if (acercarse)
+            {
+                angry_fish.SetActive(false);
+                acercarse = false;
+            }
+            else
+            {
+                angry_fish.SetActive(true);
+                acercarse = true;
+            }
         }
     }
 
