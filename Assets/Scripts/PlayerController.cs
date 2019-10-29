@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     float chawaYScale;
 
     Vector2 positionBeforeJump;
+    [HideInInspector]
+    public Vector2 checkpointPosition;
 
     //Se esta recibiendo daño?
     private bool isTakingDamage = false;
@@ -61,7 +63,30 @@ public class PlayerController : MonoBehaviour
         chawaYScale = chawa.transform.localScale.y;
 
         animator = GetComponent<Animator>();
-        currentHealth = 5;
+    }
+
+    private void Awake()
+    {
+        if (PlayerPrefs.HasKey("maxHealth"))
+        {
+            maxHealth = PlayerPrefs.GetInt("maxHealth");
+        }
+        else
+        {
+            maxHealth = 5;
+        }
+
+        if (PlayerPrefs.HasKey("checkpointPositionX") && PlayerPrefs.HasKey("checkpointPositionY"))
+        {
+            checkpointPosition = new Vector2(PlayerPrefs.GetFloat("checkpointPositionX"), PlayerPrefs.GetFloat("checkpointPositionY"));
+        }
+        else
+        {
+            checkpointPosition = new Vector2(0,0);
+        }
+
+        gameObject.transform.position = checkpointPosition;
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame

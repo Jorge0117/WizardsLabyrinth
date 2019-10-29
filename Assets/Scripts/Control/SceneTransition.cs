@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class SceneTransition : MonoBehaviour
 {
     public string sceneToTransition;
+    public Vector2 spawnPosition = new Vector2(0, 0);
 
     private GameObject wKeySprite;
     // Start is called before the first frame update
@@ -26,6 +27,9 @@ public class SceneTransition : MonoBehaviour
     {
         if (Input.GetKeyDown("w"))
         {
+            PlayerPrefs.SetFloat("checkpointPositionX", spawnPosition.x);
+            PlayerPrefs.SetFloat("checkpointPositionY", spawnPosition.y);
+            
             Scene scene = SceneManager.GetSceneByName(sceneToTransition);
             SceneManager.LoadScene(sceneToTransition);
         }
