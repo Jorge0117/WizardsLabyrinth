@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -199,10 +200,9 @@ public class PlayerController : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Collision");
         if (other.gameObject.CompareTag("Enemy") && isDashing)
         {
-            other.gameObject.GetComponent<EnemyController>().takeDamage(3);
+            other.gameObject.GetComponent<EnemyController>().takeDamage(5);
         }
     }
 }

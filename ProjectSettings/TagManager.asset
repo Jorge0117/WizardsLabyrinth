@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - MovingPlatform
   - 1
+  - Transition
   layers:
   - Default
   - TransparentFX
