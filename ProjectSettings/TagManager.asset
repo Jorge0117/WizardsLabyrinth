@@ -10,6 +10,8 @@ TagManager:
   - MovingPlatform
   - Water
   - Ice
+  - Transition
+  - 1
   layers:
   - Default
   - TransparentFX

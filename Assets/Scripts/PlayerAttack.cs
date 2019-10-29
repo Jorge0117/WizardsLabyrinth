@@ -52,6 +52,26 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        if (PlayerPrefs.HasKey("unlokedSpells"))
+        {
+            string spells = PlayerPrefs.GetString("unlokedSpells");
+            if (spells[0] == '1')
+            {
+                unlockedSpells[0] = PlayerAttack.spells.Fire;
+            }
+            if (spells[1] == '1')
+            {
+                unlockedSpells[1] = PlayerAttack.spells.Ice;
+            }
+            if (spells[2] == '1')
+            {
+                unlockedSpells[2] = PlayerAttack.spells.Air;
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviour
     float chawaYScale;
 
     Vector2 positionBeforeJump;
+    [HideInInspector]
+    public Vector2 checkpointPosition;
 
     public GameObject angry_fish;
     private bool acercarse = false;
@@ -64,8 +67,31 @@ public class PlayerController : MonoBehaviour
         chawaYScale = chawa.transform.localScale.y;
 
         animator = GetComponent<Animator>();
-        currentHealth = 5;
         firstGravityValue = gravity;
+    }
+
+    private void Awake()
+    {
+        if (PlayerPrefs.HasKey("maxHealth"))
+        {
+            maxHealth = PlayerPrefs.GetInt("maxHealth");
+        }
+        else
+        {
+            maxHealth = 5;
+        }
+
+        if (PlayerPrefs.HasKey("checkpointPositionX") && PlayerPrefs.HasKey("checkpointPositionY"))
+        {
+            checkpointPosition = new Vector2(PlayerPrefs.GetFloat("checkpointPositionX"), PlayerPrefs.GetFloat("checkpointPositionY"));
+        }
+        else
+        {
+            checkpointPosition = new Vector2(0,0);
+        }
+
+        gameObject.transform.position = checkpointPosition;
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -221,10 +247,9 @@ public class PlayerController : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Collision");
         if (other.gameObject.CompareTag("Enemy") && isDashing)
         {
-            other.gameObject.GetComponent<EnemyController>().takeDamage(3);
+            other.gameObject.GetComponent<EnemyController>().takeDamage(5);
         }
         if (other.gameObject.CompareTag("Water"))
         {
