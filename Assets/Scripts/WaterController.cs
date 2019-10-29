@@ -10,7 +10,6 @@ public class WaterController : MonoBehaviour
     public LayerMask whatIsIce;
     public LayerMask whatIsWater;
     private SpriteRenderer spriteR;
-    bool isIce;
     bool isWater;
 
     bool isMelting = false;
@@ -23,7 +22,6 @@ public class WaterController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         isWater = true;
-        isIce = false;
         anim.SetBool("isWater", true);
     }
 
@@ -39,19 +37,17 @@ public class WaterController : MonoBehaviour
         {
             anim.SetBool("isChanging", true);
             isFreezing = true;
-            isIce = true;
             isWater = false;
         }
         else
         {
             anim.SetBool("isChanging", true);
             isMelting = true;
-            isIce = false;
             isWater = true;
         }
         //Instantiate(smokeParticles, gameObject.transform.position, Quaternion.identity);
 
-        StartCoroutine(wait(2));
+        StartCoroutine(wait(1));
     }
 
     private void OnMouseDown()
@@ -65,7 +61,7 @@ public class WaterController : MonoBehaviour
         Gizmos.DrawWireSphere(pos.position, range);
     }
 
-    IEnumerator wait(int seconds)
+    IEnumerator wait(float seconds)
     {
         yield return new WaitForSeconds(seconds);
 

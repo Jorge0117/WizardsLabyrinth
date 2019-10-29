@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject angry_fish;
     private bool acercarse = false;
+    private float firstGravityValue;
 
     //Se esta recibiendo daño?
     private bool isTakingDamage = false;
@@ -64,6 +65,7 @@ public class PlayerController : MonoBehaviour
 
         animator = GetComponent<Animator>();
         currentHealth = 5;
+        firstGravityValue = gravity;
     }
 
     // Update is called once per frame
@@ -166,17 +168,20 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.J))
         {
             if (acercarse)
             {
                 angry_fish.SetActive(false);
                 acercarse = false;
+                gravity = firstGravityValue;
             }
             else
             {
+                angry_fish.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 5);
                 angry_fish.SetActive(true);
                 acercarse = true;
+                gravity = -2;
             }
         }
     }
@@ -220,6 +225,19 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy") && isDashing)
         {
             other.gameObject.GetComponent<EnemyController>().takeDamage(3);
+        }
+        if (other.gameObject.CompareTag("Water"))
+        {
+            gravity = -2;
+            angry_fish.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 5);
+            angry_fish.SetActive(true);
+            acercarse = true;
+        }
+        if (other.gameObject.CompareTag("fish"))
+        {
+            angry_fish.SetActive(false);
+            acercarse = false;
+            gravity = firstGravityValue;
         }
     }
 }
