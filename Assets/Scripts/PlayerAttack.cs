@@ -25,7 +25,10 @@ public class PlayerAttack : MonoBehaviour
     private float nextSpellChange = 0.5f;
     
     private spells[] unlockedSpells;
+    
+    // Current spell equiped of Chawa.
     private spells equipedSpell;
+    
     public GameObject fireball;
     public GameObject ice;
     public float iceAngle = 30;
@@ -142,6 +145,27 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
     }
 
+    public string getCurrentSpell()
+    {
+        string currentSpell;
+        if (this.equipedSpell == spells.Fire)
+        {
+            currentSpell = "fire";
+        } else if (this.equipedSpell == spells.Ice)
+        {
+            currentSpell = "ice";
+        } else if (this.equipedSpell == spells.Air)
+        {
+            currentSpell = "air";
+        }
+        else
+        {
+            currentSpell = "";
+        }
+
+        return currentSpell;
+    }
+    
     enum spells
     {
         Fire, Ice, Air
