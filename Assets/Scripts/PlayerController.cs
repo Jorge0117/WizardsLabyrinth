@@ -38,8 +38,8 @@ public class PlayerController : MonoBehaviour
     //Tiempo en que no se recibe mas daño
     public float invencibilitySeconds = 0.5f;
 
-    int maxHealth = 5;
-    int currentHealth;
+    public int maxHealth = 5;
+    public int currentHealth;
 
     [HideInInspector]
     public bool isDashing = false;
@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
     private static readonly int IsFalling = Animator.StringToHash("isFalling");
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
 
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -88,6 +89,11 @@ public class PlayerController : MonoBehaviour
         else
         {
             checkpointPosition = new Vector2(0,0);
+        }
+
+        if (!PlayerPrefs.HasKey("currentScene"))
+        {
+            PlayerPrefs.SetString("currentScene", "Jungle");
         }
 
         gameObject.transform.position = checkpointPosition;
@@ -264,5 +270,10 @@ public class PlayerController : MonoBehaviour
             acercarse = false;
             gravity = firstGravityValue;
         }
+    }
+
+    public int getHealth()
+    {
+        return this.currentHealth;
     }
 }

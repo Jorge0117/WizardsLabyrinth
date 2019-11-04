@@ -36,7 +36,6 @@ public class PlayerFireBall : MonoBehaviour
             }
             if (enemy.CompareTo("Player") == 0)
             {
-                Debug.Log("llegue aqui");
                 other.gameObject.GetComponent<PlayerController>().takeDamage(3);
             }
         }

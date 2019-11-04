@@ -19,7 +19,6 @@ public class SceneTransition : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Show");
         wKeySprite.GetComponent<SpriteRenderer>().enabled = true;
     }
 
@@ -30,7 +29,7 @@ public class SceneTransition : MonoBehaviour
             PlayerPrefs.SetFloat("checkpointPositionX", spawnPosition.x);
             PlayerPrefs.SetFloat("checkpointPositionY", spawnPosition.y);
             
-            Scene scene = SceneManager.GetSceneByName(sceneToTransition);
+            PlayerPrefs.SetString("currentScene", sceneToTransition);
             SceneManager.LoadScene(sceneToTransition);
         }
     }
