@@ -90,6 +90,11 @@ public class PlayerController : MonoBehaviour
             checkpointPosition = new Vector2(0,0);
         }
 
+        if (!PlayerPrefs.HasKey("currentScene"))
+        {
+            PlayerPrefs.SetString("currentScene", "Jungle");
+        }
+
         gameObject.transform.position = checkpointPosition;
         currentHealth = maxHealth;
     }
