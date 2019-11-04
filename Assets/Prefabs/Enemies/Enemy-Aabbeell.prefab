@@ -129,6 +129,8 @@ MonoBehaviour:
     m_Bits: 512
   horizontalRayCount: 4
   verticalRayCount: 4
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
   collider: {fileID: 0}
   playerInput: {x: 0, y: 0}
 --- !u!114 &8649705842819027214
@@ -149,6 +151,7 @@ MonoBehaviour:
   recoilVelocity: 1.5
   moveSpeed: 6
   velocity: {x: 0, y: 0, z: 0}
+  enemyName: Aabbeell
 --- !u!95 &5046700253598957210
 Animator:
   serializedVersion: 3
@@ -189,6 +192,19 @@ MonoBehaviour:
   fireball: {fileID: 3414297260585760921, guid: d789c3b6334cea2408c6fb268e166234,
     type: 3}
   prueba: 0
+  positionAX: -10.5
+  positionAY: -5.51
+  positionBX: -0.5
+  positionBY: 5.06
+  positionCX: 10.5
+  positionCY: -5.51
+  positionXIceVertical1: 8
+  positionYIceVertical1: 4.5
+  positionXIceVertical2: -6
+  positionYIceVertical2: 4.5
+  positionXFire: 5.24
+  positionYFire: -4.95
+  shield: 0
 --- !u!1 &8238394086227625670
 GameObject:
   m_ObjectHideFlags: 0
