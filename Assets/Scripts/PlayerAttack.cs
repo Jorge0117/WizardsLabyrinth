@@ -165,6 +165,11 @@ public class PlayerAttack : MonoBehaviour
 
         return currentSpell;
     }
+
+    public float getSpellCooldown()
+    {
+        return this.spellChangeCoolDown;
+    }
     
     enum spells
     {
