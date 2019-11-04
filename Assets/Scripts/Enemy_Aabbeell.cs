@@ -15,23 +15,33 @@ public class Enemy_Aabbeell : MonoBehaviour
     public float fireballCoolDown = 2f;
     private float nextFireballTime = 0f;
     public GameObject fireball;
-    public int prueba = 0;
 
+    //Pisicion A de aabbeell
 	public float positionAX = -10.5f;
 	public float positionAY = -5.51f;
+	
+	//Pisicion B de aabbeell
 	public float positionBX = -0.5f;
 	public float positionBY = 5.06f;
+	
+	//Pisicion C de aabbeell
 	public float positionCX = 10.5f;
 	public float positionCY = -5.51f;
 
+	//Posicion inicial de ICE 1 vertical
 	public float positionXIceVertical1 = 8f;
 	public float positionYIceVertical1 = 4.5f;
 
+	//Posicion inicial de ICE 2 vertical
 	public float positionXIceVertical2 = -6f;
 	public float positionYIceVertical2 = 4.5f;
 
+	//Posicion inicial de Fire
 	public float positionXFire = 5.24f;
 	public float positionYFire = -4.95f;
+	
+	//Escudo
+	public int shield;
 
 	//Jugador
     GameObject jugador;
@@ -91,9 +101,39 @@ public class Enemy_Aabbeell : MonoBehaviour
 				fireAttack();
 				break;
 		}
+
+		// Tipo de escudo
+		//shield:
+		//         1: fire
+		//         2: ice
+		//         3: wind
+		shield = (int)Random.Range(1, 3.99f);
+		switch(shield){
+			case 1:
+				iceShield();
+				break;
+			case 2:
+				windShield();
+				break;
+			case 3:
+				fireShield();
+				break;
+		}
 		
         StartCoroutine(cambiarEstado(3));
     }
+
+	void iceShield()
+	{
+	}
+	
+	void windShield()
+	{
+	}
+	
+	void fireShield()
+	{
+	}
 
 	void positionA(){
 		gameObject.transform.localPosition = new Vector2(positionAX, positionAY);
