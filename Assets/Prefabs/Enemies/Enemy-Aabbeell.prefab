@@ -12,12 +12,11 @@ GameObject:
   - component: {fileID: 5220260252041831745}
   - component: {fileID: 5220260252041831751}
   - component: {fileID: 5220260252041831749}
-  - component: {fileID: 5743357435474159006}
   - component: {fileID: 8649705842819027214}
   - component: {fileID: 5046700253598957210}
-  - component: {fileID: 1173992519048426839}
+  - component: {fileID: 1366971620491033105}
   m_Layer: 10
-  m_Name: Enemy-Ice
+  m_Name: Enemy-Aabbeell
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,34 +131,6 @@ MonoBehaviour:
   verticalRayCount: 4
   collider: {fileID: 0}
   playerInput: {x: 0, y: 0}
---- !u!114 &5743357435474159006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5220260252041831744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d68669389602c1245af0d9238aa0eb28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpHeight: 4
-  timeToJumpApex: 0.4
-  distanceChawaVisivility: 20
-  ProbaJumpIfChawaJumps: 0.1
-  ProbaJump: 0.05
-  ProbaChangeDirection: 0.25
-  ProbaChangeDirectionIfChawaVisible: 0.1
-  nextBasicAttackTime: 0
-  basicAttackCoolDown: 0.5
-  probaBasicAttack: 0.9
-  basicAttackDamage: 2
-  attackPos: {fileID: 6048570102359092684}
-  attackRange: 1.4
-  whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &8649705842819027214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,7 +168,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1173992519048426839
+--- !u!114 &1366971620491033105
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -206,13 +177,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 5220260252041831744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5d1119c8e42d0047aa0ecd016e49048, type: 3}
+  m_Script: {fileID: 11500000, guid: 612613d89fed7de48a3958b1548da0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackPos: {fileID: 6048570102359092684}
+  fireAttackPos: {fileID: 0}
   iceballCoolDown: 2
   iceball: {fileID: 9065008747380130482, guid: 862c1320ec3b8dd47917d77310e4efca, type: 3}
-  iceAngle: 30
+  iceAngle: 5
+  fireballCoolDown: 2
+  fireball: {fileID: 3414297260585760921, guid: d789c3b6334cea2408c6fb268e166234,
+    type: 3}
+  prueba: 0
 --- !u!1 &8238394086227625670
 GameObject:
   m_ObjectHideFlags: 0
