@@ -17,6 +17,22 @@ public class Enemy_Aabbeell : MonoBehaviour
     public GameObject fireball;
     public int prueba = 0;
 
+	public float positionAX = -10.5f;
+	public float positionAY = -5.51f;
+	public float positionBX = -0.5f;
+	public float positionBY = 5.06f;
+	public float positionCX = 10.5f;
+	public float positionCY = -5.51f;
+
+	public float positionXIceVertical1 = 8f;
+	public float positionYIceVertical1 = 4.5f;
+
+	public float positionXIceVertical2 = -6f;
+	public float positionYIceVertical2 = 4.5f;
+
+	public float positionXFire = 5.24f;
+	public float positionYFire = -4.95f;
+
 	//Jugador
     GameObject jugador;
 
@@ -80,15 +96,15 @@ public class Enemy_Aabbeell : MonoBehaviour
     }
 
 	void positionA(){
-		gameObject.transform.localPosition = new Vector2(59f, 2.99f);
+		gameObject.transform.localPosition = new Vector2(positionAX, positionAY);
 	}
 
 	void positionB(){
-		gameObject.transform.localPosition = new Vector2(69f, 13.56f);
+		gameObject.transform.localPosition = new Vector2(positionBX, positionBY);
 	}
 
 	void positionC(){
-		gameObject.transform.localPosition = new Vector2(80f, 2.99f);
+		gameObject.transform.localPosition = new Vector2(positionCX, positionCY);
 	}
 
     void iceAttackHorizaontal()
@@ -126,13 +142,13 @@ public class Enemy_Aabbeell : MonoBehaviour
         var position = attackPos.position;
         //position.x = position.x * -1;
             
-        GameObject spellA1 = Instantiate(iceball, new Vector2(77.5f + Random.Range(-2.5f, 2.5f), 13), Quaternion.identity);
+        GameObject spellA1 = Instantiate(iceball, new Vector2(positionXIceVertical1 + Random.Range(-2.5f, 2.5f), positionYIceVertical1), Quaternion.identity);
         PlayerIce spellA1Controller = spellA1.GetComponent<PlayerIce>();
         spellA1Controller.enemy = "Player";
-        GameObject spellA2 = Instantiate(iceball, new Vector2(77.5f + Random.Range(-2.5f, 2.5f), 13), Quaternion.identity);
+        GameObject spellA2 = Instantiate(iceball, new Vector2(positionXIceVertical1 + Random.Range(-2.5f, 2.5f), positionYIceVertical1), Quaternion.identity);
         PlayerIce spellA2Controller = spellA2.GetComponent<PlayerIce>();
         spellA2Controller.enemy = "Player";
-        GameObject spellA3 = Instantiate(iceball, new Vector2(77.5f + Random.Range(-2.5f, 2.5f), 13), Quaternion.identity);
+        GameObject spellA3 = Instantiate(iceball, new Vector2(positionXIceVertical1 + Random.Range(-2.5f, 2.5f), positionYIceVertical1), Quaternion.identity);
         PlayerIce spellA3Controller = spellA3.GetComponent<PlayerIce>();
         spellA3Controller.enemy = "Player";
             
@@ -153,13 +169,13 @@ public class Enemy_Aabbeell : MonoBehaviour
 
 
 
-        GameObject spellB1 = Instantiate(iceball, new Vector2(63f + Random.Range(-2.5f, 2.5f), 13), Quaternion.identity);
+        GameObject spellB1 = Instantiate(iceball, new Vector2(positionXIceVertical2 + Random.Range(-2.5f, 2.5f), positionYIceVertical2), Quaternion.identity);
         PlayerIce spellB1Controller = spellB1.GetComponent<PlayerIce>();
         spellB1Controller.enemy = "Player";
-        GameObject spellB2 = Instantiate(iceball, new Vector2(63f + Random.Range(-2.5f, 2.5f), 13), Quaternion.identity);
+        GameObject spellB2 = Instantiate(iceball, new Vector2(positionXIceVertical2 + Random.Range(-2.5f, 2.5f), positionYIceVertical2), Quaternion.identity);
         PlayerIce spellB2Controller = spellB2.GetComponent<PlayerIce>();
         spellB2Controller.enemy = "Player";
-        GameObject spellB3 = Instantiate(iceball, new Vector2(63f + Random.Range(-2.5f, 2.5f), 13), Quaternion.identity);
+        GameObject spellB3 = Instantiate(iceball, new Vector2(positionXIceVertical2 + Random.Range(-2.5f, 2.5f), positionYIceVertical2), Quaternion.identity);
         PlayerIce spellB3Controller = spellB3.GetComponent<PlayerIce>();
         spellB3Controller.enemy = "Player";
             
@@ -178,6 +194,6 @@ public class Enemy_Aabbeell : MonoBehaviour
 
     void fireAttack()
     {
-        GameObject spell1 = Instantiate(fireball, new Vector2(74.74f, 3.55f), Quaternion.identity);
+        GameObject spell1 = Instantiate(fireball, new Vector2(positionXFire, positionYFire), Quaternion.identity);
     }
 }
