@@ -21,16 +21,24 @@ public class PlayerAttack : MonoBehaviour
     public float iceCoolDown = 2f;
     private float nextIceTime;
 
+    public float dashCoolDown = 3f;
+    private float nextDashTime;
+
     private float spellChangeCoolDown = 0.5f;
     private float nextSpellChange = 0.5f;
     
     private spells[] unlockedSpells;
+    
+    // Current spell equiped of Chawa.
     private spells equipedSpell;
+    
     public GameObject fireball;
     public GameObject ice;
     public float iceAngle = 30;
     
     private static readonly int Attack = Animator.StringToHash("attack");
+
+    //private PlayerController playerController;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +52,26 @@ public class PlayerAttack : MonoBehaviour
         if (unlockedSpells.Contains(spells.Fire))
         {
             equipedSpell = spells.Fire;
+        }
+    }
+
+    private void Awake()
+    {
+        if (PlayerPrefs.HasKey("unlokedSpells"))
+        {
+            string spells = PlayerPrefs.GetString("unlokedSpells");
+            if (spells[0] == '1')
+            {
+                unlockedSpells[0] = PlayerAttack.spells.Fire;
+            }
+            if (spells[1] == '1')
+            {
+                unlockedSpells[1] = PlayerAttack.spells.Ice;
+            }
+            if (spells[2] == '1')
+            {
+                unlockedSpells[2] = PlayerAttack.spells.Air;
+            }
         }
     }
 
@@ -100,6 +128,12 @@ public class PlayerAttack : MonoBehaviour
                 Vector3 spellScale = spell.transform.localScale;
                 spell.transform.localScale = new Vector3(spellScale.x * Mathf.Sign(gameObject.transform.localScale.x), spellScale.y, spellScale.z);
             }
+
+            if (equipedSpell == spells.Air && Time.time >= nextDashTime)
+            {
+                nextDashTime = Time.time + dashCoolDown;
+                animator.SetBool("isDashing", true);
+            }
         }
 
         if (Input.GetKey("e") && Time.time > nextSpellChange)
@@ -150,6 +184,27 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
     }
 
+    public string getCurrentSpell()
+    {
+        string currentSpell;
+        if (this.equipedSpell == spells.Fire)
+        {
+            currentSpell = "fire";
+        } else if (this.equipedSpell == spells.Ice)
+        {
+            currentSpell = "ice";
+        } else if (this.equipedSpell == spells.Air)
+        {
+            currentSpell = "air";
+        }
+        else
+        {
+            currentSpell = "";
+        }
+
+        return currentSpell;
+    }
+    
     enum spells
     {
         Fire, Ice, Air
