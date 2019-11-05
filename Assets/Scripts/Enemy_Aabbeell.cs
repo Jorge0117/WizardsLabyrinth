@@ -155,21 +155,33 @@ public class Enemy_Aabbeell : MonoBehaviour
 
 	void idleShield()
 	{
+		enemyAnimator.ResetTrigger(Ice);
+		enemyAnimator.ResetTrigger(Wind);
+		enemyAnimator.ResetTrigger(Fire);
 		enemyAnimator.SetTrigger(Idle);
 	}
 
 	void iceShield()
 	{
+		enemyAnimator.ResetTrigger(Idle);
+		enemyAnimator.ResetTrigger(Wind);
+		enemyAnimator.ResetTrigger(Fire);
 		enemyAnimator.SetTrigger(Ice);
 	}
 	
 	void windShield()
 	{
+		enemyAnimator.ResetTrigger(Ice);
+		enemyAnimator.ResetTrigger(Idle);
+		enemyAnimator.ResetTrigger(Fire);
 		enemyAnimator.SetTrigger(Wind);
 	}
 	
 	void fireShield()
 	{
+		enemyAnimator.ResetTrigger(Ice);
+		enemyAnimator.ResetTrigger(Wind);
+		enemyAnimator.ResetTrigger(Idle);
 		enemyAnimator.SetTrigger(Fire);
 	}
 
