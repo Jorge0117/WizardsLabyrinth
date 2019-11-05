@@ -263,14 +263,14 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.GetComponent<EnemyController>().takeDamage(5);
         }
-        if (other.gameObject.name == "Water" && !isDrawning) // Si colisiona con agua, se hunde
+        if (other.gameObject.CompareTag("Water") && !isDrawning) // Si colisiona con agua, se hunde
         {
-            gravity = -6;
+            gravity = -3;
             angry_fish.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 8);
             angry_fish.SetActive(true);
             acercarse = true;
             isDrawning = true;
-            gravity = -6;
+            gravity = -3;
         }
         if (other.gameObject.name == "Angry-fish") // Si colisiona con pez, muere
         {
@@ -279,8 +279,24 @@ public class PlayerController : MonoBehaviour
             gravity = firstGravityValue;
             //Jugador muere
         }
-        if (other.gameObject.CompareTag("Book") || other.gameObject.CompareTag("Potion") || other.gameObject.CompareTag("Heart")) // Si coge libro, pocion o corazon, desaparece
+        if (other.gameObject.CompareTag("Book") || other.gameObject.CompareTag("Heart")) // Si coge libro, pocion o corazon, desaparece
         {
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.CompareTag("Potion"))
+        {
+            if (currentHealth == maxHealth)
+            {
+
+            }
+            else if (currentHealth == (maxHealth - 1))
+            {
+                currentHealth += 1;
+            }
+            else
+            {
+                currentHealth += 2;
+            }
             Destroy(other.gameObject);
         }
     }

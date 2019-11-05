@@ -30,7 +30,7 @@ public class WaterController : MonoBehaviour
     }
 
 
-    public void melt()
+    public void change()
     {
         if (isWater)
         {
@@ -44,14 +44,13 @@ public class WaterController : MonoBehaviour
             isMelting = true;
             isWater = true;
         }
-        //Instantiate(smokeParticles, gameObject.transform.position, Quaternion.identity);
 
         StartCoroutine(wait(1));
     }
 
     private void OnMouseDown()
     {
-        melt();
+        change();
     }
 
     void OnDrawGizmosSelected()
@@ -69,17 +68,18 @@ public class WaterController : MonoBehaviour
         }
         else
         {
+            gameObject.layer = LayerMask.NameToLayer("Ice");
+            gameObject.tag = "Ice";
             Collider2D[] waterToFreeze = Physics2D.OverlapCircleAll(pos.position, range, whatIsWater);
             for (int i = 0; i < waterToFreeze.Length; i++)
             {
-                if (!waterToFreeze[i].GetComponent<WaterController>().isFreezing)
+                if (!waterToFreeze[i].GetComponent<WaterController>().isFreezing && waterToFreeze[i].transform.position.y == gameObject.transform.position.y)
                 {
-                    waterToFreeze[i].GetComponent<WaterController>().melt();
+                    waterToFreeze[i].GetComponent<WaterController>().change();
                 }
             }
             anim.SetBool("isChanging", false);
             isMelting = false;
-            gameObject.layer = LayerMask.NameToLayer("Ice");
 
             yield return new WaitForSeconds(cantidadSegundos);
 
@@ -87,10 +87,11 @@ public class WaterController : MonoBehaviour
 
             yield return new WaitForSeconds(1);
 
+            gameObject.tag = "Water";
             anim.SetBool("isChanging", false);
             isFreezing = false;
             gameObject.layer = LayerMask.NameToLayer("Water");
-
+            isWater = true;
         }
     }
 }
