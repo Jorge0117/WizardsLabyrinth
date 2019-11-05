@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     public float moveSpeed = 6;
     public float dashSpeed = 2;
+    private bool isDrawning;
     float gravity;
     float maxJumpVelocity;
     float minJumpVelocity;
@@ -59,6 +60,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isDrawning = false;
         controller = GetComponent<Controller2D> ();
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
@@ -205,23 +207,6 @@ public class PlayerController : MonoBehaviour
             velocity = new Vector3(knockback * knockbackDir, knockback/2);
             controller.Move(velocity);
         }
-
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            if (acercarse)
-            {
-                angry_fish.SetActive(false);
-                acercarse = false;
-                gravity = firstGravityValue;
-            }
-            else
-            {
-                angry_fish.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 5);
-                angry_fish.SetActive(true);
-                acercarse = true;
-                gravity = -2;
-            }
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -272,18 +257,41 @@ public class PlayerController : MonoBehaviour
                 controllerEnemy.takeDamage(5);
             }
         }
-        if (other.gameObject.CompareTag("Water"))
+        if (other.gameObject.CompareTag("Water") && !isDrawning) // Si colisiona con agua, se hunde
         {
-            gravity = -2;
-            angry_fish.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 5);
+            gravity = -3;
+            angry_fish.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 8);
             angry_fish.SetActive(true);
             acercarse = true;
+            isDrawning = true;
+            gravity = -3;
         }
-        if (other.gameObject.CompareTag("fish"))
+        if (other.gameObject.name == "Angry-fish") // Si colisiona con pez, muere
         {
             angry_fish.SetActive(false);
             acercarse = false;
             gravity = firstGravityValue;
+            //Jugador muere
+        }
+        if (other.gameObject.CompareTag("Book") || other.gameObject.CompareTag("Heart")) // Si coge libro, pocion o corazon, desaparece
+        {
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.CompareTag("Potion"))
+        {
+            if (currentHealth == maxHealth)
+            {
+
+            }
+            else if (currentHealth == (maxHealth - 1))
+            {
+                currentHealth += 1;
+            }
+            else
+            {
+                currentHealth += 2;
+            }
+            Destroy(other.gameObject);
         }
     }
 
