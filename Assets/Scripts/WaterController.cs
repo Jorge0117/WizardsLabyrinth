@@ -34,6 +34,7 @@ public class WaterController : MonoBehaviour
     {
         if (isWater)
         {
+            gameObject.tag = "Ice";
             anim.SetBool("isChanging", true);
             isFreezing = true;
             isWater = false;

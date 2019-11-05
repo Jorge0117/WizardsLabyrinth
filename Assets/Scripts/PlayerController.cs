@@ -206,23 +206,6 @@ public class PlayerController : MonoBehaviour
             velocity = new Vector3(knockback * knockbackDir, knockback/2);
             controller.Move(velocity);
         }
-
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            if (acercarse)
-            {
-                angry_fish.SetActive(false);
-                acercarse = false;
-                gravity = firstGravityValue;
-            }
-            else
-            {
-                angry_fish.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 5);
-                angry_fish.SetActive(true);
-                acercarse = true;
-                gravity = -2;
-            }
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
