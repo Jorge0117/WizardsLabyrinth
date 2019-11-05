@@ -37,7 +37,7 @@ public class Enemy_Aabbeell : MonoBehaviour
 	public float positionYIceVertical2 = 4.5f;
 
 	//Posicion inicial de Fire
-	public float positionXFire = 5.24f;
+	public float positionXFire = 21.24f;
 	public float positionYFire = -4.95f;
 	
 	//Escudo
@@ -71,7 +71,7 @@ public class Enemy_Aabbeell : MonoBehaviour
 		enemyTransform = GetComponent<Transform> ();
 		enemyAnimator = GetComponent<Animator>();
 		
-        StartCoroutine(cambiarEstado(0));
+        StartCoroutine(cambiarEstado(2));
     }
 
     // Update is called once per frame
@@ -95,6 +95,7 @@ public class Enemy_Aabbeell : MonoBehaviour
 
     IEnumerator cambiarEstado(float seconds)
     {
+	    yield return new WaitForSeconds(seconds);
 	    //Cambiar de posicion
 		int position = (int)Random.Range(1, 3.99f);
 		switch(position){
@@ -146,11 +147,9 @@ public class Enemy_Aabbeell : MonoBehaviour
 				break;
 		}
 
-		//Debug.Log("ataque: "+ attack);
-		
-		yield return new WaitForSeconds(seconds);
-		
-        StartCoroutine(cambiarEstado(3));
+		//Debug.Log("ataque: "+ attack)
+
+		StartCoroutine(cambiarEstado(3));
     }
 
 	void idleShield()

@@ -8,7 +8,7 @@ public class Enemy_Aabbeell_Fireballs : MonoBehaviour
     void Start()
     {
         // Se destruye después de 4 segundos
-        Destroy(gameObject, 4f);
+        Destroy(gameObject, 10f);
     }
 
     // Update is called once per frame

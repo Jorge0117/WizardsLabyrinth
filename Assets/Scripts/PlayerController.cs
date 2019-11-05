@@ -199,23 +199,7 @@ public class PlayerController : MonoBehaviour
                 gameObject.transform.rotation = Quaternion.Euler(0,0,0);
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            if (acercarse)
-            {
-                angry_fish.SetActive(false);
-                acercarse = false;
-                gravity = firstGravityValue;
-            }
-            else
-            {
-                angry_fish.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 5);
-                angry_fish.SetActive(true);
-                acercarse = true;
-                gravity = -2;
-            }
-        }
+        
     }
 
     public void returnToGround()
@@ -255,7 +239,17 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy") && isDashing)
         {
-            other.gameObject.GetComponent<EnemyController>().takeDamage(5);
+            //other.gameObject.GetComponent<EnemyController>().takeDamage(5);
+            
+            EnemyController controllerEnemy= other.gameObject.GetComponent<EnemyController>();
+            if (controllerEnemy.enemyName.CompareTo("Aabbeell") == 0)
+            {
+                controllerEnemy.takeDamage(5, 3/*Wind*/);
+            }
+            else
+            {
+                controllerEnemy.takeDamage(5);
+            }
         }
         if (other.gameObject.CompareTag("Water"))
         {
@@ -264,12 +258,7 @@ public class PlayerController : MonoBehaviour
             angry_fish.SetActive(true);
             acercarse = true;
         }
-        if (other.gameObject.CompareTag("fish"))
-        {
-            angry_fish.SetActive(false);
-            acercarse = false;
-            gravity = firstGravityValue;
-        }
+
     }
 
     public int getHealth()
