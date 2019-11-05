@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent (typeof (Controller2D))]
 public class EnemyController : MonoBehaviour
@@ -85,17 +86,18 @@ public class EnemyController : MonoBehaviour
     {
         Enemy_Aabbeell controllerAabbell = gameObject.GetComponent<Enemy_Aabbeell>();
         int shield = controllerAabbell.shield;
-        Debug.Log("TAKEDAMAGE AABBEELL");
-        Debug.Log(shield);
-        Debug.Log(typeShield);
+        //Debug.Log("TAKEDAMAGE AABBEELL");
+        //Debug.Log(shield);
+        //Debug.Log(typeShield);
         if( shield == typeShield && !isTakingDamage)
         {
-            Debug.Log("TAKEDAMAGE AABBEELL");
+            //Debug.Log("TAKEDAMAGE AABBEELL");
             isTakingDamage = true;
             currentHealth -= damage;
             if (currentHealth <= 0)
             {
-                Destroy(gameObject);
+                SceneManager.LoadScene("Won");
+                //Destroy(gameObject);
             }
             StartCoroutine(wait(invencibilitySeconds));
         }

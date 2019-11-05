@@ -118,13 +118,13 @@ public class Enemy_Aabbeell : MonoBehaviour
 		shield = (int)Random.Range(1, 3.99f);
 		switch(shield){
 			case 1:
-				iceShield();
+				fireShield();
 				break;
 			case 2:
-				windShield();
+				iceShield();
 				break;
 			case 3:
-				fireShield();
+				windShield();
 				break;
 			default:
 				idleShield();
