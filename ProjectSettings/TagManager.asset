@@ -12,6 +12,10 @@ TagManager:
   - Ice
   - Transition
   - 1
+  - fish
+  - Book
+  - Potion
+  - Heart
   layers:
   - Default
   - TransparentFX

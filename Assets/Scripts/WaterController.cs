@@ -10,12 +10,11 @@ public class WaterController : MonoBehaviour
     public LayerMask whatIsIce;
     public LayerMask whatIsWater;
     private SpriteRenderer spriteR;
+    public int cantidadSegundos;
     bool isWater;
 
     bool isMelting = false;
     bool isFreezing = false;
-
-    public GameObject smokeParticles;
 
     // Start is called before the first frame update
     void Start()
@@ -67,18 +66,6 @@ public class WaterController : MonoBehaviour
 
         if (isWater)
         {
-            Collider2D[] iceToMelt = Physics2D.OverlapCircleAll(pos.position, range, whatIsIce);
-            for (int i = 0; i < iceToMelt.Length; i++)
-            {
-                if (!iceToMelt[i].GetComponent<WaterController>().isMelting)
-                {
-                    iceToMelt[i].GetComponent<WaterController>().melt();
-                }
-            }
-            anim.SetBool("isChanging", false);
-            isFreezing = false;
-            gameObject.layer = LayerMask.NameToLayer("Water");
-            yield return new WaitForSeconds(seconds / 2);
         }
         else
         {
@@ -93,7 +80,17 @@ public class WaterController : MonoBehaviour
             anim.SetBool("isChanging", false);
             isMelting = false;
             gameObject.layer = LayerMask.NameToLayer("Ice");
-            yield return new WaitForSeconds(seconds / 2);
+
+            yield return new WaitForSeconds(cantidadSegundos);
+
+            anim.SetBool("isChanging", true);
+
+            yield return new WaitForSeconds(1);
+
+            anim.SetBool("isChanging", false);
+            isFreezing = false;
+            gameObject.layer = LayerMask.NameToLayer("Water");
+
         }
     }
 }
