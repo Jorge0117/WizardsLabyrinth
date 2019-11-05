@@ -15,6 +15,7 @@ public class PlayerAttack : MonoBehaviour
 
     public float basicAttackCoolDown = 0.5f;
     private float nextBasicAttackTime;
+    
     public float fireballCoolDown = 2f;
     private float nextFireballTime;
     
@@ -37,6 +38,9 @@ public class PlayerAttack : MonoBehaviour
     public float iceAngle = 30;
     
     private static readonly int Attack = Animator.StringToHash("attack");
+    
+    private SpellCooldown _spellCooldownController;
+    public GameObject spellCooldown;
 
     //private PlayerController playerController;
 
@@ -48,6 +52,9 @@ public class PlayerAttack : MonoBehaviour
         unlockedSpells[1] = spells.Ice;
         unlockedSpells[2] = spells.Air;
         
+        // Sets all for Chawa's UI 
+        _spellCooldownController = spellCooldown.GetComponent<SpellCooldown>();
+            
         animator = GetComponent<Animator>();
         if (unlockedSpells.Contains(spells.Fire))
         {
@@ -87,8 +94,11 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetButton("Fire2"))
         {
+            
             if (equipedSpell == spells.Fire && Time.time >= nextFireballTime)
             {
+                //Starts cooldown animation in HUD
+                _spellCooldownController.triggerSpell("fire");
                 nextFireballTime = Time.time + fireballCoolDown;
                 var position = attackPos.position;
                 GameObject spell = Instantiate(fireball, new Vector2(position.x + 2*Mathf.Sign(gameObject.transform.localScale.x), position.y ), Quaternion.identity);
@@ -101,6 +111,8 @@ public class PlayerAttack : MonoBehaviour
             
             if (equipedSpell == spells.Ice && Time.time >= nextIceTime)
             {
+                //Starts cooldown animation in HUD
+                _spellCooldownController.triggerSpell("ice");
                 nextIceTime = Time.time + iceCoolDown;
                 var position = attackPos.position;
                 GameObject spell = Instantiate(ice, new Vector2(position.x + 2*Mathf.Sign(gameObject.transform.localScale.x), position.y ), Quaternion.identity);
@@ -131,6 +143,8 @@ public class PlayerAttack : MonoBehaviour
 
             if (equipedSpell == spells.Air && Time.time >= nextDashTime)
             {
+                //Starts cooldown animation in HUD
+                _spellCooldownController.triggerSpell("air");
                 nextDashTime = Time.time + dashCoolDown;
                 animator.SetBool("isDashing", true);
             }
@@ -203,6 +217,11 @@ public class PlayerAttack : MonoBehaviour
         }
 
         return currentSpell;
+    }
+
+    public float getSpellCooldown()
+    {
+        return this.spellChangeCoolDown;
     }
     
     enum spells
