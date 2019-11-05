@@ -199,6 +199,7 @@ public class PlayerController : MonoBehaviour
                 gameObject.transform.rotation = Quaternion.Euler(0,0,0);
             }
         }
+        
         else if (isTakingDamage)
         {
             velocity = new Vector3(knockback * knockbackDir, knockback/2);
@@ -259,7 +260,17 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy") && isDashing)
         {
-            other.gameObject.GetComponent<EnemyController>().takeDamage(5);
+            //other.gameObject.GetComponent<EnemyController>().takeDamage(5);
+            
+            EnemyController controllerEnemy= other.gameObject.GetComponent<EnemyController>();
+            if (controllerEnemy.enemyName.CompareTo("Aabbeell") == 0)
+            {
+                controllerEnemy.takeDamage(5, 3/*Wind*/);
+            }
+            else
+            {
+                controllerEnemy.takeDamage(5);
+            }
         }
         if (other.gameObject.CompareTag("Water"))
         {

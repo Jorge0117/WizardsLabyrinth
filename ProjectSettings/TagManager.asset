@@ -12,6 +12,7 @@ TagManager:
   - Ice
   - Transition
   - 1
+  - fish
   layers:
   - Default
   - TransparentFX
