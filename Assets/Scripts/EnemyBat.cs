@@ -159,7 +159,16 @@ public class EnemyBat : MonoBehaviour
                             Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemy);
                             for (int i = 0; i < enemiesToDamage.Length; ++i)
                             {
-                                enemiesToDamage[i].GetComponent<PlayerController>().takeDamage(basicAttackDamage);
+                                int dir;
+                                if (transform.position.x > enemiesToDamage[i].transform.position.x)
+                                {
+                                    dir = -1;
+                                }
+                                else
+                                {
+                                    dir = 1;
+                                }
+                                enemiesToDamage[i].GetComponent<PlayerController>().takeDamage(basicAttackDamage, dir);
                             }
                         }
                     }

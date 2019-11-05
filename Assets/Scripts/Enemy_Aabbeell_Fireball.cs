@@ -58,7 +58,16 @@ public class Enemy_Aabbeell_Fireball : MonoBehaviour
             }
             if (enemy.CompareTo("Player") == 0)
             {
-                other.gameObject.GetComponent<PlayerController>().takeDamage(3);
+                int dir;
+                if (transform.position.x > other.transform.position.x)
+                {
+                    dir = -1;
+                }
+                else
+                {
+                    dir = 1;
+                }
+                other.gameObject.GetComponent<PlayerController>().takeDamage(3, dir);
             }
         }
     }

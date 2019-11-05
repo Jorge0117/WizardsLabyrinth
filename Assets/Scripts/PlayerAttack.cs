@@ -171,11 +171,6 @@ public class PlayerAttack : MonoBehaviour
                 enemiesToDamage[i].GetComponent<EnemyController>().takeDamage(damage);
             }
         }
-
-        if (Input.GetKey("c"))
-        {
-            gameObject.GetComponent<PlayerController>().returnToGround();
-        }
     }
 
     void OnDrawGizmosSelected()

@@ -12,6 +12,7 @@ public class PlayerIce : MonoBehaviour
     public int dir = 1;
 
     private float angle;
+    public int damage = 3;
     
     public string enemy;
     
@@ -45,14 +46,22 @@ public class PlayerIce : MonoBehaviour
 
         if (other.gameObject.CompareTag(enemy))
         {
-            if (enemy.CompareTo("Enemy") == 0)
+            if (String.Compare(enemy, "Enemy", StringComparison.Ordinal) == 0)
             {
-                other.gameObject.GetComponent<EnemyController>().takeDamage(3);
+                other.gameObject.GetComponent<EnemyController>().takeDamage(damage);
             }
             if (enemy.CompareTo("Player") == 0)
             {
-                Debug.Log("llegue aqui");
-                other.gameObject.GetComponent<PlayerController>().takeDamage(3);
+                int dir;
+                if (transform.position.x > other.transform.position.x)
+                {
+                    dir = -1;
+                }
+                else
+                {
+                    dir = 1;
+                }
+                other.gameObject.GetComponent<PlayerController>().takeDamage(damage, dir);
             }
         }
     }

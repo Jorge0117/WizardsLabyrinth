@@ -12,6 +12,7 @@ public class Enemy_Ice : MonoBehaviour
     public GameObject iceball;
     
     public float iceAngle = 30;
+    public int iceDamege = 3;
     
     // Start is called before the first frame update
     void Start()
@@ -31,12 +32,15 @@ public class Enemy_Ice : MonoBehaviour
             GameObject spell = Instantiate(iceball, new Vector2(position.x + 2*Mathf.Sign(gameObject.transform.localScale.x), position.y ), Quaternion.identity);
             PlayerIce spell1Controller = spell.GetComponent<PlayerIce>();
             spell1Controller.enemy = "Player";
+            spell1Controller.damage = iceDamege;
             GameObject spell2 = Instantiate(iceball, new Vector2(position.x + 2*Mathf.Sign(gameObject.transform.localScale.x), position.y ), Quaternion.identity);
             PlayerIce spell2Controller = spell2.GetComponent<PlayerIce>();
             spell2Controller.enemy = "Player";
+            spell2Controller.damage = iceDamege;
             GameObject spell3 = Instantiate(iceball, new Vector2(position.x + 2*Mathf.Sign(gameObject.transform.localScale.x), position.y ), Quaternion.identity);
             PlayerIce spell3Controller = spell3.GetComponent<PlayerIce>();
             spell3Controller.enemy = "Player";
+            spell3Controller.damage = iceDamege;
             
             if (Mathf.Sign(transform.localScale.x) > 0)
             {
