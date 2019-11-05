@@ -24,8 +24,7 @@ public class PlayerController : MonoBehaviour
     GameObject chawa;
     float chawaXScale;
     float chawaYScale;
-
-    Vector2 positionBeforeJump;
+    
     [HideInInspector]
     public Vector2 checkpointPosition;
 
@@ -39,8 +38,10 @@ public class PlayerController : MonoBehaviour
     //Tiempo en que no se recibe mas daño
     public float invencibilitySeconds = 0.5f;
 
-    int maxHealth = 5;
-    int currentHealth;
+    public int maxHealth = 5;
+    public int currentHealth;
+    public float knockback = 0.5f;
+    private int knockbackDir;
 
     [HideInInspector]
     public bool isDashing = false;
@@ -55,6 +56,7 @@ public class PlayerController : MonoBehaviour
     private static readonly int IsFalling = Animator.StringToHash("isFalling");
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
 
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -92,6 +94,11 @@ public class PlayerController : MonoBehaviour
             checkpointPosition = new Vector2(0,0);
         }
 
+        if (!PlayerPrefs.HasKey("currentScene"))
+        {
+            PlayerPrefs.SetString("currentScene", "Jungle");
+        }
+
         gameObject.transform.position = checkpointPosition;
         currentHealth = maxHealth;
     }
@@ -100,7 +107,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        if (!animator.GetBool("isDashing"))
+        if (!animator.GetBool("isDashing") && !isTakingDamage)
         {
             if(controller.collisions.below)
             {
@@ -115,7 +122,6 @@ public class PlayerController : MonoBehaviour
                 if (!animator.GetBool(IsFalling))
                 {
                     animator.SetBool(IsFalling, true);
-                    positionBeforeJump = chawa.transform.position;
                 }
             
             }
@@ -150,7 +156,7 @@ public class PlayerController : MonoBehaviour
                 velocity.y = 0;
             }
         }
-        else
+        else if (animator.GetBool("isDashing"))
         {
             if (!isDashing)
             {
@@ -195,6 +201,11 @@ public class PlayerController : MonoBehaviour
                 gameObject.transform.rotation = Quaternion.Euler(0,0,0);
             }
         }
+        else if (isTakingDamage)
+        {
+            velocity = new Vector3(knockback * knockbackDir, knockback/2);
+            controller.Move(velocity);
+        }
 
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -214,11 +225,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void returnToGround()
-    {
-        gameObject.transform.position = positionBeforeJump;
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "1")
@@ -227,16 +233,19 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    public void takeDamage(int damage)
+    public void takeDamage(int damage, int dir)
     {
         if(!isTakingDamage)
         {
+            animator.SetBool("isHit", true);
             isTakingDamage = true;
             currentHealth -= damage;
             if (currentHealth <= 0)
             {
                 Destroy(gameObject);
             }
+
+            knockbackDir = dir;
             StartCoroutine(wait(invencibilitySeconds));
         }
     }
@@ -245,6 +254,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         isTakingDamage = false;
+        animator.SetBool("isHit", false);
     }
     
     void OnTriggerEnter2D(Collider2D other)
@@ -273,5 +283,23 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
+    }
+
+    public int getHealth()
+    {
+        return this.currentHealth;
+    }
+
+    public void setCheckpoint(Vector2 checkpoint)
+    {
+        PlayerPrefs.SetFloat("checkpointPositionX", checkpoint.x);
+        PlayerPrefs.SetFloat("checkpointPositionY", checkpoint.y);
+        checkpointPosition = checkpoint;
+    }
+
+    public void respawnAfterFall()
+    {
+        takeDamage(1, 0);
+        transform.position = checkpointPosition;
     }
 }

@@ -28,7 +28,10 @@ public class PlayerAttack : MonoBehaviour
     private float nextSpellChange = 0.5f;
     
     private spells[] unlockedSpells;
+    
+    // Current spell equiped of Chawa.
     private spells equipedSpell;
+    
     public GameObject fireball;
     public GameObject ice;
     public float iceAngle = 30;
@@ -101,9 +104,15 @@ public class PlayerAttack : MonoBehaviour
                 nextIceTime = Time.time + iceCoolDown;
                 var position = attackPos.position;
                 GameObject spell = Instantiate(ice, new Vector2(position.x + 2*Mathf.Sign(gameObject.transform.localScale.x), position.y ), Quaternion.identity);
+                PlayerIce spell1Controller = spell.GetComponent<PlayerIce>();
+                spell1Controller.enemy = "Enemy";
                 GameObject spell2 = Instantiate(ice, new Vector2(position.x + 2*Mathf.Sign(gameObject.transform.localScale.x), position.y ), Quaternion.identity);
+                PlayerIce spell2Controller = spell2.GetComponent<PlayerIce>();
+                spell2Controller.enemy = "Enemy";
                 GameObject spell3 = Instantiate(ice, new Vector2(position.x + 2*Mathf.Sign(gameObject.transform.localScale.x), position.y ), Quaternion.identity);
-
+                PlayerIce spell3Controller = spell3.GetComponent<PlayerIce>();
+                spell3Controller.enemy = "Enemy";
+                
                 if (Mathf.Sign(transform.localScale.x) > 0)
                 {
                     spell2.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, iceAngle);
@@ -162,11 +171,6 @@ public class PlayerAttack : MonoBehaviour
                 enemiesToDamage[i].GetComponent<EnemyController>().takeDamage(damage);
             }
         }
-
-        if (Input.GetKey("c"))
-        {
-            gameObject.GetComponent<PlayerController>().returnToGround();
-        }
     }
 
     void OnDrawGizmosSelected()
@@ -175,6 +179,27 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
     }
 
+    public string getCurrentSpell()
+    {
+        string currentSpell;
+        if (this.equipedSpell == spells.Fire)
+        {
+            currentSpell = "fire";
+        } else if (this.equipedSpell == spells.Ice)
+        {
+            currentSpell = "ice";
+        } else if (this.equipedSpell == spells.Air)
+        {
+            currentSpell = "air";
+        }
+        else
+        {
+            currentSpell = "";
+        }
+
+        return currentSpell;
+    }
+    
     enum spells
     {
         Fire, Ice, Air

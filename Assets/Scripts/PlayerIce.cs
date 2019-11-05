@@ -12,6 +12,10 @@ public class PlayerIce : MonoBehaviour
     public int dir = 1;
 
     private float angle;
+    public int damage = 3;
+    
+    public string enemy;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -40,9 +44,25 @@ public class PlayerIce : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag(enemy))
         {
-            other.gameObject.GetComponent<EnemyController>().takeDamage(3);
+            if (String.Compare(enemy, "Enemy", StringComparison.Ordinal) == 0)
+            {
+                other.gameObject.GetComponent<EnemyController>().takeDamage(damage);
+            }
+            if (enemy.CompareTo("Player") == 0)
+            {
+                int dir;
+                if (transform.position.x > other.transform.position.x)
+                {
+                    dir = -1;
+                }
+                else
+                {
+                    dir = 1;
+                }
+                other.gameObject.GetComponent<PlayerController>().takeDamage(damage, dir);
+            }
         }
     }
 }

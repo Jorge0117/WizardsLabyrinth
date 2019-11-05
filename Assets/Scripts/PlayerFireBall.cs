@@ -8,6 +8,7 @@ public class PlayerFireBall : MonoBehaviour
     public GameObject fireParticles;
 
     public string enemy;
+    public int damage = 3;
     
     // Start is called before the first frame update
     void Start()
@@ -32,12 +33,20 @@ public class PlayerFireBall : MonoBehaviour
         {
             if (enemy.CompareTo("Enemy") == 0)
             {
-                other.gameObject.GetComponent<EnemyController>().takeDamage(3);
+                other.gameObject.GetComponent<EnemyController>().takeDamage(damage);
             }
             if (enemy.CompareTo("Player") == 0)
             {
-                Debug.Log("llegue aqui");
-                other.gameObject.GetComponent<PlayerController>().takeDamage(3);
+                int dir;
+                if (transform.position.x > other.transform.position.x)
+                {
+                    dir = -1;
+                }
+                else
+                {
+                    dir = 1;
+                }
+                other.gameObject.GetComponent<PlayerController>().takeDamage(damage, dir);
             }
         }
     }
