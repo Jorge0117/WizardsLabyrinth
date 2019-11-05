@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
+  currentHealth: 0
   isTakingDamage: 0
   invencibilitySeconds: 0.5
   recoilVelocity: 1.5
@@ -162,7 +163,7 @@ Animator:
   m_GameObject: {fileID: 5220260252041831744}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 67d7f5563818a3b46814d1d4a45e0916, type: 2}
+  m_Controller: {fileID: 9100000, guid: fb45083512f0acf468a92ced3805b492, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -191,7 +192,6 @@ MonoBehaviour:
   fireballCoolDown: 2
   fireball: {fileID: 3414297260585760921, guid: d789c3b6334cea2408c6fb268e166234,
     type: 3}
-  prueba: 0
   positionAX: -10.5
   positionAY: -5.51
   positionBX: -0.5

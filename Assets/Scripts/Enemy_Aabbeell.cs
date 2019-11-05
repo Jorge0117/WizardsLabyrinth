@@ -49,33 +49,53 @@ public class Enemy_Aabbeell : MonoBehaviour
 	//Transform del enemigo
     Transform enemyTransform;
     
+    //Para las animaciones
+    private Animator enemyAnimator;
+    
+    //animacion de Ice
+    private static readonly int Ice = Animator.StringToHash("Ice");
+    
+    //animacion de Fire
+    private static readonly int Fire = Animator.StringToHash("Fire");
+    
+    //animacion de Wind
+    private static readonly int Wind = Animator.StringToHash("Wind");
+    
+    //animacion de Idle
+    private static readonly int Idle = Animator.StringToHash("Idle");
+    
     // Start is called before the first frame update
     void Start()
     {
 		jugador = GameObject.Find("Chawa");
 		enemyTransform = GetComponent<Transform> ();
+		enemyAnimator = GetComponent<Animator>();
+		
         StartCoroutine(cambiarEstado(0));
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        float distanciachawaenemigo = jugador.transform.position.x - enemyTransform.position.x;
-		
-		if(distanciachawaenemigo > 0){
-			//Jugador a la derecha
-			enemyTransform.localScale = new Vector3(((enemyTransform.localScale.x<0)?enemyTransform.localScale.x:enemyTransform.localScale.x*-1), enemyTransform.localScale.y, 1);
-		}else{
-			//Jugador a la izquierda
-			enemyTransform.localScale = new Vector3(((enemyTransform.localScale.x>0)?enemyTransform.localScale.x:enemyTransform.localScale.x*-1), enemyTransform.localScale.y, 1);
-		}
+	    updateLocalScale();
     }
 
-	IEnumerator cambiarEstado(float seconds)
+    void updateLocalScale()
     {
-        yield return new WaitForSeconds(seconds);
-		//Cambiar de posicion
+	    float distanciachawaenemigo = jugador.transform.position.x - enemyTransform.position.x;
+		
+	    if(distanciachawaenemigo > 0){
+		    //Jugador a la derecha
+		    enemyTransform.localScale = new Vector3(((enemyTransform.localScale.x<0)?enemyTransform.localScale.x:enemyTransform.localScale.x*-1), enemyTransform.localScale.y, 1);
+	    }else{
+		    //Jugador a la izquierda
+		    enemyTransform.localScale = new Vector3(((enemyTransform.localScale.x>0)?enemyTransform.localScale.x:enemyTransform.localScale.x*-1), enemyTransform.localScale.y, 1);
+	    }
+    }
+
+    IEnumerator cambiarEstado(float seconds)
+    {
+	    //Cambiar de posicion
 		int position = (int)Random.Range(1, 3.99f);
 		switch(position){
 			case 1:
@@ -88,20 +108,8 @@ public class Enemy_Aabbeell : MonoBehaviour
 				positionC();
 				break;
 		}
-		// Tipo de ataque
-		int attack = (int)Random.Range(1, 3.99f);
-		switch(attack){
-			case 1:
-				iceAttackHorizaontal();
-				break;
-			case 2:
-				iceAttackVertical();
-				break;
-			case 3:
-				fireAttack();
-				break;
-		}
-
+		updateLocalScale();
+		
 		// Tipo de escudo
 		//shield:
 		//         1: fire
@@ -118,21 +126,51 @@ public class Enemy_Aabbeell : MonoBehaviour
 			case 3:
 				fireShield();
 				break;
+			default:
+				idleShield();
+				break;
+				
 		}
+		
+		// Tipo de ataque
+		int attack = (int)Random.Range(1, 3.99f);
+		switch(attack){
+			case 1:
+				iceAttackHorizaontal();
+				break;
+			case 2:
+				iceAttackVertical();
+				break;
+			case 3:
+				fireAttack();
+				break;
+		}
+
+		//Debug.Log("ataque: "+ attack);
+		
+		yield return new WaitForSeconds(seconds);
 		
         StartCoroutine(cambiarEstado(3));
     }
 
+	void idleShield()
+	{
+		enemyAnimator.SetTrigger(Idle);
+	}
+
 	void iceShield()
 	{
+		enemyAnimator.SetTrigger(Ice);
 	}
 	
 	void windShield()
 	{
+		enemyAnimator.SetTrigger(Wind);
 	}
 	
 	void fireShield()
 	{
+		enemyAnimator.SetTrigger(Fire);
 	}
 
 	void positionA(){
@@ -151,7 +189,6 @@ public class Enemy_Aabbeell : MonoBehaviour
     {
         nextIceballTime = Time.time + iceballCoolDown;
         var position = attackPos.position;
-        //position.x = position.x * -1;
             
         GameObject spell = Instantiate(iceball, new Vector2(position.x, position.y ), Quaternion.identity);
         PlayerIce spell1Controller = spell.GetComponent<PlayerIce>();
@@ -165,12 +202,14 @@ public class Enemy_Aabbeell : MonoBehaviour
             
         if (Mathf.Sign(transform.localScale.x) > 0)
         {
+	        //Debug.Log("Disparo a la izq");
             spell.GetComponent<Transform>().rotation = Quaternion.Euler(0,0,180);
             spell2.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 180 + iceAngle);
             spell3.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 180 - iceAngle);
         }
         else
         {
+	        //Debug.Log("Disparo a la der");
             spell2.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, iceAngle);
             spell3.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 360 - iceAngle);
         }
@@ -180,8 +219,8 @@ public class Enemy_Aabbeell : MonoBehaviour
 	{
         nextIceballTime = Time.time + iceballCoolDown;
         var position = attackPos.position;
-        //position.x = position.x * -1;
-            
+        
+        
         GameObject spellA1 = Instantiate(iceball, new Vector2(positionXIceVertical1 + Random.Range(-2.5f, 2.5f), positionYIceVertical1), Quaternion.identity);
         PlayerIce spellA1Controller = spellA1.GetComponent<PlayerIce>();
         spellA1Controller.enemy = "Player";
@@ -191,22 +230,10 @@ public class Enemy_Aabbeell : MonoBehaviour
         GameObject spellA3 = Instantiate(iceball, new Vector2(positionXIceVertical1 + Random.Range(-2.5f, 2.5f), positionYIceVertical1), Quaternion.identity);
         PlayerIce spellA3Controller = spellA3.GetComponent<PlayerIce>();
         spellA3Controller.enemy = "Player";
-            
-        if (Mathf.Sign(transform.localScale.x) > 0)
-        {
-            spellA1.GetComponent<Transform>().rotation = Quaternion.Euler(0,0,270);
-            spellA2.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 270 + iceAngle);
-            spellA3.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 270 - iceAngle);
-        }
-        else
-        {
-            spellA2.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 90 + iceAngle);
-            spellA3.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 270 - iceAngle);
-        }
-            
-        Vector3 spellAScale = spellA1.transform.localScale;
-        spellA1.transform.localScale = new Vector3(spellAScale.x * Mathf.Sign(gameObject.transform.localScale.x), spellAScale.y, spellAScale.z);
-
+        spellA1.GetComponent<Transform>().rotation = Quaternion.Euler(0,0,270);
+        spellA2.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 270 + iceAngle);
+        spellA3.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 270 - iceAngle);
+        
 
 
         GameObject spellB1 = Instantiate(iceball, new Vector2(positionXIceVertical2 + Random.Range(-2.5f, 2.5f), positionYIceVertical2), Quaternion.identity);
@@ -218,18 +245,9 @@ public class Enemy_Aabbeell : MonoBehaviour
         GameObject spellB3 = Instantiate(iceball, new Vector2(positionXIceVertical2 + Random.Range(-2.5f, 2.5f), positionYIceVertical2), Quaternion.identity);
         PlayerIce spellB3Controller = spellB3.GetComponent<PlayerIce>();
         spellB3Controller.enemy = "Player";
-            
-        if (Mathf.Sign(transform.localScale.x) > 0)
-        {
-            spellB1.GetComponent<Transform>().rotation = Quaternion.Euler(0,0,270);
-            spellB2.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 270 + iceAngle);
-            spellB3.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 270 - iceAngle);
-        }
-        else
-        {
-            spellB2.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 90 + iceAngle);
-            spellB3.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 270 - iceAngle);
-        }
+        spellB1.GetComponent<Transform>().rotation = Quaternion.Euler(0,0,270);
+        spellB2.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 270 + iceAngle);
+        spellB3.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 270 - iceAngle);
     }
 
     void fireAttack()
