@@ -8,7 +8,15 @@ public class BookController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Buscar en lista para ver si ya se cogio
+        if (PlayerPrefs.HasKey("unlockedSpells"))
+        {
+            string unlockedSpells = PlayerPrefs.GetString("unlockedSpells");
+            Debug.Log(unlockedSpells);
+            if (unlockedSpells[id] == '1')
+            {
+                gameObject.SetActive(false);
+            }
+        }
     }
 
     // Update is called once per frame

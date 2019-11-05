@@ -273,7 +273,7 @@ public class PlayerController : MonoBehaviour
             gravity = firstGravityValue;
             //Jugador muere
         }
-        if (other.gameObject.CompareTag("Book") || other.gameObject.CompareTag("Heart")) // Si coge libro, pocion o corazon, desaparece
+        if (other.gameObject.CompareTag("Heart")) // Si coge libro, pocion o corazon, desaparece
         {
             Destroy(other.gameObject);
         }

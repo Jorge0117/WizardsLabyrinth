@@ -205,5 +205,28 @@ public class PlayerAttack : MonoBehaviour
         Fire, Ice, Air
     };
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Book")) // Si coge libro, pocion o corazon, desaparece
+        {
+            int spellId = other.gameObject.GetComponent<BookController>().id;
+            if (PlayerPrefs.HasKey("unlockedSpells"))
+            {
+                string unlockedSpells = PlayerPrefs.GetString("unlockedSpells");
+                char[] spellArray = unlockedSpells.ToCharArray();
+                spellArray[spellId] = '1';
+                unlockedSpells = new string(spellArray);
+                PlayerPrefs.SetString("unlockedSpells", unlockedSpells);
+            }
+            else
+            {
+                char[] spells = {'0', '0', '0'};
+                spells[spellId] = '1';
+                string unlockedSpells = new string(spells);
+                PlayerPrefs.SetString("unlockedSpells", unlockedSpells);
+            }
+            Destroy(other.gameObject);
+        }
+    }
 }
 
