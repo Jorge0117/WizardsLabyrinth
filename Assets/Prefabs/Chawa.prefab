@@ -152,7 +152,12 @@ MonoBehaviour:
   timeToJumpApex: 0.4
   moveSpeed: 7
   dashSpeed: 0.35
+  checkpointPosition: {x: 0, y: 0}
+  angry_fish: {fileID: 0}
   invencibilitySeconds: 0.5
+  maxHealth: 5
+  currentHealth: 0
+  knockback: 0.05
   isDashing: 0
   dashDuration: 0.2
 --- !u!114 &1234897905

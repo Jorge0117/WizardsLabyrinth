@@ -49,6 +49,15 @@ public class PlayerIce : MonoBehaviour
             if (String.Compare(enemy, "Enemy", StringComparison.Ordinal) == 0)
             {
                 other.gameObject.GetComponent<EnemyController>().takeDamage(damage);
+                EnemyController controllerEnemy= other.gameObject.GetComponent<EnemyController>();
+                if (controllerEnemy.enemyName.CompareTo("Aabbeell") == 0)
+                {
+                    controllerEnemy.takeDamage(3, 2/*Ice*/);
+                }
+                else
+                {
+                    controllerEnemy.takeDamage(3);
+                }
             }
             if (enemy.CompareTo("Player") == 0)
             {

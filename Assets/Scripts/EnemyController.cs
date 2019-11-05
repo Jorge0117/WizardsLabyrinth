@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent (typeof (Controller2D))]
 public class EnemyController : MonoBehaviour
@@ -12,7 +13,7 @@ public class EnemyController : MonoBehaviour
     public int maxHealth = 5;
     
     //Vida del enemigo
-    private int currentHealth;
+    public int currentHealth;
 
     //Se esta recibiendo daño?
     public bool isTakingDamage = false;
@@ -34,6 +35,9 @@ public class EnemyController : MonoBehaviour
 
 
     public Vector3 velocity;
+    
+    //tag para saber que es aabbeell, si es otro solo dice enemy
+    public string enemyName = "Enemy";
 
     // Start is called before the first frame update
     void Start()
@@ -69,6 +73,31 @@ public class EnemyController : MonoBehaviour
             if (currentHealth <= 0)
             {
                 Destroy(gameObject);
+            }
+            StartCoroutine(wait(invencibilitySeconds));
+        }
+    }
+    
+    //typeShield:
+    //             1: fire
+    //             2: ice
+    //             3: wind
+    public void takeDamage(int damage, int typeShield)
+    {
+        Enemy_Aabbeell controllerAabbell = gameObject.GetComponent<Enemy_Aabbeell>();
+        int shield = controllerAabbell.shield;
+        //Debug.Log("TAKEDAMAGE AABBEELL");
+        //Debug.Log(shield);
+        //Debug.Log(typeShield);
+        if( shield == typeShield && !isTakingDamage)
+        {
+            //Debug.Log("TAKEDAMAGE AABBEELL");
+            isTakingDamage = true;
+            currentHealth -= damage;
+            if (currentHealth <= 0)
+            {
+                SceneManager.LoadScene("Won");
+                //Destroy(gameObject);
             }
             StartCoroutine(wait(invencibilitySeconds));
         }

@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5854e7f9-c159-45da-a6d2-ae339121e259" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Wizard Game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Jungle_Wall.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Tiles/Cave/Cave_Sprite_Atlas.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Tiles/Cave/Cave_Sprite_Atlas.spriteatlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Wizard Game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Wizard Game/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,6 +27,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GrassWall.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerFireBall.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scenes/01-  Single Line TextMesh Pro.unity" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/DestroyAfterAnim.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Control/SceneTransition.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/EnemyController.cs" root0="FORCE_HIGHLIGHTING" />
@@ -104,6 +103,8 @@
       <workItem from="1572384363517" duration="57000" />
       <workItem from="1572384476166" duration="57000" />
       <workItem from="1572644019442" duration="1171000" />
+      <workItem from="1572829408923" duration="1805000" />
+      <workItem from="1572983186890" duration="501000" />
     </task>
     <task id="LOCAL-00001" summary="Posicion de la bola de fuego, destrucción de partículas">
       <created>1568744364303</created>
@@ -112,7 +113,21 @@
       <option name="project" value="LOCAL" />
       <updated>1568744364303</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="menu wip">
+      <created>1572829900387</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1572829900387</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Sprites">
+      <created>1572885866944</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1572885866944</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,7 +151,9 @@
   <component name="VcsManagerConfiguration">
     <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="true" />
     <MESSAGE value="Posicion de la bola de fuego, destrucción de partículas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Posicion de la bola de fuego, destrucción de partículas" />
+    <MESSAGE value="menu wip" />
+    <MESSAGE value="Sprites" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sprites" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

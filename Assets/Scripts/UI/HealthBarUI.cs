@@ -27,10 +27,10 @@ public class HealthBarUI : MonoBehaviour
     void Update()
     { 
         // Obtains Chawa's MaxHealth and CurrentHealth.
-        int chawaMaxHealth = chawaController.currentHealth;
-        int chawaCurrentHealth = chawaController.maxHealth;
+        float chawaCurrentHealth = (float)chawaController.currentHealth;
+        float chawaMaxHealth = (float)chawaController.maxHealth;
         
         // Sets the size of the bar.
-        healthBar.size = chawaMaxHealth / chawaCurrentHealth;
+        healthBar.size = chawaCurrentHealth / chawaMaxHealth;
     }
 }

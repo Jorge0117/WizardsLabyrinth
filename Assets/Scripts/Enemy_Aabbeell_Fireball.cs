@@ -31,8 +31,8 @@ public class Enemy_Aabbeell_Fireball : MonoBehaviour
         fireballTransform = GetComponent<Transform> ();
         Vector3 scale = fireballTransform.localScale;
         fireballTransform.localScale = new Vector3(scale.x  * -1, scale.y, scale.z);
-        // Se destruye después de 3 segundos
-        Destroy(gameObject, 4f);
+        // Se destruye después de 4 segundos
+        Destroy(gameObject, 10f);
     }
 
     // Update is called once per frame
