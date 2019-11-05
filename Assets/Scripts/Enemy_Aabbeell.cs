@@ -197,7 +197,15 @@ public class Enemy_Aabbeell : MonoBehaviour
 		gameObject.transform.localPosition = new Vector2(positionCX, positionCY);
 	}
 
-    void iceAttackHorizaontal()
+	private float angleAabbeellToChawa(Vector2 chawa, Vector2 aabbeell)
+	{
+		Vector2 vector = chawa - aabbeell;
+		vector.Normalize();
+		float angle = Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
+		return angle;
+	}
+
+	void iceAttackHorizaontal()
     {
         nextIceballTime = Time.time + iceballCoolDown;
         var position = attackPos.position;
@@ -211,20 +219,12 @@ public class Enemy_Aabbeell : MonoBehaviour
         GameObject spell3 = Instantiate(iceball, new Vector2(position.x, position.y ), Quaternion.identity);
         PlayerIce spell3Controller = spell3.GetComponent<PlayerIce>();
         spell3Controller.enemy = "Player";
-            
-        if (Mathf.Sign(transform.localScale.x) > 0)
-        {
-	        //Debug.Log("Disparo a la izq");
-            spell.GetComponent<Transform>().rotation = Quaternion.Euler(0,0,180);
-            spell2.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 180 + iceAngle);
-            spell3.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 180 - iceAngle);
-        }
-        else
-        {
-	        //Debug.Log("Disparo a la der");
-            spell2.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, iceAngle);
-            spell3.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 360 - iceAngle);
-        }
+
+        float angle = angleAabbeellToChawa(GameObject.Find("Chawa").transform.position, position);
+        
+        spell.GetComponent<Transform>().rotation = Quaternion.Euler(0,0,angle);
+        spell2.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, angle + iceAngle);
+        spell3.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, angle - iceAngle);
     }
 
 	void iceAttackVertical()
