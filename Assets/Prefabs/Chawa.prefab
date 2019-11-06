@@ -186,6 +186,7 @@ MonoBehaviour:
     type: 3}
   ice: {fileID: 9065008747380130482, guid: 862c1320ec3b8dd47917d77310e4efca, type: 3}
   iceAngle: 25
+  spellCooldown: {fileID: 0}
 --- !u!95 &7502981343636629904
 Animator:
   serializedVersion: 3
