@@ -33,8 +33,11 @@ public class EnemyController : MonoBehaviour
     //Velocidad de movimiento
     public float moveSpeed = 6;
 
-
+    public int dropChance = 15;
+    
     public Vector3 velocity;
+
+    public GameObject drop;
     
     //tag para saber que es aabbeell, si es otro solo dice enemy
     public string enemyName = "Enemy";
@@ -72,6 +75,11 @@ public class EnemyController : MonoBehaviour
             currentHealth -= damage;
             if (currentHealth <= 0)
             {
+                int randomNumber = Random.Range(0, 100);
+                if (randomNumber < 15)
+                {
+                    Instantiate(drop, transform.position, Quaternion.identity);
+                }
                 Destroy(gameObject);
             }
             StartCoroutine(wait(invencibilitySeconds));

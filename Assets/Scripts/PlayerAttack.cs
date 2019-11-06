@@ -29,6 +29,7 @@ public class PlayerAttack : MonoBehaviour
     private float nextSpellChange = 0.5f;
     
     private spells[] unlockedSpells;
+    private int unlockedSpellCount = 0;
     
     // Current spell equiped of Chawa.
     private spells equipedSpell;
@@ -47,38 +48,46 @@ public class PlayerAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        unlockedSpells = new spells[3];
-        unlockedSpells[0] = spells.Fire;
-        unlockedSpells[1] = spells.Ice;
-        unlockedSpells[2] = spells.Air;
-        
         // Sets all for Chawa's UI 
         _spellCooldownController = spellCooldown.GetComponent<SpellCooldown>();
             
         animator = GetComponent<Animator>();
+        /*
         if (unlockedSpells.Contains(spells.Fire))
         {
             equipedSpell = spells.Fire;
         }
+        */
     }
 
     private void Awake()
     {
-        if (PlayerPrefs.HasKey("unlokedSpells"))
+        unlockedSpells = new spells[3];
+        if (PlayerPrefs.HasKey("unlockedSpells"))
         {
-            string spells = PlayerPrefs.GetString("unlokedSpells");
-            if (spells[0] == '1')
+            string spellArray = PlayerPrefs.GetString("unlockedSpells");
+            if (spellArray[0] == '1')
             {
-                unlockedSpells[0] = PlayerAttack.spells.Fire;
+                unlockedSpells[0] = spells.Fire;
+                unlockedSpellCount += 1;
+                equipedSpell = unlockedSpells[0];
             }
-            if (spells[1] == '1')
+            if (spellArray[1] == '1')
             {
-                unlockedSpells[1] = PlayerAttack.spells.Ice;
+                unlockedSpells[1] = spells.Ice;
+                unlockedSpellCount += 1;
+                equipedSpell = unlockedSpells[1];
             }
-            if (spells[2] == '1')
+            if (spellArray[2] == '1')
             {
-                unlockedSpells[2] = PlayerAttack.spells.Air;
+                unlockedSpells[2] = spells.Air;
+                unlockedSpellCount += 1;
+                equipedSpell = unlockedSpells[2];
             }
+        }
+        else
+        {
+            equipedSpell = spells.None;
         }
     }
 
@@ -152,28 +161,26 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetKey("e") && Time.time > nextSpellChange)
         {
-            if (unlockedSpells.Length > 0)
+            if (unlockedSpellCount > 1)
             {
                 nextSpellChange = Time.time + spellChangeCoolDown;
                 int index = Array.IndexOf(unlockedSpells, equipedSpell);
-                index = (index + 1) % unlockedSpells.Length;
+                index = (index + 1) % unlockedSpellCount;
 
                 equipedSpell = unlockedSpells[index];
-                Debug.Log(equipedSpell);
             }
         }
         
         if (Input.GetKey("q") && Time.time > nextSpellChange)
         {
-            if (unlockedSpells.Length > 0)
+            if (unlockedSpellCount > 1)
             {
                 nextSpellChange = Time.time + spellChangeCoolDown;
                 int index = Array.IndexOf(unlockedSpells, equipedSpell);
-                index = (index - 1) % unlockedSpells.Length;
+                index = (index - 1) % unlockedSpellCount;
                 if (index == -1)
-                    index = 2;
+                    index = unlockedSpellCount - 1;
                 equipedSpell = unlockedSpells[index];
-                Debug.Log(equipedSpell);
             }
         }
 
@@ -221,7 +228,7 @@ public class PlayerAttack : MonoBehaviour
     
     enum spells
     {
-        Fire, Ice, Air
+        None, Fire, Ice, Air
     };
 
     void OnTriggerEnter2D(Collider2D other)
@@ -245,6 +252,22 @@ public class PlayerAttack : MonoBehaviour
                 PlayerPrefs.SetString("unlockedSpells", unlockedSpells);
             }
             Destroy(other.gameObject);
+
+            if (spellId == 0)
+            {
+                unlockedSpells[0] = spells.Fire;
+            }
+            else if (spellId == 1)
+            {
+                unlockedSpells[1] = spells.Ice;
+            }
+            else if (spellId == 2)
+            {
+                unlockedSpells[2] = spells.Air;
+            }
+
+            equipedSpell = unlockedSpells[spellId];
+            unlockedSpellCount += 1;
         }
     }
 }

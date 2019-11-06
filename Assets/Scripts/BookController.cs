@@ -11,7 +11,6 @@ public class BookController : MonoBehaviour
         if (PlayerPrefs.HasKey("unlockedSpells"))
         {
             string unlockedSpells = PlayerPrefs.GetString("unlockedSpells");
-            Debug.Log(unlockedSpells);
             if (unlockedSpells[id] == '1')
             {
                 gameObject.SetActive(false);

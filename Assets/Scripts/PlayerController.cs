@@ -282,8 +282,32 @@ public class PlayerController : MonoBehaviour
             gravity = firstGravityValue;
             //Jugador muere
         }
-        if (other.gameObject.CompareTag("Heart")) // Si coge libro, pocion o corazon, desaparece
+        if (other.gameObject.CompareTag("Heart"))
         {
+            int heartId = other.gameObject.GetComponent<HeartController>().id;
+            if (PlayerPrefs.HasKey("unlockedHearts"))
+            {
+                string unlockedHearts = PlayerPrefs.GetString("unlockedHearts");
+                char[] heartArray = unlockedHearts.ToCharArray();
+                heartArray[heartId] = '1';
+                unlockedHearts = new string(heartArray);
+                PlayerPrefs.SetString("unlockedHearts", unlockedHearts);
+            }
+            else
+            {
+                char[] hearts = new char[20];
+                for (int i = 0; i < hearts.Length; ++i)
+                {
+                    hearts[i] = '0';
+                }
+                hearts[heartId] = '1';
+                string unlockedHearts = new string(hearts);
+                PlayerPrefs.SetString("unlockedHearts", unlockedHearts);
+            }
+
+            maxHealth += 2;
+            currentHealth = maxHealth;
+            PlayerPrefs.SetInt("maxHealth", maxHealth);
             Destroy(other.gameObject);
         }
         if (other.gameObject.CompareTag("Potion"))
