@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
             
             }
         
-            if(Input.GetButtonUp("Jump"))
+            if(Input.GetButtonUp("Jump") && !isDrawning)
             {
                 if(velocity.y > minJumpVelocity)
                     velocity.y = minJumpVelocity;
@@ -268,18 +268,18 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Water") && !isDrawning) // Si colisiona con agua, se hunde
         {
-            gravity = -1;
+            velocity.y = 0;
             angry_fish.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 8);
             angry_fish.SetActive(true);
             acercarse = true;
             isDrawning = true;
-            gravity = -1;
+            gravity = -4;
         }
         if (other.gameObject.name == "Angry-fish") // Si colisiona con pez, muere
         {
+            gravity = firstGravityValue;
             angry_fish.SetActive(false);
             acercarse = false;
-            gravity = firstGravityValue;
             isDrawning = false;
             respawnAfterFall();
         }
