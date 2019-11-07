@@ -268,19 +268,20 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Water") && !isDrawning) // Si colisiona con agua, se hunde
         {
-            gravity = -3;
+            gravity = -1;
             angry_fish.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 8);
             angry_fish.SetActive(true);
             acercarse = true;
             isDrawning = true;
-            gravity = -3;
+            gravity = -1;
         }
         if (other.gameObject.name == "Angry-fish") // Si colisiona con pez, muere
         {
             angry_fish.SetActive(false);
             acercarse = false;
             gravity = firstGravityValue;
-            //Jugador muere
+            isDrawning = false;
+            SceneManager.LoadScene("Death");
         }
         if (other.gameObject.CompareTag("Heart"))
         {
