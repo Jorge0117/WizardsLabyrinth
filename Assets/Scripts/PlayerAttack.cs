@@ -15,6 +15,7 @@ public class PlayerAttack : MonoBehaviour
 
     public float basicAttackCoolDown = 0.5f;
     private float nextBasicAttackTime;
+    
     public float fireballCoolDown = 2f;
     private float nextFireballTime;
     
@@ -28,6 +29,7 @@ public class PlayerAttack : MonoBehaviour
     private float nextSpellChange = 0.5f;
     
     private spells[] unlockedSpells;
+    private int unlockedSpellCount = 0;
     
     // Current spell equiped of Chawa.
     private spells equipedSpell;
@@ -37,41 +39,55 @@ public class PlayerAttack : MonoBehaviour
     public float iceAngle = 30;
     
     private static readonly int Attack = Animator.StringToHash("attack");
+    
+    private SpellCooldown _spellCooldownController;
+    public GameObject spellCooldown;
 
     //private PlayerController playerController;
 
     // Start is called before the first frame update
     void Start()
     {
-        unlockedSpells = new spells[3];
-        unlockedSpells[0] = spells.Fire;
-        unlockedSpells[1] = spells.Ice;
-        unlockedSpells[2] = spells.Air;
-        
+        // Sets all for Chawa's UI 
+        _spellCooldownController = spellCooldown.GetComponent<SpellCooldown>();
+            
         animator = GetComponent<Animator>();
+        /*
         if (unlockedSpells.Contains(spells.Fire))
         {
             equipedSpell = spells.Fire;
         }
+        */
     }
 
     private void Awake()
     {
-        if (PlayerPrefs.HasKey("unlokedSpells"))
+        unlockedSpells = new spells[3];
+        if (PlayerPrefs.HasKey("unlockedSpells"))
         {
-            string spells = PlayerPrefs.GetString("unlokedSpells");
-            if (spells[0] == '1')
+            string spellArray = PlayerPrefs.GetString("unlockedSpells");
+            if (spellArray[0] == '1')
             {
-                unlockedSpells[0] = PlayerAttack.spells.Fire;
+                unlockedSpells[0] = spells.Fire;
+                unlockedSpellCount += 1;
+                equipedSpell = unlockedSpells[0];
             }
-            if (spells[1] == '1')
+            if (spellArray[1] == '1')
             {
-                unlockedSpells[1] = PlayerAttack.spells.Ice;
+                unlockedSpells[1] = spells.Ice;
+                unlockedSpellCount += 1;
+                equipedSpell = unlockedSpells[1];
             }
-            if (spells[2] == '1')
+            if (spellArray[2] == '1')
             {
-                unlockedSpells[2] = PlayerAttack.spells.Air;
+                unlockedSpells[2] = spells.Air;
+                unlockedSpellCount += 1;
+                equipedSpell = unlockedSpells[2];
             }
+        }
+        else
+        {
+            equipedSpell = spells.None;
         }
     }
 
@@ -87,8 +103,11 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetButton("Fire2"))
         {
+            
             if (equipedSpell == spells.Fire && Time.time >= nextFireballTime)
             {
+                //Starts cooldown animation in HUD
+                _spellCooldownController.triggerSpell("fire");
                 nextFireballTime = Time.time + fireballCoolDown;
                 var position = attackPos.position;
                 GameObject spell = Instantiate(fireball, new Vector2(position.x + 2*Mathf.Sign(gameObject.transform.localScale.x), position.y ), Quaternion.identity);
@@ -101,6 +120,8 @@ public class PlayerAttack : MonoBehaviour
             
             if (equipedSpell == spells.Ice && Time.time >= nextIceTime)
             {
+                //Starts cooldown animation in HUD
+                _spellCooldownController.triggerSpell("ice");
                 nextIceTime = Time.time + iceCoolDown;
                 var position = attackPos.position;
                 GameObject spell = Instantiate(ice, new Vector2(position.x + 2*Mathf.Sign(gameObject.transform.localScale.x), position.y ), Quaternion.identity);
@@ -131,6 +152,8 @@ public class PlayerAttack : MonoBehaviour
 
             if (equipedSpell == spells.Air && Time.time >= nextDashTime)
             {
+                //Starts cooldown animation in HUD
+                _spellCooldownController.triggerSpell("air");
                 nextDashTime = Time.time + dashCoolDown;
                 animator.SetBool("isDashing", true);
             }
@@ -138,28 +161,26 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetKey("e") && Time.time > nextSpellChange)
         {
-            if (unlockedSpells.Length > 0)
+            if (unlockedSpellCount > 1)
             {
                 nextSpellChange = Time.time + spellChangeCoolDown;
                 int index = Array.IndexOf(unlockedSpells, equipedSpell);
-                index = (index + 1) % unlockedSpells.Length;
+                index = (index + 1) % unlockedSpellCount;
 
                 equipedSpell = unlockedSpells[index];
-                Debug.Log(equipedSpell);
             }
         }
         
         if (Input.GetKey("q") && Time.time > nextSpellChange)
         {
-            if (unlockedSpells.Length > 0)
+            if (unlockedSpellCount > 1)
             {
                 nextSpellChange = Time.time + spellChangeCoolDown;
                 int index = Array.IndexOf(unlockedSpells, equipedSpell);
-                index = (index - 1) % unlockedSpells.Length;
+                index = (index - 1) % unlockedSpellCount;
                 if (index == -1)
-                    index = 2;
+                    index = unlockedSpellCount - 1;
                 equipedSpell = unlockedSpells[index];
-                Debug.Log(equipedSpell);
             }
         }
 
@@ -199,11 +220,55 @@ public class PlayerAttack : MonoBehaviour
 
         return currentSpell;
     }
+
+    public float getSpellCooldown()
+    {
+        return this.spellChangeCoolDown;
+    }
     
     enum spells
     {
-        Fire, Ice, Air
+        None, Fire, Ice, Air
     };
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Book")) // Si coge libro, pocion o corazon, desaparece
+        {
+            int spellId = other.gameObject.GetComponent<BookController>().id;
+            if (PlayerPrefs.HasKey("unlockedSpells"))
+            {
+                string unlockedSpells = PlayerPrefs.GetString("unlockedSpells");
+                char[] spellArray = unlockedSpells.ToCharArray();
+                spellArray[spellId] = '1';
+                unlockedSpells = new string(spellArray);
+                PlayerPrefs.SetString("unlockedSpells", unlockedSpells);
+            }
+            else
+            {
+                char[] spells = {'0', '0', '0'};
+                spells[spellId] = '1';
+                string unlockedSpells = new string(spells);
+                PlayerPrefs.SetString("unlockedSpells", unlockedSpells);
+            }
+            Destroy(other.gameObject);
+
+            if (spellId == 0)
+            {
+                unlockedSpells[0] = spells.Fire;
+            }
+            else if (spellId == 1)
+            {
+                unlockedSpells[1] = spells.Ice;
+            }
+            else if (spellId == 2)
+            {
+                unlockedSpells[2] = spells.Air;
+            }
+
+            equipedSpell = unlockedSpells[spellId];
+            unlockedSpellCount += 1;
+        }
+    }
 }
 

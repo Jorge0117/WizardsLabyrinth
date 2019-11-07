@@ -8,7 +8,16 @@ public class HeartController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Buscar en lista para ver si ya se cogio
+        if (PlayerPrefs.HasKey("unlockedHearts"))
+        {
+            string unlockedHearts = PlayerPrefs.GetString("unlockedHearts");
+            Debug.Log(unlockedHearts);
+            if (unlockedHearts[id] == '1')
+            {
+                gameObject.SetActive(false);
+            }
+        }
+        
     }
 
     // Update is called once per frame

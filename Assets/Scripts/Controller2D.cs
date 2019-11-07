@@ -127,6 +127,15 @@ public class Controller2D : RaycastController
 
             if (hit)
             {
+
+                if (hit.collider.tag == "OneWay")
+                {
+                    if (directionY == 1)
+                    {
+                        continue;
+                    }
+                }
+                
                 velocity.y = (hit.distance - skinWidth) * directionY;
                 rayLength = hit.distance;
 

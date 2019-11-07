@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent (typeof (Controller2D))]
 public class PlayerController : MonoBehaviour
@@ -94,9 +95,17 @@ public class PlayerController : MonoBehaviour
             checkpointPosition = new Vector2(0,0);
         }
 
-        if (!PlayerPrefs.HasKey("currentScene"))
+        if (PlayerPrefs.HasKey("currentScene"))
         {
-            PlayerPrefs.SetString("currentScene", "Jungle");
+            if (PlayerPrefs.GetString("currentScene") != SceneManager.GetActiveScene().name)
+            {
+                PlayerPrefs.SetString("currentScene", SceneManager.GetActiveScene().name);
+                setCheckpoint(new Vector2(0,0));
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetString("currentScene", SceneManager.GetActiveScene().name);
         }
 
         gameObject.transform.position = checkpointPosition;
@@ -226,7 +235,7 @@ public class PlayerController : MonoBehaviour
             currentHealth -= damage;
             if (currentHealth <= 0)
             {
-                Destroy(gameObject);
+                SceneManager.LoadScene("Death");
             }
 
             knockbackDir = dir;
@@ -273,8 +282,32 @@ public class PlayerController : MonoBehaviour
             gravity = firstGravityValue;
             //Jugador muere
         }
-        if (other.gameObject.CompareTag("Book") || other.gameObject.CompareTag("Heart")) // Si coge libro, pocion o corazon, desaparece
+        if (other.gameObject.CompareTag("Heart"))
         {
+            int heartId = other.gameObject.GetComponent<HeartController>().id;
+            if (PlayerPrefs.HasKey("unlockedHearts"))
+            {
+                string unlockedHearts = PlayerPrefs.GetString("unlockedHearts");
+                char[] heartArray = unlockedHearts.ToCharArray();
+                heartArray[heartId] = '1';
+                unlockedHearts = new string(heartArray);
+                PlayerPrefs.SetString("unlockedHearts", unlockedHearts);
+            }
+            else
+            {
+                char[] hearts = new char[20];
+                for (int i = 0; i < hearts.Length; ++i)
+                {
+                    hearts[i] = '0';
+                }
+                hearts[heartId] = '1';
+                string unlockedHearts = new string(hearts);
+                PlayerPrefs.SetString("unlockedHearts", unlockedHearts);
+            }
+
+            maxHealth += 2;
+            currentHealth = maxHealth;
+            PlayerPrefs.SetInt("maxHealth", maxHealth);
             Destroy(other.gameObject);
         }
         if (other.gameObject.CompareTag("Potion"))
