@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
             if (PlayerPrefs.GetString("currentScene") != SceneManager.GetActiveScene().name)
             {
                 PlayerPrefs.SetString("currentScene", SceneManager.GetActiveScene().name);
-                checkpointPosition = new Vector2(0,0);
+                setCheckpoint(new Vector2(0,0));
             }
         }
         else
