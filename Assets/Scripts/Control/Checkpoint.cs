@@ -18,7 +18,7 @@ public class Checkpoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             var position = transform.position;
-            other.gameObject.GetComponent<PlayerController>().setCheckpoint(new Vector2(position.x, position.y / 2.3f));
+            other.gameObject.GetComponent<PlayerController>().setCheckpoint(new Vector2(position.x, position.y - gameObject.transform.localScale.y / 2.3f));
         }
     }
 }
