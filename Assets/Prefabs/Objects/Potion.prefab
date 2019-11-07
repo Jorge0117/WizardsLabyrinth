@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 8110189369449498182}
   - component: {fileID: 4968828437794901799}
   - component: {fileID: 3026463020609372611}
+  - component: {fileID: 5974446652031541126}
   - component: {fileID: 1144423609925556108}
   m_Layer: 0
   m_Name: Potion
@@ -175,6 +176,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5974446652031541126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5444993239668052929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5a2ff4c6ea91445ade50a5734ba669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatStrength: 0.2
 --- !u!61 &1144423609925556108
 BoxCollider2D:
   m_ObjectHideFlags: 0
