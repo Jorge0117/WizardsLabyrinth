@@ -281,7 +281,7 @@ public class PlayerController : MonoBehaviour
             acercarse = false;
             gravity = firstGravityValue;
             isDrawning = false;
-            SceneManager.LoadScene("Death");
+            respawnAfterFall();
         }
         if (other.gameObject.CompareTag("Heart"))
         {
