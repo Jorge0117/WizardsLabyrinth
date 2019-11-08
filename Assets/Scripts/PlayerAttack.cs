@@ -189,7 +189,15 @@ public class PlayerAttack : MonoBehaviour
             Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemy);
             for (int i = 0; i < enemiesToDamage.Length; ++i)
             {
-                enemiesToDamage[i].GetComponent<EnemyController>().takeDamage(damage);
+                //enemiesToDamage[i].GetComponent<EnemyController>().takeDamage(damage);
+                if (enemiesToDamage[i].GetComponent<EnemyController>().enemyName.CompareTo("Aabbeell") == 0)
+                {
+                    enemiesToDamage[i].GetComponent<EnemyController>().takeDamage(damage, damage/*Basic*/);
+                }
+                else
+                {
+                    enemiesToDamage[i].GetComponent<EnemyController>().takeDamage(damage);
+                }
             }
         }
     }
