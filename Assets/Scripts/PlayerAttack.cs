@@ -250,7 +250,7 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         Destroy(objeto);
         animator.SetBool("isFrontSide", false);
-        player.GetComponent<PlayerController>().enableMoving = false;
+        player.GetComponent<PlayerController>().enableMoving = true;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -258,8 +258,8 @@ public class PlayerAttack : MonoBehaviour
         if (other.gameObject.CompareTag("Book")) // Si coge libro, pocion o corazon, desaparece
         {
             animator.SetBool("isFrontSide", true);
-            /*player.GetComponent<PlayerController>().enableMoving = false;
-            other.gameObject.transform.position = player.transform.position;*/
+            player.GetComponent<PlayerController>().enableMoving = false;
+            other.gameObject.transform.position = player.transform.position;
 
             int spellId = other.gameObject.GetComponent<BookController>().id;
             if (PlayerPrefs.HasKey("unlockedSpells"))
@@ -295,8 +295,8 @@ public class PlayerAttack : MonoBehaviour
             unlockedSpellCount += 1;
 
             Destroy(other.gameObject);
+            StartCoroutine(showObject(1, other.gameObject));
         }
-        //StartCoroutine(showObject(1, other.gameObject));
     }
 }
 
