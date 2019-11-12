@@ -294,7 +294,6 @@ public class PlayerAttack : MonoBehaviour
             equipedSpell = unlockedSpells[spellId];
             unlockedSpellCount += 1;
 
-            Destroy(other.gameObject);
             StartCoroutine(showObject(1, other.gameObject));
         }
     }
