@@ -16,6 +16,7 @@ TagManager:
   - Book
   - Potion
   - Heart
+  - Key
   layers:
   - Default
   - TransparentFX

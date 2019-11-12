@@ -36,7 +36,7 @@ public class PlayerIce : MonoBehaviour
         position = new Vector2(position.x + velocityX * dir, position.y + velocityY);
         transform.position = position;
     }
-    
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (LayerMask.LayerToName(other.gameObject.layer) == "Obstacles")
@@ -48,7 +48,7 @@ public class PlayerIce : MonoBehaviour
         {
             if (String.Compare(enemy, "Enemy", StringComparison.Ordinal) == 0)
             {
-                EnemyController controllerEnemy= other.gameObject.GetComponent<EnemyController>();
+                EnemyController controllerEnemy = other.gameObject.GetComponent<EnemyController>();
                 if (controllerEnemy.enemyName.CompareTo("Aabbeell") == 0)
                 {
                     controllerEnemy.takeDamage(damage, 2/*Ice*/);
@@ -71,6 +71,10 @@ public class PlayerIce : MonoBehaviour
                 }
                 other.gameObject.GetComponent<PlayerController>().takeDamage(damage, dir);
             }
+        }
+        if (other.gameObject.CompareTag("Water"))
+        {
+            other.gameObject.GetComponent<WaterController>().change();
         }
     }
 }
