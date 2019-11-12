@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5330057961702038943}
   m_Layer: 0
   m_Name: Key3
-  m_TagString: Untagged
+  m_TagString: Key
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2305f8ecad466408855b65a4d8e13d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 2
 --- !u!1 &7687104239774636986
 GameObject:
   m_ObjectHideFlags: 0

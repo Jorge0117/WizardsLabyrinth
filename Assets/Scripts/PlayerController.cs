@@ -355,6 +355,34 @@ public class PlayerController : MonoBehaviour
             }
             Destroy(other.gameObject);
         }
+        if (other.gameObject.CompareTag("Key"))
+        {
+            animator.SetBool("isFrontSide", true);
+            enableMoving = false;
+            other.gameObject.transform.position = gameObject.transform.position;
+
+            int keyId = other.gameObject.GetComponent<KeyController>().id;
+            if (PlayerPrefs.HasKey("unlockedKeys"))
+            {
+                string unlockedKeys = PlayerPrefs.GetString("unlockedKeys");
+                char[] keyArray = unlockedKeys.ToCharArray();
+                keyArray[keyId] = '1';
+                unlockedKeys = new string(keyArray);
+                PlayerPrefs.SetString("unlockedKeys", unlockedKeys);
+            }
+            else
+            {
+                char[] keys = new char[3];
+                for (int i = 0; i < keys.Length; ++i)
+                {
+                    keys[i] = '0';
+                }
+                keys[keyId] = '1';
+                string unlockedKeys = new string(keys);
+                PlayerPrefs.SetString("unlockedKeys", unlockedKeys);
+            }
+            StartCoroutine(showObject(1, other.gameObject));
+        }
     }
 
     public int getHealth()

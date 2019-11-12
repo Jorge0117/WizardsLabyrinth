@@ -247,8 +247,8 @@ public class PlayerAttack : MonoBehaviour
         if (other.gameObject.CompareTag("Book")) // Si coge libro, pocion o corazon, desaparece
         {
             animator.SetBool("isFrontSide", true);
-            player.GetComponent<PlayerController>().enableMoving = false;
-            other.gameObject.transform.position = player.transform.position;
+            /*player.GetComponent<PlayerController>().enableMoving = false;
+            other.gameObject.transform.position = player.transform.position;*/
 
             int spellId = other.gameObject.GetComponent<BookController>().id;
             if (PlayerPrefs.HasKey("unlockedSpells"))
@@ -283,8 +283,8 @@ public class PlayerAttack : MonoBehaviour
             equipedSpell = unlockedSpells[spellId];
             unlockedSpellCount += 1;
         }
-        //Destroy(other.gameObject);
-        StartCoroutine(showObject(1, other.gameObject));
+        Destroy(other.gameObject);
+        //StartCoroutine(showObject(1, other.gameObject));
     }
 }
 

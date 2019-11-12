@@ -8,15 +8,15 @@ public class KeyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*if (PlayerPrefs.HasKey("unlockedHearts"))
+        if (PlayerPrefs.HasKey("unlockedKeys"))
         {
-            string unlockedHearts = PlayerPrefs.GetString("unlockedHearts");
-            Debug.Log(unlockedHearts);
-            if (unlockedHearts[id] == '1')
+            string unlockedKeys = PlayerPrefs.GetString("unlockedKeys");
+            Debug.Log(unlockedKeys);
+            if (unlockedKeys[id] == '1')
             {
                 gameObject.SetActive(false);
             }
-        }*/
+        }
     }
 
     // Update is called once per frame
