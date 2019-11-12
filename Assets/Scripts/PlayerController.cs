@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public GameObject angry_fish;
     private bool acercarse = false;
     private float firstGravityValue;
+    public bool enableMoving;
 
     //Se esta recibiendo daño?
     private bool isTakingDamage = false;
@@ -62,6 +63,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         isDrawning = false;
+        enableMoving = true;
         controller = GetComponent<Controller2D> ();
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
@@ -121,7 +123,7 @@ public class PlayerController : MonoBehaviour
             if(controller.collisions.below)
             {
                 animator.SetBool("isFalling", false);
-                if (Input.GetButtonDown("Jump"))
+                if (Input.GetButtonDown("Jump") && enableMoving)
                 {
                     velocity.y = maxJumpVelocity;
                 }
@@ -135,20 +137,31 @@ public class PlayerController : MonoBehaviour
             
             }
         
-            if(Input.GetButtonUp("Jump") && !isDrawning)
+            if(Input.GetButtonUp("Jump") && !isDrawning && enableMoving)
             {
                 if(velocity.y > minJumpVelocity)
                     velocity.y = minJumpVelocity;
             }
 
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                animator.SetBool("isFrontSide", true);
+                enableMoving = false;
+            }
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                animator.SetBool("isFrontSide", false);
+                enableMoving = true;
+            }
+
             velocity.x = input.x * moveSpeed;
             velocity.y += gravity * Time.deltaTime;
-            if(velocity.x > 0)
+            if(velocity.x > 0 && enableMoving)
             {
                 chawa.transform.localScale = new Vector3(chawaXScale, chawaYScale, 1);
                 animator.SetBool(IsWalking, true);
             }
-            else if(velocity.x < 0)
+            else if(velocity.x < 0 && enableMoving)
             {
                 chawa.transform.localScale = new Vector3(-chawaXScale, chawaYScale, 1);
                 animator.SetBool(IsWalking, true);
@@ -157,8 +170,10 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool(IsWalking, false);
             }
-
-            controller.Move(velocity * Time.deltaTime, input);
+            if (enableMoving)
+            {
+                controller.Move(velocity * Time.deltaTime, input);
+            }
 
             if (controller.collisions.above || controller.collisions.below)
             {
@@ -249,8 +264,16 @@ public class PlayerController : MonoBehaviour
         isTakingDamage = false;
         animator.SetBool("isHit", false);
     }
-    
-    void OnTriggerEnter2D(Collider2D other)
+
+    IEnumerator showObject(float seconds, GameObject objeto)
+    {
+        yield return new WaitForSeconds(seconds);
+        Destroy(objeto);
+        animator.SetBool("isFrontSide", false);
+        enableMoving = true;
+    }
+
+        void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Enemy") && isDashing)
         {
@@ -285,6 +308,10 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Heart"))
         {
+            animator.SetBool("isFrontSide", true);
+            enableMoving = false;
+            other.gameObject.transform.position = gameObject.transform.position;
+
             int heartId = other.gameObject.GetComponent<HeartController>().id;
             if (PlayerPrefs.HasKey("unlockedHearts"))
             {
@@ -309,7 +336,8 @@ public class PlayerController : MonoBehaviour
             maxHealth += 2;
             currentHealth = maxHealth;
             PlayerPrefs.SetInt("maxHealth", maxHealth);
-            Destroy(other.gameObject);
+
+            StartCoroutine(showObject(1, other.gameObject));
         }
         if (other.gameObject.CompareTag("Potion"))
         {

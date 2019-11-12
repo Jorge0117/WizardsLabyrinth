@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class KeyController : MonoBehaviour
 {
+    public int id;
     // Start is called before the first frame update
     void Start()
     {
-        
+        /*if (PlayerPrefs.HasKey("unlockedHearts"))
+        {
+            string unlockedHearts = PlayerPrefs.GetString("unlockedHearts");
+            Debug.Log(unlockedHearts);
+            if (unlockedHearts[id] == '1')
+            {
+                gameObject.SetActive(false);
+            }
+        }*/
     }
 
     // Update is called once per frame

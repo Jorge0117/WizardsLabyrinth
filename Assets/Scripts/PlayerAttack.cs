@@ -43,6 +43,8 @@ public class PlayerAttack : MonoBehaviour
     private SpellCooldown _spellCooldownController;
     public GameObject spellCooldown;
 
+    private GameObject player;
+
     //private PlayerController playerController;
 
     // Start is called before the first frame update
@@ -58,6 +60,7 @@ public class PlayerAttack : MonoBehaviour
             equipedSpell = spells.Fire;
         }
         */
+        player = GameObject.Find("Chawa");
     }
 
     private void Awake()
@@ -231,10 +234,22 @@ public class PlayerAttack : MonoBehaviour
         None, Fire, Ice, Air
     };
 
+    IEnumerator showObject(float seconds, GameObject objeto)
+    {
+        yield return new WaitForSeconds(seconds);
+        Destroy(objeto);
+        animator.SetBool("isFrontSide", false);
+        player.GetComponent<PlayerController>().enableMoving = false;
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Book")) // Si coge libro, pocion o corazon, desaparece
         {
+            animator.SetBool("isFrontSide", true);
+            player.GetComponent<PlayerController>().enableMoving = false;
+            other.gameObject.transform.position = player.transform.position;
+
             int spellId = other.gameObject.GetComponent<BookController>().id;
             if (PlayerPrefs.HasKey("unlockedSpells"))
             {
@@ -251,7 +266,6 @@ public class PlayerAttack : MonoBehaviour
                 string unlockedSpells = new string(spells);
                 PlayerPrefs.SetString("unlockedSpells", unlockedSpells);
             }
-            Destroy(other.gameObject);
 
             if (spellId == 0)
             {
@@ -269,6 +283,8 @@ public class PlayerAttack : MonoBehaviour
             equipedSpell = unlockedSpells[spellId];
             unlockedSpellCount += 1;
         }
+        //Destroy(other.gameObject);
+        StartCoroutine(showObject(1, other.gameObject));
     }
 }
 
