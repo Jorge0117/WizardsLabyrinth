@@ -9,7 +9,7 @@ public class PowerScript : MonoBehaviour
     GameObject chawa;
     
     // Sprites for Chawa's abilities 
-    public Sprite currentSprite, fireSprite, airSprite, iceSprite;
+    public Sprite currentSprite, fireSprite, airSprite, iceSprite, nonSprite;
 
     // Code section that contains Chawa's power
     private PlayerAttack chawaPlayerAttack;
@@ -36,6 +36,10 @@ public class PowerScript : MonoBehaviour
         else if (chawaPlayerAttack.getCurrentSpell() == "ice")
         {
             currentSprite = iceSprite;
+        }
+        else
+        {
+            currentSprite = nonSprite;
         }
         
         gameObject.GetComponent<Image>().sprite = currentSprite;

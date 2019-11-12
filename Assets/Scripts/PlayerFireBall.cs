@@ -33,15 +33,14 @@ public class PlayerFireBall : MonoBehaviour
         {
             if (enemy.CompareTo("Enemy") == 0)
             {
-                other.gameObject.GetComponent<EnemyController>().takeDamage(damage);
                 EnemyController controllerEnemy= other.gameObject.GetComponent<EnemyController>();
                 if (controllerEnemy.enemyName.CompareTo("Aabbeell") == 0)
                 {
-                    controllerEnemy.takeDamage(3, 1/*Fire*/);
+                    controllerEnemy.takeDamage(damage, 1/*Fire*/);
                 }
                 else
                 {
-                    controllerEnemy.takeDamage(3);
+                    controllerEnemy.takeDamage(damage);
                 }
             }
             if (enemy.CompareTo("Player") == 0)

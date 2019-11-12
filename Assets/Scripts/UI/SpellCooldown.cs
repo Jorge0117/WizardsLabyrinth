@@ -67,25 +67,50 @@ public class SpellCooldown : MonoBehaviour
                 currentPercentage = 1.0f;
                 break;
         }
-
         spellCooldownBar.size = currentPercentage;
     }
     
     private IEnumerator IncreaseTimer(string  spellType) {
-         
-        while (true) {
+        Debug.Log(finishCast(spellType));
+        while (finishCast(spellType)) {
             yield return new WaitForSeconds(1);
             if (spellType == "fire" && currentFireTimer < fireTimer)
             {
+                Debug.Log(currentFireTimer);
                 currentFireTimer += 1.0f;
             } else if (spellType == "ice" && currentIceTimer < iceTimer)
             {
+                Debug.Log(currentIceTimer);
                 currentIceTimer += 1.0f;
             } else if (spellType == "air" && currentAirTimer < airTimer)
             {
+                Debug.Log(currentAirTimer);
                 currentAirTimer += 1.0f;
             }
         }
+    }
+
+    private bool finishCast(string spellName)
+    {
+        bool returnValue;
+        if (spellName == "fire" && currentFireTimer < fireTimer)
+        {
+            returnValue = true;
+        } else if (spellName == "ice" && currentIceTimer < iceTimer)
+        {
+            returnValue = true;
+        }
+        else if (spellName == "air" && currentAirTimer < airTimer)
+        {
+            returnValue = true;
+        }
+        else
+        {
+            returnValue = false;
+        }
+
+        return returnValue;
+
     }
 
     /// <summary>
@@ -95,15 +120,15 @@ public class SpellCooldown : MonoBehaviour
     /// <param name="spell"> name of the spell to change the values of the timer for that spell</param>
     public void triggerSpell(string spell)
     {
-        if (spell == "fire")
+        if (spell == "fire" && currentFireTimer == fireTimer)
         {
             currentFireTimer = 0.0f;
             StartCoroutine(IncreaseTimer("fire"));
-        } else if (spell == "ice")
+        } else if (spell == "ice" && currentIceTimer == iceTimer)
         {
             currentIceTimer = 0.0f;
             StartCoroutine(IncreaseTimer("ice"));
-        } else if (spell == "air")
+        } else if (spell == "air" && currentAirTimer == airTimer)
         {
             currentAirTimer = 0.0f;
             StartCoroutine(IncreaseTimer("air"));
