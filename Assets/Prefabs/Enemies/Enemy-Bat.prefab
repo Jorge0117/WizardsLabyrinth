@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2856122976156770563}
   - component: {fileID: 2856122976156770562}
   - component: {fileID: 2856122976156770561}
+  - component: {fileID: 6574431623291702938}
   m_Layer: 10
   m_Name: Enemy-Bat
   m_TagString: Enemy
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2856122976156770565}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 72.46, y: 6.02, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 11999594139777974}
   m_Father: {fileID: 0}
@@ -98,7 +99,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.04}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -109,7 +110,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.95, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &2856122976156770563
 MonoBehaviour:
@@ -128,6 +129,8 @@ MonoBehaviour:
     m_Bits: 512
   horizontalRayCount: 4
   verticalRayCount: 4
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
   collider: {fileID: 0}
   playerInput: {x: 0, y: 0}
 --- !u!114 &2856122976156770562
@@ -143,11 +146,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 4
+  currentHealth: 0
   isTakingDamage: 0
   invencibilitySeconds: 0.5
   recoilVelocity: 0.9
   moveSpeed: 6
+  dropChance: 15
   velocity: {x: 0, y: 0, z: 0}
+  drop: {fileID: 0}
+  enemyName: Enemy
 --- !u!114 &2856122976156770561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +182,25 @@ MonoBehaviour:
   basicAttackCoolDown: 1
   attackPos: {fileID: 11999594139777974}
   basicAttackDamage: 1
+--- !u!95 &6574431623291702938
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856122976156770565}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 79ba50a48866cac40a46a0c77871c38b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4576975257408845296
 GameObject:
   m_ObjectHideFlags: 0
