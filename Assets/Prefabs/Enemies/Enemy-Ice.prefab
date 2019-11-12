@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5220260252041831744}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.87, y: 1.2, z: 0}
+  m_LocalPosition: {x: 4.91, y: 1.071, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 6048570102359092684}
@@ -76,12 +76,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a20c2a491c4a0a248852cf345d1d09e7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e4116424845220a41bb66cee02eedc31, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.25, y: 0.25}
+  m_Size: {x: 1.875, y: 1.71875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -100,18 +100,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.16, y: 0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 0.25, y: 0.25}
+    oldSize: {x: 1.875, y: 1.71875}
+    newSize: {x: 1.875, y: 1.71875}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.95, y: 1.4}
   m_EdgeRadius: 0
 --- !u!114 &5220260252041831749
 MonoBehaviour:
@@ -130,6 +130,8 @@ MonoBehaviour:
     m_Bits: 512
   horizontalRayCount: 4
   verticalRayCount: 4
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
   collider: {fileID: 0}
   playerInput: {x: 0, y: 0}
 --- !u!114 &5743357435474159006
@@ -173,11 +175,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
+  currentHealth: 0
   isTakingDamage: 0
   invencibilitySeconds: 0.5
   recoilVelocity: 1.5
   moveSpeed: 6
+  dropChance: 15
   velocity: {x: 0, y: 0, z: 0}
+  drop: {fileID: 0}
+  enemyName: Enemy
 --- !u!95 &5046700253598957210
 Animator:
   serializedVersion: 3
@@ -213,6 +219,7 @@ MonoBehaviour:
   iceballCoolDown: 2
   iceball: {fileID: 9065008747380130482, guid: 862c1320ec3b8dd47917d77310e4efca, type: 3}
   iceAngle: 30
+  iceDamege: 3
 --- !u!1 &8238394086227625670
 GameObject:
   m_ObjectHideFlags: 0
