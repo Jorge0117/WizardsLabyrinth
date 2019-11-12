@@ -52,8 +52,6 @@ public class SpellCooldown : MonoBehaviour
         string currentSpell = chawaAttackController.getCurrentSpell();
         float currentPercentage;
 
-        Debug.Log(currentSpell);
-        
         switch (currentSpell)
         {
             case "fire":

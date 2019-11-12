@@ -94,7 +94,9 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Fire1") && Time.time >= nextBasicAttackTime)
+        if (!PauseMenu.IsPaused)
+        {
+            if (Input.GetButton("Fire1") && Time.time >= nextBasicAttackTime)
         {
             nextBasicAttackTime = Time.time + basicAttackCoolDown;
             
@@ -199,6 +201,7 @@ public class PlayerAttack : MonoBehaviour
                     enemiesToDamage[i].GetComponent<EnemyController>().takeDamage(damage);
                 }
             }
+        }
         }
     }
 
