@@ -103,8 +103,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 40
-        height: 32
+        width: 60
+        height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,7 +112,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4b1e98e4e6b06645957e875ea2bb079
+      spriteID: c6fda7a0b520b416ea37bc1a85c44381
       internalID: -757519236002762648
       vertices: []
       indices: 
@@ -122,10 +122,10 @@ TextureImporter:
       name: Enemy-Ice_Attack_1
       rect:
         serializedVersion: 2
-        x: 40
+        x: 60
         y: 0
-        width: 40
-        height: 32
+        width: 60
+        height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,7 +133,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 869436a30b5318143ab57b6554212988
+      spriteID: 3b1010dd3c35444db9c957e9db4ecdad
       internalID: 6219712371657375857
       vertices: []
       indices: 
@@ -143,31 +143,10 @@ TextureImporter:
       name: Enemy-Ice_Attack_2
       rect:
         serializedVersion: 2
-        x: 80
-        y: 0
-        width: 40
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 67ca23561feb658499b1b60dac8f3720
-      internalID: 3426573107337574431
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Enemy-Ice_Attack_3
-      rect:
-        serializedVersion: 2
         x: 120
         y: 0
-        width: 40
-        height: 32
+        width: 60
+        height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ed562feeecfb3d4f9972917a180dfd8
-      internalID: -1393434421900951477
+      spriteID: 439a0e67e40344971987f658cde253f2
+      internalID: 3426573107337574431
       vertices: []
       indices: 
       edges: []
