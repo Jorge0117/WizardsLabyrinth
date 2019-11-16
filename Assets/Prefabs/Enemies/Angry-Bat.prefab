@@ -152,7 +152,7 @@ MonoBehaviour:
   invencibilitySeconds: 0.5
   recoilVelocity: 0.9
   moveSpeed: 6
-  dropChance: 15
+  dropChance: 0
   velocity: {x: 0, y: 0, z: 0}
   drop: {fileID: 0}
   enemyName: Enemy

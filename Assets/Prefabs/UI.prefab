@@ -1779,6 +1779,7 @@ MonoBehaviour:
   IceSpellImage: {fileID: 1549501989}
   WindSpellImage: {fileID: 928997949}
   HeartsText: {fileID: 1151016491}
+  musicController: {fileID: 0}
 --- !u!1 &5844371695175427449
 GameObject:
   m_ObjectHideFlags: 0
