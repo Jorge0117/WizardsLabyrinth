@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent (typeof (EnemyController))]
 public class EnemyBat : MonoBehaviour
 {
+    public int damage = 2;
     //Controlador de 2d
     Controller2D controller;
     
@@ -85,6 +86,7 @@ public class EnemyBat : MonoBehaviour
         frame = 0;
     }
 
+    /*
     // Update is called once per frame
     void Update()
     {
@@ -200,5 +202,23 @@ public class EnemyBat : MonoBehaviour
 
 
         frame++;
+    }
+    */
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            int dir;
+            if (transform.position.x > other.transform.position.x)
+            {
+                dir = -1;
+            }
+            else
+            {
+                dir = 1;
+            }
+            other.gameObject.GetComponent<PlayerController>().takeDamage(damage, dir);
+        }
     }
 }

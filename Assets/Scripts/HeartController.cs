@@ -11,7 +11,6 @@ public class HeartController : MonoBehaviour
         if (PlayerPrefs.HasKey("unlockedHearts"))
         {
             string unlockedHearts = PlayerPrefs.GetString("unlockedHearts");
-            Debug.Log(unlockedHearts);
             if (unlockedHearts[id] == '1')
             {
                 gameObject.SetActive(false);
