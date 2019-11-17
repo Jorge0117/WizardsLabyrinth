@@ -1,3 +1,10 @@
 Background título: https://opengameart.org/content/forest-background
 Tile sets: https://www.openpixelproject.com/
 House: https://opengameart.org/content/wooden-house-with-animated-door-pixel-art
+SFX:
+Step: https://opengameart.org/content/grass-foot-step-sounds-yo-frankie
+Death: https://opengameart.org/content/falling-body
+Fireball: https://opengameart.org/content/fire-evil-spell
+Burning: https://opengameart.org/content/fire-crackling
+Airdash: https://opengameart.org/content/spell-4-fire
+IceSpell/Freezing: https://opengameart.org/content/ice-spells

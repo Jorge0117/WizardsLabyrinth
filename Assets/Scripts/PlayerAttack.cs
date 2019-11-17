@@ -45,6 +45,8 @@ public class PlayerAttack : MonoBehaviour
 
     private GameObject player;
 
+    private SFXController sfx;
+
     //private PlayerController playerController;
 
     // Start is called before the first frame update
@@ -61,6 +63,7 @@ public class PlayerAttack : MonoBehaviour
         }
         */
         player = GameObject.Find("Chawa");
+        sfx = GameObject.Find("SFX Controller").GetComponent<SFXController>();
     }
 
     private void Awake()
@@ -116,6 +119,7 @@ public class PlayerAttack : MonoBehaviour
                 nextFireballTime = Time.time + fireballCoolDown;
                 var position = attackPos.position;
                 GameObject spell = Instantiate(fireball, new Vector2(position.x + 2*Mathf.Sign(gameObject.transform.localScale.x), position.y ), Quaternion.identity);
+                sfx.PlayFireBallSFX(position);
                 PlayerFireBall spellController = spell.GetComponent<PlayerFireBall>();
                 spellController.enemy = "Enemy";
                 Vector3 spellScale = spell.transform.localScale;
@@ -128,7 +132,7 @@ public class PlayerAttack : MonoBehaviour
                 //Starts cooldown animation in HUD
                 _spellCooldownController.triggerSpell("ice");
                 nextIceTime = Time.time + iceCoolDown;
-                var position = attackPos.position;
+                var position = transform.position;
                 GameObject spell = Instantiate(ice, new Vector2(position.x + 2*Mathf.Sign(gameObject.transform.localScale.x), position.y ), Quaternion.identity);
                 PlayerIce spell1Controller = spell.GetComponent<PlayerIce>();
                 spell1Controller.enemy = "Enemy";
@@ -139,6 +143,7 @@ public class PlayerAttack : MonoBehaviour
                 PlayerIce spell3Controller = spell3.GetComponent<PlayerIce>();
                 spell3Controller.enemy = "Enemy";
                 
+                sfx.PlayIceSFX(position);
                 if (Mathf.Sign(transform.localScale.x) > 0)
                 {
                     spell2.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, iceAngle);
@@ -161,6 +166,7 @@ public class PlayerAttack : MonoBehaviour
                 _spellCooldownController.triggerSpell("air");
                 nextDashTime = Time.time + dashCoolDown;
                 animator.SetBool("isDashing", true);
+                sfx.PlayAirDashSFX(transform.position);
             }
         }
 

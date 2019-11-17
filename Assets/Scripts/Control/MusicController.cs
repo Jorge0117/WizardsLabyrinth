@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MusicController : MonoBehaviour
 {
@@ -21,6 +22,12 @@ public class MusicController : MonoBehaviour
             instance = this;
         }
         DontDestroyOnLoad(this.gameObject);
+
+        // QUITAR CUANDO NO PRUEBAS
+        if (SceneManager.GetActiveScene().name != "MainMenu" && SceneManager.GetActiveScene().name != "Death")
+        {
+            PlayMainTheme();
+        }
     }
 
     public void PlayMainTheme()

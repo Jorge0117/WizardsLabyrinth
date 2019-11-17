@@ -250,6 +250,7 @@ public class PlayerController : MonoBehaviour
             currentHealth -= damage;
             if (currentHealth <= 0)
             {
+                GameObject.Find("Music Controller").GetComponent<MusicController>().Stop();
                 SceneManager.LoadScene("Death");
             }
 

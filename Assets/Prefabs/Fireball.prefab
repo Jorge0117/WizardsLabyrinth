@@ -146,6 +146,7 @@ MonoBehaviour:
   fireParticles: {fileID: 3682022371888023158, guid: 16977d455b4145e4991c4dff55d259a2,
     type: 3}
   enemy: 
+  damage: 3
 --- !u!50 &7346142684100094480
 Rigidbody2D:
   serializedVersion: 4

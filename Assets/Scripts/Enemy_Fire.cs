@@ -8,13 +8,14 @@ public class Enemy_Fire : MonoBehaviour
     
     public float fireballCoolDown = 2f;
     private float nextFireballTime = 0f;
+    private SFXController sfx;
     
     public GameObject fireball;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        sfx = GameObject.Find("SFX Controller").GetComponent<SFXController>();
     }
 
     // Update is called once per frame
@@ -28,6 +29,7 @@ public class Enemy_Fire : MonoBehaviour
             GameObject spell = Instantiate(fireball,
                 new Vector2(position.x + 2 * Mathf.Sign(gameObject.transform.localScale.x) * -1, position.y),
                 Quaternion.identity);
+            sfx.PlayFireBallSFX(position);
             PlayerFireBall spellController = spell.GetComponent<PlayerFireBall>();
             spellController.enemy = "Player";
             Vector3 spellScale = spell.transform.localScale;

@@ -8,6 +8,7 @@ public class DeathMenu : MonoBehaviour
     public void Continue()
     {
         string scene = PlayerPrefs.GetString("currentScene");
+        GameObject.Find("Music Controller").GetComponent<MusicController>().PlayMainTheme();
         SceneManager.LoadScene(scene);
     }
 
