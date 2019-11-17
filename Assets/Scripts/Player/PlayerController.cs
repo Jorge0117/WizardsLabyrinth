@@ -214,8 +214,8 @@ public class PlayerController : MonoBehaviour
 
                 stopDashTime = Time.time + dashDuration;
             }
-            velocity.x = Mathf.Cos(Mathf.PI * dashAngle / 180) * dashSpeed * Mathf.Sign(gameObject.transform.localScale.x);
-            velocity.y = Mathf.Sin(Mathf.PI * dashAngle / 180) * dashSpeed;
+            velocity.x = Mathf.Cos(Mathf.PI * dashAngle / 180) * dashSpeed * Mathf.Sign(gameObject.transform.localScale.x) * Time.deltaTime;
+            velocity.y = Mathf.Sin(Mathf.PI * dashAngle / 180) * dashSpeed * Time.deltaTime;
             controller.Move(velocity);
 
             if (Time.time > stopDashTime)
@@ -228,7 +228,7 @@ public class PlayerController : MonoBehaviour
         
         else if (isTakingDamage)
         {
-            velocity = new Vector3(knockback * knockbackDir, knockback/2);
+            velocity = new Vector3(knockback * knockbackDir * Time.deltaTime, knockback/2 * Time.deltaTime);
             controller.Move(velocity);
         }
     }

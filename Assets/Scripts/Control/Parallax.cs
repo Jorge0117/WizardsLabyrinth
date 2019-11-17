@@ -23,10 +23,12 @@ public class Parallax : MonoBehaviour
         position = new Vector3(position.x - parallaxEffect, position.y, position.z);
         
 
-        if (position.x <= -20)
+        
+        transform.Translate(new Vector3(-parallaxEffect * Time.deltaTime, 0, 0));
+        if (transform.position.x <= -20)
         {
-            position.x = 2;
+            transform.position = new Vector3(2, 0, 1);
         }
-        transform.position = position;
+        //transform.position = position;
     }
 }

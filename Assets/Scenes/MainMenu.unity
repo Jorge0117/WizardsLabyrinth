@@ -785,18 +785,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 508073251}
   m_CullTransparentMesh: 0
---- !u!114 &706641178 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1786580504458521714, guid: 4db04c29ce2e23c4eac2d1f63760cca4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1786580503638766803}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26fcf734c4bd7b348b50f606b44335f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &725649208
 GameObject:
   m_ObjectHideFlags: 0
@@ -2082,7 +2070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 1127626113}
-  parallaxEffect: 0.01
+  parallaxEffect: 1
 --- !u!1 &1456738959
 GameObject:
   m_ObjectHideFlags: 0
@@ -2319,7 +2307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 1127626113}
-  parallaxEffect: 0.02
+  parallaxEffect: 2
 --- !u!1 &1491636250
 GameObject:
   m_ObjectHideFlags: 0
@@ -2482,7 +2470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 1127626113}
-  parallaxEffect: 0.015
+  parallaxEffect: 1.5
 --- !u!1 &1532526434
 GameObject:
   m_ObjectHideFlags: 0
@@ -2824,7 +2812,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0e4a1e71cd314a43b359f583ea19b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicController: {fileID: 706641178}
 --- !u!1 &1914757020
 GameObject:
   m_ObjectHideFlags: 0
@@ -3210,7 +3197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 1127626113}
-  parallaxEffect: 0.025
+  parallaxEffect: 2.5
 --- !u!1 &2133902827
 GameObject:
   m_ObjectHideFlags: 0

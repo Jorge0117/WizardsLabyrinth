@@ -24,10 +24,12 @@ public class MusicController : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
         // QUITAR CUANDO NO PRUEBAS
+        /*
         if (SceneManager.GetActiveScene().name != "MainMenu" && SceneManager.GetActiveScene().name != "Death")
         {
             PlayMainTheme();
         }
+        */
     }
 
     public void PlayMainTheme()
