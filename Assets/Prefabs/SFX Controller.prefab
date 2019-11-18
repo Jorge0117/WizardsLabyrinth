@@ -46,3 +46,10 @@ MonoBehaviour:
   fireBallSFX: {fileID: 8300000, guid: 5869f135689f75a4fab7b268003e20f8, type: 3}
   iceSFX: {fileID: 8300000, guid: 66892468daa686044b8dae361f962c6f, type: 3}
   airDashSFX: {fileID: 8300000, guid: 767589a9123915343b21f9ef0b637bd0, type: 3}
+  chawaAttack1: {fileID: 8300000, guid: c5b04e71d793b24409d3ee863a454b82, type: 3}
+  chawaAttack2: {fileID: 8300000, guid: c6f02cf35db7f2143b694ea1c0564433, type: 3}
+  chawaJump1: {fileID: 8300000, guid: fc5348b00d1f1a743b5d4bbf57637c4a, type: 3}
+  chawaJump2: {fileID: 8300000, guid: f335a7c0c464fb54882c6ba17157177f, type: 3}
+  chawaDamage: {fileID: 8300000, guid: 21b757762deb26f43a58980d5ed334e2, type: 3}
+  chawaDeath1: {fileID: 8300000, guid: 42839d05c9e9a60439ad1cd8475077cc, type: 3}
+  chawaDeath2: {fileID: 8300000, guid: a1807d375ef747049aca101febbc4001, type: 3}

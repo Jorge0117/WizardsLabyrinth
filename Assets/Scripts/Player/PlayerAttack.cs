@@ -107,6 +107,7 @@ public class PlayerAttack : MonoBehaviour
             nextBasicAttackTime = Time.time + basicAttackCoolDown;
             
             animator.SetTrigger(Attack);
+            sfx.PlayChawaAttack(transform.position);
         }
 
         if (Input.GetButton("Fire2"))

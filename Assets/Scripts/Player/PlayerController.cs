@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
     private static readonly int IsDashing = Animator.StringToHash("isDashing");
     private static readonly int IsFalling = Animator.StringToHash("isFalling");
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
+    private SFXController sfx;
 
     
     // Start is called before the first frame update
@@ -75,6 +76,8 @@ public class PlayerController : MonoBehaviour
 
         animator = GetComponent<Animator>();
         firstGravityValue = gravity;
+
+        sfx = GameObject.Find("SFX Controller").GetComponent<SFXController>();
     }
 
     private void Awake()
@@ -126,6 +129,7 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetButtonDown("Jump") && enableMoving)
                 {
                     velocity.y = maxJumpVelocity;
+                    sfx.PlayChawaJump(transform.position);
                 }
             }
             else
@@ -248,6 +252,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isHit", true);
             isTakingDamage = true;
             currentHealth -= damage;
+            sfx.PlayChawaDamage(transform.position);
             if (currentHealth <= 0)
             {
                 GameObject.Find("Music Controller").GetComponent<MusicController>().Stop();
