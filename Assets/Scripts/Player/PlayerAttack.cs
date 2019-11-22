@@ -254,9 +254,10 @@ public class PlayerAttack : MonoBehaviour
 
     IEnumerator showObject(float seconds, GameObject objeto)
     {
-        yield return new WaitForSeconds(seconds);
-        Destroy(objeto);
+        yield return new WaitForSeconds(2f);
         animator.SetBool("isFrontSide", false);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(objeto);
         player.GetComponent<PlayerController>().enableMoving = true;
     }
 
@@ -266,7 +267,7 @@ public class PlayerAttack : MonoBehaviour
         {
             animator.SetBool("isFrontSide", true);
             player.GetComponent<PlayerController>().enableMoving = false;
-            other.gameObject.transform.position = player.transform.position;
+            other.gameObject.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + 1);
 
             int spellId = other.gameObject.GetComponent<BookController>().id;
             if (PlayerPrefs.HasKey("unlockedSpells"))

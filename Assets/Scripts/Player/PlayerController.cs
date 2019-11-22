@@ -147,17 +147,6 @@ public class PlayerController : MonoBehaviour
                     velocity.y = minJumpVelocity;
             }
 
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                animator.SetBool("isFrontSide", true);
-                enableMoving = false;
-            }
-            if (Input.GetKeyDown(KeyCode.N))
-            {
-                animator.SetBool("isFrontSide", false);
-                enableMoving = true;
-            }
-
             velocity.x = input.x * moveSpeed;
             velocity.y += gravity * Time.deltaTime;
             if(velocity.x > 0 && enableMoving)
@@ -273,9 +262,10 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator showObject(float seconds, GameObject objeto)
     {
-        yield return new WaitForSeconds(seconds);
-        Destroy(objeto);
+        yield return new WaitForSeconds(2f);
         animator.SetBool("isFrontSide", false);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(objeto);
         enableMoving = true;
     }
 
@@ -316,7 +306,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isFrontSide", true);
             enableMoving = false;
-            other.gameObject.transform.position = gameObject.transform.position;
+            other.gameObject.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 1);
 
             int heartId = other.gameObject.GetComponent<HeartController>().id;
             if (PlayerPrefs.HasKey("unlockedHearts"))
@@ -365,7 +355,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isFrontSide", true);
             enableMoving = false;
-            other.gameObject.transform.position = gameObject.transform.position;
+            other.gameObject.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 1);
 
             int keyId = other.gameObject.GetComponent<KeyController>().id;
             if (PlayerPrefs.HasKey("unlockedKeys"))

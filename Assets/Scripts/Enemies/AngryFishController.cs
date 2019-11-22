@@ -19,7 +19,7 @@ public class AngryFishController : MonoBehaviour
     {
         if (gameObject.activeSelf)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, 2.5f * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, 4f * Time.deltaTime);
         }
     }
 }
