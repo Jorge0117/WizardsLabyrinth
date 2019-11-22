@@ -10,21 +10,18 @@ public class SceneTransition : MonoBehaviour
     public Vector2 spawnPosition = new Vector2(0, 0);
 
     private GameObject wKeySprite;
+
+    private bool inArea = false;
     // Start is called before the first frame update
     void Start()
     {
         wKeySprite = gameObject.transform.GetChild(0).gameObject;
         wKeySprite.GetComponent<SpriteRenderer>().enabled = false;
     }
-    
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        wKeySprite.GetComponent<SpriteRenderer>().enabled = true;
-    }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void Update()
     {
-        if (Input.GetKeyDown("w"))
+        if (Input.GetKeyDown("w") && inArea)
         {
             PlayerPrefs.SetFloat("checkpointPositionX", spawnPosition.x);
             PlayerPrefs.SetFloat("checkpointPositionY", spawnPosition.y);
@@ -34,8 +31,15 @@ public class SceneTransition : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        wKeySprite.GetComponent<SpriteRenderer>().enabled = true;
+        inArea = true;
+    }
+
     private void OnTriggerExit2D(Collider2D other)
     {
         wKeySprite.GetComponent<SpriteRenderer>().enabled = false;
+        inArea = false;
     }
 }

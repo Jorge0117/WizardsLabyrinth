@@ -71,20 +71,16 @@ public class SpellCooldown : MonoBehaviour
     }
     
     private IEnumerator IncreaseTimer(string  spellType) {
-        Debug.Log(finishCast(spellType));
         while (finishCast(spellType)) {
             yield return new WaitForSeconds(1);
             if (spellType == "fire" && currentFireTimer < fireTimer)
             {
-                Debug.Log(currentFireTimer);
                 currentFireTimer += 1.0f;
             } else if (spellType == "ice" && currentIceTimer < iceTimer)
             {
-                Debug.Log(currentIceTimer);
                 currentIceTimer += 1.0f;
             } else if (spellType == "air" && currentAirTimer < airTimer)
             {
-                Debug.Log(currentAirTimer);
                 currentAirTimer += 1.0f;
             }
         }

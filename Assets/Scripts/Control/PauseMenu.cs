@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -14,7 +15,13 @@ public class PauseMenu : MonoBehaviour
     public GameObject WindSpellImage;
 
     public GameObject HeartsText;
-    
+    private MusicController musicController;
+
+    private void Awake()
+    {
+        musicController = GameObject.Find("Music Controller").GetComponent<MusicController>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -90,6 +97,7 @@ public class PauseMenu : MonoBehaviour
     public void MainMenu()
     {
         Resume();
+        musicController.Stop();
         SceneManager.LoadScene("MainMenu");
     }
 }
