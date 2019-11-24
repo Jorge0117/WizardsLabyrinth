@@ -82,6 +82,7 @@ GameObject:
   - component: {fileID: 8537418517936605480}
   - component: {fileID: 1504418102540299285}
   - component: {fileID: 979121764877415669}
+  - component: {fileID: 5033971231409462467}
   m_Layer: 0
   m_Name: Key1
   m_TagString: Key
@@ -193,3 +194,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.30462837, y: 0.2913161}
   m_EdgeRadius: 0
+--- !u!114 &5033971231409462467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5590897280351152717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5005469253924944c9786eb2c8f469ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialoguePanel: {fileID: 0}
+  displayText: {fileID: 0}
+  dialogue:
+    sentenceList:
+    - Has obtenido una pieza de llave!
+  typingSpeed: 0.05

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3707794308539750071}
   - component: {fileID: 7220726349871491732}
   - component: {fileID: 414791459899756151}
+  - component: {fileID: 645299161847808096}
   m_Layer: 0
   m_Name: Heart
   m_TagString: Heart
@@ -143,6 +144,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+--- !u!114 &645299161847808096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003129276583751945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5005469253924944c9786eb2c8f469ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialoguePanel: {fileID: 0}
+  displayText: {fileID: 0}
+  dialogue:
+    sentenceList:
+    - "Has obtenido un coraz\xF3n, tu vida m\xE1xima ha aumentado!"
+  typingSpeed: 0.05
 --- !u!1 &2035787902945233597
 GameObject:
   m_ObjectHideFlags: 0

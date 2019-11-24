@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4326545735406994045}
   - component: {fileID: 8174319270029981844}
   - component: {fileID: 2079060118918381908}
+  - component: {fileID: 5270400224624811894}
   m_Layer: 0
   m_Name: IceBook
   m_TagString: Book
@@ -143,6 +144,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 1
+--- !u!114 &5270400224624811894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3781464777890696457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5005469253924944c9786eb2c8f469ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialoguePanel: {fileID: 0}
+  displayText: {fileID: 0}
+  dialogue:
+    sentenceList:
+    - Has obtenido el hechizo de hielo!
+  typingSpeed: 0.05
 --- !u!1 &6036423710856724591
 GameObject:
   m_ObjectHideFlags: 0

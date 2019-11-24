@@ -262,9 +262,10 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator showObject(float seconds, GameObject objeto)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
         animator.SetBool("isFrontSide", false);
         yield return new WaitForSeconds(0.5f);
+        objeto.GetComponent<Dialogue_Manager>().dialoguePanel.SetActive(false);
         Destroy(objeto);
         enableMoving = true;
     }
