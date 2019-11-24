@@ -14,6 +14,18 @@ TextureImporter:
   - first:
       213: -1393434421900951477
     second: Enemy-Fire_Attack_3
+  - first:
+      213: -2425613055633110731
+    second: Enemy-Aabbeell-Wind_0
+  - first:
+      213: -681682480935115943
+    second: Enemy-Aabbeell-Wind_1
+  - first:
+      213: -1383425896517226339
+    second: Enemy-Aabbeell-Wind_2
+  - first:
+      213: -1031372245752203572
+    second: Enemy-Aabbeell-Wind_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -98,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy-Fire_Attack_0
+      name: Enemy-Aabbeell-Wind_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 40
-        height: 32
+        width: 60
+        height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4b1e98e4e6b06645957e875ea2bb079
-      internalID: -757519236002762648
+      spriteID: 92b6c21ef9a93184a87ef14eb313dd93
+      internalID: -2425613055633110731
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Fire_Attack_1
+      name: Enemy-Aabbeell-Wind_1
       rect:
         serializedVersion: 2
-        x: 40
+        x: 60
         y: 0
-        width: 40
-        height: 32
+        width: 60
+        height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,41 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 869436a30b5318143ab57b6554212988
-      internalID: 6219712371657375857
+      spriteID: 745a6c9ef9f1bc14283b390b599de029
+      internalID: -681682480935115943
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Fire_Attack_2
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 0
-        width: 40
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 67ca23561feb658499b1b60dac8f3720
-      internalID: 3426573107337574431
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Enemy-Fire_Attack_3
+      name: Enemy-Aabbeell-Wind_2
       rect:
         serializedVersion: 2
         x: 120
         y: 0
-        width: 40
-        height: 32
+        width: 60
+        height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,8 +166,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ed562feeecfb3d4f9972917a180dfd8
-      internalID: -1393434421900951477
+      spriteID: 709dfa1721c7cea489319db8fbae47bc
+      internalID: -1383425896517226339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-Aabbeell-Wind_3
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 60
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 095463ed63aacb84da3e2f5e7621cecb
+      internalID: -1031372245752203572
       vertices: []
       indices: 
       edges: []
