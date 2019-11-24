@@ -27,7 +27,6 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            Debug.Log("GO");
             if (IsPaused)
             {
                 Resume();
