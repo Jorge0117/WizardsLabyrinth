@@ -294,6 +294,13 @@ public class PlayerController : MonoBehaviour
             isDrawning = true;
             gravity = -4;
         }
+        if (other.gameObject.CompareTag("Exit-Water") && isDrawning)
+        {
+            gravity = firstGravityValue;
+            angry_fish.SetActive(false);
+            acercarse = false;
+            isDrawning = false;
+        }
         if (other.gameObject.name == "Angry-fish") // Si colisiona con pez, muere
         {
             gravity = firstGravityValue;

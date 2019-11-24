@@ -17,6 +17,7 @@ TagManager:
   - Potion
   - Heart
   - Key
+  - Exit-Water
   layers:
   - Default
   - TransparentFX
