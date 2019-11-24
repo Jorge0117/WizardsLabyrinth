@@ -33,13 +33,19 @@ public class SceneTransition : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        wKeySprite.GetComponent<SpriteRenderer>().enabled = true;
-        inArea = true;
+        if (other.CompareTag("Player"))
+        {
+            wKeySprite.GetComponent<SpriteRenderer>().enabled = true;
+            inArea = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        wKeySprite.GetComponent<SpriteRenderer>().enabled = false;
-        inArea = false;
+        if (other.CompareTag("Player"))
+        {
+            wKeySprite.GetComponent<SpriteRenderer>().enabled = false;
+            inArea = false;
+        }
     }
 }
