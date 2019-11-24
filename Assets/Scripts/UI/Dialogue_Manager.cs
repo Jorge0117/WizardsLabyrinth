@@ -42,7 +42,7 @@ public class Dialogue_Manager : MonoBehaviour
         activeSentence = sentences.Dequeue();
         displayText.text = activeSentence;
 
-        //StartCoroutine(TypeSentence(activeSentence));
+        StartCoroutine(TypeSentence(activeSentence));
     }
 
     IEnumerator TypeSentence(string sentence)
