@@ -2237,7 +2237,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458139536}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: -2, y: 0, z: 1}
   m_LocalScale: {x: 2.6, y: 2.6, z: 1}
   m_Children:
   - {fileID: 14919701}
@@ -3278,11 +3278,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1786580504458521677, guid: 4db04c29ce2e23c4eac2d1f63760cca4,
-        type: 3}
-      propertyPath: m_Name
-      value: Music Controller
-      objectReference: {fileID: 0}
     - target: {fileID: 1786580504458521715, guid: 4db04c29ce2e23c4eac2d1f63760cca4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3337,6 +3332,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1786580504458521677, guid: 4db04c29ce2e23c4eac2d1f63760cca4,
+        type: 3}
+      propertyPath: m_Name
+      value: Music Controller
       objectReference: {fileID: 0}
     - target: {fileID: 1786580504458521676, guid: 4db04c29ce2e23c4eac2d1f63760cca4,
         type: 3}

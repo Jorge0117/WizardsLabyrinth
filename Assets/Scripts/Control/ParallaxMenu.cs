@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Parallax : MonoBehaviour
+public class ParallaxMenu : MonoBehaviour
 {
     private float length, startpos;
     public GameObject camera;
@@ -25,10 +25,14 @@ public class Parallax : MonoBehaviour
 
         
         transform.Translate(new Vector3(-parallaxEffect * Time.deltaTime, 0, 0));
-        if (transform.position.x <= -20)
+        if (transform.position.x <= -22.1)
         {
-            transform.position = new Vector3(2, 0, 1);
+            transform.position = new Vector3(0, 0, 1);
         }
-        //transform.position = position;
+        else if (transform.position.x >= 20.1)
+        {
+            transform.position = new Vector3(-2, 0, 1);
+        }
+
     }
 }
