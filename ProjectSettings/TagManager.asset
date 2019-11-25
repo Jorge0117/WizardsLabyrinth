@@ -18,6 +18,7 @@ TagManager:
   - Heart
   - Key
   - Exit-Water
+  - EnemyWall
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - Wall-enemy
   - GrassWall
   - Ice
-  - 
+  - EnemyWall
   - 
   - 
   - 

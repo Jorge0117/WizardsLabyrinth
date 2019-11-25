@@ -38,6 +38,8 @@ public class EnemyController : MonoBehaviour
     public Vector3 velocity;
 
     public GameObject drop;
+
+    public float wallForce = 5f;
     
     //tag para saber que es aabbeell, si es otro solo dice enemy
     public string enemyName = "Enemy";
@@ -63,6 +65,19 @@ public class EnemyController : MonoBehaviour
                              ? recoilVelocity
                              : recoilVelocity * -1) * moveSpeed;
             velocity.y = 13;
+            controller.Move(velocity * Time.deltaTime);
+        }
+    }
+    
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("EnemyWall"))
+        {
+            //Debug.Log("AQUI " + other.gameObject.CompareTag("EnemyWall"));
+            velocity.x = (enemyTransform.position.x > other.gameObject.transform.position.x
+                             ? wallForce
+                             : wallForce * -1) * moveSpeed;
+            velocity.y = 0;
             controller.Move(velocity * Time.deltaTime);
         }
     }
