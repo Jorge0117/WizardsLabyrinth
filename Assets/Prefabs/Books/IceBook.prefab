@@ -160,8 +160,9 @@ MonoBehaviour:
   displayText: {fileID: 0}
   dialogue:
     sentenceList:
-    - Has obtenido el hechizo de hielo!
-  typingSpeed: 0.05
+    - You got the ice spell!
+    - Now yo can freeze water!
+  typingSpeed: 0.03
 --- !u!1 &6036423710856724591
 GameObject:
   m_ObjectHideFlags: 0
