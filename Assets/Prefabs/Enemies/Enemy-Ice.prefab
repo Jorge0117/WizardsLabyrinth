@@ -156,7 +156,7 @@ MonoBehaviour:
   nextBasicAttackTime: 0
   basicAttackCoolDown: 0.5
   probaBasicAttack: 0.9
-  basicAttackDamage: 2
+  basicAttackDamage: 1
   attackPos: {fileID: 6048570102359092684}
   attackRange: 1.4
   whatIsEnemy:
@@ -219,7 +219,7 @@ MonoBehaviour:
   iceballCoolDown: 2
   iceball: {fileID: 9065008747380130482, guid: 862c1320ec3b8dd47917d77310e4efca, type: 3}
   iceAngle: 30
-  iceDamege: 3
+  iceDamege: 2
 --- !u!1 &8238394086227625670
 GameObject:
   m_ObjectHideFlags: 0

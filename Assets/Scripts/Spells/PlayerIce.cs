@@ -57,6 +57,7 @@ public class PlayerIce : MonoBehaviour
                 {
                     controllerEnemy.takeDamage(damage);
                 }
+                Destroy(gameObject);
             }
             if (enemy.CompareTo("Player") == 0)
             {
@@ -70,6 +71,7 @@ public class PlayerIce : MonoBehaviour
                     dir = 1;
                 }
                 other.gameObject.GetComponent<PlayerController>().takeDamage(damage, dir);
+                Destroy(gameObject);
             }
         }
         if (other.gameObject.CompareTag("Water") && enemy.CompareTo("Player") != 0)
