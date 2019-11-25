@@ -7,7 +7,7 @@ public class PlayerIce : MonoBehaviour
 {
     public LayerMask collisionLayer;
 
-    public float velocity = 0.2f;
+    public float velocity = 1f;
     Transform transform;
     public int dir = 1;
 
@@ -29,9 +29,9 @@ public class PlayerIce : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float velocityX = Mathf.Cos(Mathf.PI * angle / 180) * velocity;
+        float velocityX = Mathf.Cos(Mathf.PI * angle / 180) * velocity * Time.deltaTime;
         //Debug.Log(velocityX);
-        float velocityY = Mathf.Sin(Mathf.PI * angle / 180) * velocity;
+        float velocityY = Mathf.Sin(Mathf.PI * angle / 180) * velocity * Time.deltaTime;
         var position = transform.position;
         position = new Vector2(position.x + velocityX * dir, position.y + velocityY);
         transform.position = position;
