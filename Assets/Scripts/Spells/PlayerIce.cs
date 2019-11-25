@@ -72,7 +72,7 @@ public class PlayerIce : MonoBehaviour
                 other.gameObject.GetComponent<PlayerController>().takeDamage(damage, dir);
             }
         }
-        if (other.gameObject.CompareTag("Water"))
+        if (other.gameObject.CompareTag("Water") && enemy.CompareTo("Player") != 0)
         {
             other.gameObject.GetComponent<WaterController>().change();
         }
