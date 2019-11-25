@@ -78196,6 +78196,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1980016864}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &1982233727 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 750607165072941418, guid: a77faa95af4678c49923812efc08056b,
+    type: 3}
+  m_PrefabInstance: {fileID: 6589276611043558845}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1984269038
 PrefabInstance:
   m_ObjectHideFlags: 0
