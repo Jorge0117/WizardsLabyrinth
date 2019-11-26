@@ -210,5 +210,5 @@ MonoBehaviour:
   displayText: {fileID: 0}
   dialogue:
     sentenceList:
-    - Has obtenido una pieza de llave!
-  typingSpeed: 0.05
+    - You got a key shard! Only one left!
+  typingSpeed: 0.03

@@ -140,8 +140,9 @@ MonoBehaviour:
   displayText: {fileID: 0}
   dialogue:
     sentenceList:
-    - Has obtenido una pieza de llave!
-  typingSpeed: 0.05
+    - You got the final key shard! Now you can go fight Aabbeell and get your home
+      back!
+  typingSpeed: 0.03
 --- !u!1 &7687104239774636986
 GameObject:
   m_ObjectHideFlags: 0

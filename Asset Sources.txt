@@ -1,6 +1,7 @@
 Background título: https://opengameart.org/content/forest-background
 Tile sets: https://www.openpixelproject.com/
 House: https://opengameart.org/content/wooden-house-with-animated-door-pixel-art
+Keys: https://gerald-burke.itch.io/geralds-keys
 SFX:
 Step: https://opengameart.org/content/grass-foot-step-sounds-yo-frankie
 Death: https://opengameart.org/content/falling-body

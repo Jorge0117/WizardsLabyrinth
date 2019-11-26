@@ -140,8 +140,8 @@ MonoBehaviour:
   displayText: {fileID: 0}
   dialogue:
     sentenceList:
-    - Has obtenido una pieza de llave!
-  typingSpeed: 0.05
+    - You got a key shard! Two more to go!
+  typingSpeed: 0.03
 --- !u!1 &5591790044851744190
 GameObject:
   m_ObjectHideFlags: 0
