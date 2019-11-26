@@ -38,12 +38,11 @@ public class EnemyController : MonoBehaviour
     public Vector3 velocity;
 
     public GameObject drop;
+
+    public float wallForce = 5f;
     
     //tag para saber que es aabbeell, si es otro solo dice enemy
     public string enemyName = "Enemy";
-
-    //sonidos
-    private SFXController sfx;
 
     // Start is called before the first frame update
     void Start()
@@ -53,8 +52,6 @@ public class EnemyController : MonoBehaviour
         enemyTransform = GetComponent<Transform> ();
         
         currentHealth = maxHealth;
-
-        sfx = GameObject.Find("SFX Controller").GetComponent<SFXController>();
     }
 
     void Update()
@@ -71,13 +68,25 @@ public class EnemyController : MonoBehaviour
             controller.Move(velocity * Time.deltaTime);
         }
     }
+    
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("EnemyWall"))
+        {
+            //Debug.Log("AQUI " + other.gameObject.CompareTag("EnemyWall"));
+            velocity.x = (enemyTransform.position.x > other.gameObject.transform.position.x
+                             ? wallForce
+                             : wallForce * -1) * moveSpeed;
+            velocity.y = 0;
+            controller.Move(velocity * Time.deltaTime);
+        }
+    }
 
     public void takeDamage(int damage)
     {
         if(!isTakingDamage)
         {
             isTakingDamage = true;
-            sfx.PlayEnemyTakeDamage(gameObject.transform.position);
             currentHealth -= damage;
             if (currentHealth <= 0)
             {
@@ -86,7 +95,6 @@ public class EnemyController : MonoBehaviour
                 {
                     Instantiate(drop, transform.position, Quaternion.identity);
                 }
-                sfx.PlayEnemyDie(gameObject.transform.position);
                 Destroy(gameObject);
             }
             StartCoroutine(wait(invencibilitySeconds));
@@ -112,7 +120,6 @@ public class EnemyController : MonoBehaviour
             if (currentHealth <= 0)
             {
                 SceneManager.LoadScene("Won");
-                sfx.PlayEnemyDie(gameObject.transform.position);
                 //Destroy(gameObject);
             }
             StartCoroutine(wait(invencibilitySeconds));
