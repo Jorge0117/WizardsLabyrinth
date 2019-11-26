@@ -169,8 +169,10 @@ MonoBehaviour:
   collisionLayer:
     serializedVersion: 2
     m_Bits: 512
-  velocity: 0.2
+  velocity: 7
   dir: 1
+  damage: 3
+  enemy: 
 --- !u!50 &1071783743913205617
 Rigidbody2D:
   serializedVersion: 4

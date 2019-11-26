@@ -147,7 +147,7 @@ SpriteRenderer:
   m_Sprite: {fileID: 9037837227479149154, guid: 51de0368672b5a542a0e718a943284cf,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -230,7 +230,10 @@ MonoBehaviour:
   displayText: {fileID: 0}
   dialogue:
     sentenceList:
-    - 'Has obtenido el hechizo de fuego!
+    - 'You got the fire spell!
 
 '
-  typingSpeed: 0.05
+    - 'You can use it to burn vines!
+
+'
+  typingSpeed: 0.03

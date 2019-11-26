@@ -156,7 +156,7 @@ MonoBehaviour:
   nextBasicAttackTime: 0
   basicAttackCoolDown: 0.5
   probaBasicAttack: 0.9
-  basicAttackDamage: 2
+  basicAttackDamage: 1
   attackPos: {fileID: 6048570102359092684}
   attackRange: 1.4
   whatIsEnemy:
@@ -175,14 +175,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
-  currentHealth: 0
+  currentHealth: 5
   isTakingDamage: 0
   invencibilitySeconds: 0.5
   recoilVelocity: 1.5
   moveSpeed: 6
   dropChance: 15
   velocity: {x: 0, y: 0, z: 0}
-  drop: {fileID: 0}
+  drop: {fileID: 5444993239668052929, guid: 7bb71ebb75aa7b34ca71737fe50134b7, type: 3}
   enemyName: Enemy
 --- !u!95 &5046700253598957210
 Animator:
@@ -219,6 +219,7 @@ MonoBehaviour:
   fireballCoolDown: 2
   fireball: {fileID: 3414297260585760921, guid: 69c4ed2710855994498872cef5929e34,
     type: 3}
+  fireballDamage: 2
 --- !u!1 &8238394086227625670
 GameObject:
   m_ObjectHideFlags: 0

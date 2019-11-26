@@ -160,8 +160,8 @@ MonoBehaviour:
   displayText: {fileID: 0}
   dialogue:
     sentenceList:
-    - "Has obtenido un coraz\xF3n, tu vida m\xE1xima ha aumentado!"
-  typingSpeed: 0.05
+    - Congratulations! Your maximun health has increased!
+  typingSpeed: 0.03
 --- !u!1 &2035787902945233597
 GameObject:
   m_ObjectHideFlags: 0

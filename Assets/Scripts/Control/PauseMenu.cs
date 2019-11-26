@@ -14,6 +14,10 @@ public class PauseMenu : MonoBehaviour
     public GameObject IceSpellImage;
     public GameObject WindSpellImage;
 
+    public GameObject key1;
+    public GameObject key2;
+    public GameObject key3;
+
     public GameObject HeartsText;
     private MusicController musicController;
 
@@ -88,6 +92,41 @@ public class PauseMenu : MonoBehaviour
             string unlockedHearts = PlayerPrefs.GetString("unlockedHearts");
             int numberOfHearts = unlockedHearts.Length - unlockedHearts.Replace("1", "").Length;
             HeartsText.GetComponent<TextMeshProUGUI>().text = numberOfHearts + "/20";
+        }
+
+        if (PlayerPrefs.HasKey("unlockedKeys"))
+        {
+            string keyArray = PlayerPrefs.GetString("unlockedKeys");
+            if (keyArray[0] == '0')
+            {
+                key1.SetActive(false);
+            }
+            else
+            {
+                key1.SetActive(true);
+            }
+            if (keyArray[1] == '0')
+            {
+                key2.SetActive(false);
+            }
+            else
+            {
+                key2.SetActive(true);
+            }
+            if (keyArray[2] == '0')
+            {
+                key3.SetActive(false);
+            }
+            else
+            {
+                key3.SetActive(true);
+            }
+        }
+        else
+        {
+            key1.SetActive(false);
+            key2.SetActive(false);
+            key3.SetActive(false);
         }
         Time.timeScale = 0;
         IsPaused = true;
