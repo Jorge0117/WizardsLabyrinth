@@ -102,7 +102,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (!PauseMenu.IsPaused)
         {
-            if (Input.GetButton("Fire1") && Time.time >= nextBasicAttackTime)
+            if (Input.GetButton("Fire1") && Time.time >= nextBasicAttackTime && player.GetComponent<PlayerController>().enableMoving)
         {
             nextBasicAttackTime = Time.time + basicAttackCoolDown;
             
@@ -110,7 +110,7 @@ public class PlayerAttack : MonoBehaviour
             sfx.PlayChawaAttack(transform.position);
         }
 
-        if (Input.GetButton("Fire2"))
+        if (Input.GetButton("Fire2") && player.GetComponent<PlayerController>().enableMoving)
         {
             
             if (equipedSpell == spells.Fire && Time.time >= nextFireballTime)
