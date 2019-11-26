@@ -3,17 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5854e7f9-c159-45da-a6d2-ae339121e259" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Wizard Game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Wizard Game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Environment/Castle/tile_castle.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Environment/Castle/tile_castle.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Tiles/Cave/Cave_Sprite_Atlas.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Tiles/Cave/Cave_Sprite_Atlas.spriteatlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Tiles/Jungle/JungleSpriteAtlas.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Tiles/Jungle/JungleSpriteAtlas.spriteatlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Chawa.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Chawa.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Jungle.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Jungle.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Control/PauseMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Control/PauseMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +28,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/SpellCooldown.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Control/SceneTransition.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectSettings/TagManager.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Prefabs/Enemies/Angry-fish.prefab" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Prefabs/Chawa.prefab" root0="FORCE_HIGHLIGHTING" />
@@ -48,6 +39,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scenes/01-  Single Line TextMesh Pro.unity" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Prefabs/Fireball.prefab" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.lightweight@6.9.1/Editor/2D/Light2DEditor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Art/Tiles/Castle.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/Cave.unity" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Art/Sprites/Enemies/Enemy-Bat/Bat-Enemy-attack.png.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Spells/PlayerFireBall.cs" root0="FORCE_HIGHLIGHTING" />
@@ -126,6 +118,9 @@
       <workItem from="1572991797069" duration="1133000" />
       <workItem from="1573587893980" duration="1272000" />
       <workItem from="1574456851003" duration="130000" />
+      <workItem from="1574613829040" duration="65000" />
+      <workItem from="1574797926503" duration="24000" />
+      <workItem from="1574800441917" duration="465000" />
     </task>
     <task id="LOCAL-00001" summary="Posicion de la bola de fuego, destrucción de partículas">
       <created>1568744364303</created>
@@ -162,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572992888768</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Inicio castillo">
+      <created>1574613867199</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1574613867199</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,7 +192,8 @@
     <MESSAGE value="Sprites" />
     <MESSAGE value="Libro no reaparece" />
     <MESSAGE value="Chawa murió ):" />
-    <option name="LAST_COMMIT_MESSAGE" value="Chawa murió ):" />
+    <MESSAGE value="Inicio castillo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Inicio castillo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
