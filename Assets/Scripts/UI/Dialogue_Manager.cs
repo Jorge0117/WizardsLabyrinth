@@ -36,6 +36,8 @@ public class Dialogue_Manager : MonoBehaviour
         if(sentences.Count <= 0)
         {
             displayText.text = activeSentence;
+            GameObject player = GameObject.Find("Chawa");
+            StartCoroutine(player.GetComponent<PlayerController>().showObject(1, gameObject));
             return;
         }
 
@@ -53,6 +55,10 @@ public class Dialogue_Manager : MonoBehaviour
             displayText.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
+        if (Input.GetKeyDown(KeyCode.Space) && displayText.text == activeSentence)
+        {
+            DisplayNextSentence();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -68,7 +74,7 @@ public class Dialogue_Manager : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (Input.GetKeyDown(KeyCode.Return) && displayText.text == activeSentence)
+            if (Input.GetKeyDown(KeyCode.Space) && displayText.text == activeSentence)
             {
                 DisplayNextSentence();
             }

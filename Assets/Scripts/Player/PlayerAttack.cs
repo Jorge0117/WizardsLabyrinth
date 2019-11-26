@@ -102,7 +102,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (!PauseMenu.IsPaused)
         {
-            if (Input.GetButton("Fire1") && Time.time >= nextBasicAttackTime)
+            if (Input.GetButton("Fire1") && Time.time >= nextBasicAttackTime && player.GetComponent<PlayerController>().enableMoving)
         {
             nextBasicAttackTime = Time.time + basicAttackCoolDown;
             
@@ -110,7 +110,7 @@ public class PlayerAttack : MonoBehaviour
             sfx.PlayChawaAttack(transform.position);
         }
 
-        if (Input.GetButton("Fire2"))
+        if (Input.GetButton("Fire2") && player.GetComponent<PlayerController>().enableMoving)
         {
             
             if (equipedSpell == spells.Fire && Time.time >= nextFireballTime)
@@ -252,9 +252,9 @@ public class PlayerAttack : MonoBehaviour
         None, Fire, Ice, Air
     };
 
-    IEnumerator showObject(float seconds, GameObject objeto)
+    public IEnumerator showObject(float seconds, GameObject objeto)
     {
-        yield return new WaitForSeconds(4f);
+        //yield return new WaitForSeconds(4f);
         animator.SetBool("isFrontSide", false);
         yield return new WaitForSeconds(0.5f);
         objeto.GetComponent<Dialogue_Manager>().dialoguePanel.SetActive(false);
@@ -303,7 +303,7 @@ public class PlayerAttack : MonoBehaviour
             equipedSpell = unlockedSpells[spellId];
             unlockedSpellCount += 1;
 
-            StartCoroutine(showObject(1, other.gameObject));
+            //StartCoroutine(showObject(1, other.gameObject));
         }
     }
 }

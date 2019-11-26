@@ -62,15 +62,17 @@ public class WaterController : MonoBehaviour
 
     IEnumerator wait(float seconds)
     {
-        yield return new WaitForSeconds(seconds);
+        yield return new WaitForSeconds(seconds/2);
 
         if (isWater)
         {
         }
         else
         {
+            isFreezing = true;
             gameObject.layer = LayerMask.NameToLayer("Ice");
             gameObject.tag = "Ice";
+            anim.SetBool("isChanging", false);
             Collider2D[] waterToFreeze = Physics2D.OverlapCircleAll(pos.position, range, whatIsWater);
             for (int i = 0; i < waterToFreeze.Length; i++)
             {
@@ -79,18 +81,16 @@ public class WaterController : MonoBehaviour
                     waterToFreeze[i].GetComponent<WaterController>().change();
                 }
             }
-            anim.SetBool("isChanging", false);
-            isMelting = false;
 
             yield return new WaitForSeconds(cantidadSegundos);
 
+            isFreezing = false;
             anim.SetBool("isChanging", true);
 
             yield return new WaitForSeconds(1);
 
-            gameObject.tag = "Water";
             anim.SetBool("isChanging", false);
-            isFreezing = false;
+            gameObject.tag = "Water";
             gameObject.layer = LayerMask.NameToLayer("Water");
             isWater = true;
         }
