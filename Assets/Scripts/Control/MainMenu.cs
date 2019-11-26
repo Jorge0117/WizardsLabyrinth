@@ -3,10 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
     private MusicController musicController;
+    public Button continueButton;
+
+    private void Start()
+    {
+        if (!PlayerPrefs.HasKey("currentScene"))
+        {
+            continueButton.enabled = false;
+        }
+    }
 
     private void Awake()
     {

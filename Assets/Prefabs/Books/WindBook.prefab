@@ -283,7 +283,11 @@ MonoBehaviour:
   displayText: {fileID: 0}
   dialogue:
     sentenceList:
-    - 'Has obtenido el hechizo de viento!
+    - 'You got the wind speel!
 
 '
-  typingSpeed: 0.05
+    - You can use it to dash in any direction.
+    - 'Pick a direction with WASD and press the spell bottom to dash in that direction.
+
+'
+  typingSpeed: 0.03
