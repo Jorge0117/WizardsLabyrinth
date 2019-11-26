@@ -13,11 +13,13 @@ public class Enemy_Ice : MonoBehaviour
     
     public float iceAngle = 30;
     public int iceDamege = 3;
-    
+
+    private SFXController sfx;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        sfx = GameObject.Find("SFX Controller").GetComponent<SFXController>();
     }
 
     // Update is called once per frame
@@ -25,6 +27,7 @@ public class Enemy_Ice : MonoBehaviour
     {
         if (Time.time >= nextIceballTime)
         {
+            sfx.PlayEnemyAttack(gameObject.transform.position);
             nextIceballTime = Time.time + iceballCoolDown;
             var position = attackPos.position;
             //position.x = position.x * -1;

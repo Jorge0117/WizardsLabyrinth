@@ -11,7 +11,6 @@ public class Enemy_Fire : MonoBehaviour
     private SFXController sfx;
     
     public GameObject fireball;
-    public int fireballDamage = 2;
     
     // Start is called before the first frame update
     void Start()
@@ -24,6 +23,7 @@ public class Enemy_Fire : MonoBehaviour
     {
         if (Time.time >= nextFireballTime)
         {
+            sfx.PlayEnemyAttack(gameObject.transform.position);
             nextFireballTime = Time.time + fireballCoolDown;
             var position = attackPos.position;
             //position.x = position.x * -1;
@@ -33,7 +33,6 @@ public class Enemy_Fire : MonoBehaviour
             sfx.PlayFireBallSFX(position);
             PlayerFireBall spellController = spell.GetComponent<PlayerFireBall>();
             spellController.enemy = "Player";
-            spellController.damage = fireballDamage;
             Vector3 spellScale = spell.transform.localScale;
             spell.transform.localScale = new Vector3(spellScale.x * Mathf.Sign(gameObject.transform.localScale.x) * -1,
                 spellScale.y, spellScale.z);
