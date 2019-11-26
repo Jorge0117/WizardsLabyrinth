@@ -11,6 +11,9 @@ public class Dialogue_Manager : MonoBehaviour
     public TextMeshProUGUI displayText;
     public Dialogue dialogue;
 
+    public GameObject credits;
+    public GameObject creditsText;
+
     string activeSentence;
     public float typingSpeed;
 
@@ -31,6 +34,12 @@ public class Dialogue_Manager : MonoBehaviour
         {
             DisplayNextSentence();
         }
+    }
+
+    public void startCredits()
+    {
+        credits.SetActive(true);
+        creditsText
     }
 
     void StartDialogue()
