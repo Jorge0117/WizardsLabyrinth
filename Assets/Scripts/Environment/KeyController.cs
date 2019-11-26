@@ -11,7 +11,6 @@ public class KeyController : MonoBehaviour
         if (PlayerPrefs.HasKey("unlockedKeys"))
         {
             string unlockedKeys = PlayerPrefs.GetString("unlockedKeys");
-            Debug.Log(unlockedKeys);
             if (unlockedKeys[id] == '1')
             {
                 gameObject.SetActive(false);
@@ -22,6 +21,6 @@ public class KeyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, 60 * Time.deltaTime, 0);
+        //transform.Rotate(0, 60 * Time.deltaTime, 0);
     }
 }

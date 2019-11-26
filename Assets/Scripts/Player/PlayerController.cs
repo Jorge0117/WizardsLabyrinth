@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     float minJumpVelocity;
     Vector3 velocity;
 
+    private bool finishDialog;
+
     Controller2D controller;
     Animator animator;
 
@@ -173,7 +175,7 @@ public class PlayerController : MonoBehaviour
                 velocity.y = 0;
             }
         }
-        else if (animator.GetBool("isDashing"))
+        else if (animator.GetBool("isDashing") && enableMoving)
         {
             if (!isDashing)
             {
@@ -260,9 +262,9 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isHit", false);
     }
 
-    IEnumerator showObject(float seconds, GameObject objeto)
+    public IEnumerator showObject(float seconds, GameObject objeto)
     {
-        yield return new WaitForSeconds(4f);
+        //yield return new WaitForSeconds(4f);
         animator.SetBool("isFrontSide", false);
         yield return new WaitForSeconds(0.5f);
         objeto.GetComponent<Dialogue_Manager>().dialoguePanel.SetActive(false);
@@ -272,6 +274,7 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        finishDialog = false;
         if (other.gameObject.CompareTag("Enemy") && isDashing)
         {
             //other.gameObject.GetComponent<EnemyController>().takeDamage(5);
@@ -341,7 +344,7 @@ public class PlayerController : MonoBehaviour
             currentHealth = maxHealth;
             PlayerPrefs.SetInt("maxHealth", maxHealth);
 
-            StartCoroutine(showObject(1, other.gameObject));
+            //StartCoroutine(showObject(1, other.gameObject));
         }
         if (other.gameObject.CompareTag("Potion"))
         {
@@ -385,7 +388,7 @@ public class PlayerController : MonoBehaviour
                 string unlockedKeys = new string(keys);
                 PlayerPrefs.SetString("unlockedKeys", unlockedKeys);
             }
-            StartCoroutine(showObject(1, other.gameObject));
+            //StartCoroutine(showObject(1, other.gameObject));
         }
     }
 
