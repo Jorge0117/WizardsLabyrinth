@@ -39,7 +39,7 @@ public class PlayerIce : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (LayerMask.LayerToName(other.gameObject.layer) == "Obstacles")
+        if (LayerMask.LayerToName(other.gameObject.layer) == "Obstacles" || other.gameObject.CompareTag("Water"))
         {
             Destroy(gameObject);
         }

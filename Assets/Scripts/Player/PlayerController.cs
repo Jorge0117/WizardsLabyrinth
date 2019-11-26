@@ -293,7 +293,7 @@ public class PlayerController : MonoBehaviour
             angry_fish.SetActive(true);
             acercarse = true;
             isDrawning = true;
-            gravity = -4;
+            gravity = -8;
         }
         if (other.gameObject.CompareTag("Exit-Water") && isDrawning)
         {
