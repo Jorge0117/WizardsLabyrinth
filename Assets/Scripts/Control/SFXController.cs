@@ -14,6 +14,8 @@ public class SFXController : MonoBehaviour
         chawaJump2,
         chawaDamage;
 
+    public AudioClip typing;
+
     public void PlayFireBallSFX(Vector3 position)
     {
         AudioSource.PlayClipAtPoint(fireBallSFX, position, 0.8f);
@@ -58,5 +60,10 @@ public class SFXController : MonoBehaviour
     public void PlayChawaDamage(Vector3 position)
     {
         AudioSource.PlayClipAtPoint(chawaDamage, position, 1.5f);
+    }
+
+    public void PlayTyping(Vector3 position)
+    {
+        AudioSource.PlayClipAtPoint(typing, position, 1.5f);
     }
 }

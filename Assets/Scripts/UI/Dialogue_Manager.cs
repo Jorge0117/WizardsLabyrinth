@@ -13,11 +13,16 @@ public class Dialogue_Manager : MonoBehaviour
 
     string activeSentence;
     public float typingSpeed;
+
+    private SFXController sfx;
+
     // Start is called before the first frame update
     void Start()
     {
         sentences = new Queue<string>();
         dialoguePanel.SetActive(false);
+
+        sfx = GameObject.Find("SFX Controller").GetComponent<SFXController>();
     }
 
     private void Update()
@@ -61,6 +66,7 @@ public class Dialogue_Manager : MonoBehaviour
         foreach(char letter in sentence.ToCharArray())
         {
             displayText.text += letter;
+            sfx.PlayTyping(gameObject.transform.position);
             yield return new WaitForSeconds(typingSpeed);
         }
     }
