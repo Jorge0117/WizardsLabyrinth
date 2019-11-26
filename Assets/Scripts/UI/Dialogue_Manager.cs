@@ -20,6 +20,14 @@ public class Dialogue_Manager : MonoBehaviour
         dialoguePanel.SetActive(false);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && displayText.text == activeSentence)
+        {
+            DisplayNextSentence();
+        }
+    }
+
     void StartDialogue()
     {
         sentences.Clear();
@@ -54,10 +62,6 @@ public class Dialogue_Manager : MonoBehaviour
         {
             displayText.text += letter;
             yield return new WaitForSeconds(typingSpeed);
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && displayText.text == activeSentence)
-        {
-            DisplayNextSentence();
         }
     }
 
