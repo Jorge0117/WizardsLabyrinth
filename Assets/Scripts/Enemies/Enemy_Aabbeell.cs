@@ -63,14 +63,18 @@ public class Enemy_Aabbeell : MonoBehaviour
     
     //animacion de Idle
     private static readonly int Idle = Animator.StringToHash("Idle");
-    
+
+    private SFXController sfx;
+
     // Start is called before the first frame update
     void Start()
     {
 		jugador = GameObject.Find("Chawa");
 		enemyTransform = GetComponent<Transform> ();
 		enemyAnimator = GetComponent<Animator>();
-		
+
+        sfx = GameObject.Find("SFX Controller").GetComponent<SFXController>();
+
         StartCoroutine(cambiarEstado(2));
     }
 
@@ -138,12 +142,15 @@ public class Enemy_Aabbeell : MonoBehaviour
 		switch(attack){
 			case 1:
 				iceAttackHorizaontal();
+                sfx.PlayEnemyAttack(gameObject.transform.position);
 				break;
 			case 2:
 				iceAttackVertical();
-				break;
+                sfx.PlayEnemyAttack(gameObject.transform.position);
+                break;
 			case 3:
 				fireAttack();
+                sfx.PlayEnemyAttack(gameObject.transform.position);
 				break;
 		}
 
