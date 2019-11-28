@@ -33,7 +33,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2693985568998717130}
-  - {fileID: 9108149201435297729}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -235,55 +234,3 @@ MonoBehaviour:
   - {x: -0.2636992, y: 0.33209336, z: 0}
   - {x: -0.22210787, y: 0.12445915, z: 0}
   - {x: -0.39980224, y: -0.025501428, z: 0}
---- !u!1 &8436532808919352848
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9108149201435297729}
-  - component: {fileID: 4730199668046640171}
-  m_Layer: 0
-  m_Name: SFX Controller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9108149201435297729
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8436532808919352848}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.5704775, y: -2.1074476, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 0}
-  m_Children: []
-  m_Father: {fileID: 4886389633407517563}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4730199668046640171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8436532808919352848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28179142652c37d4d8f4e63979fb2ea3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireBallSFX: {fileID: 0}
-  iceSFX: {fileID: 0}
-  airDashSFX: {fileID: 0}
-  chawaAttack1: {fileID: 0}
-  chawaAttack2: {fileID: 0}
-  chawaJump1: {fileID: 0}
-  chawaJump2: {fileID: 0}
-  chawaDamage: {fileID: 0}
-  typing: {fileID: 8300000, guid: 35a09d6aed4601848ba8c0023bcddbfd, type: 3}
