@@ -34,6 +34,13 @@ public class MainMenu : MonoBehaviour
     {
         musicController.PlayMainTheme();
         string scene = PlayerPrefs.GetString("currentScene");
+        if (scene == "Final")
+        {
+            scene = "Jungle";
+            PlayerPrefs.SetString("currentScene", "Jungle");
+            PlayerPrefs.SetFloat("checkpointPositionX", 239);
+            PlayerPrefs.SetFloat("checkpointPositionY", 0);
+        }
         SceneManager.LoadScene(scene);
     }
 
