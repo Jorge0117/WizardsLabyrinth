@@ -62,7 +62,7 @@ public class WaterController : MonoBehaviour
 
     IEnumerator wait(float seconds)
     {
-        yield return new WaitForSeconds(seconds/2);
+        yield return new WaitForSeconds(seconds/7);
 
         if (isWater)
         {
@@ -82,15 +82,15 @@ public class WaterController : MonoBehaviour
                 }
             }
 
-            yield return new WaitForSeconds(cantidadSegundos);
+            yield return new WaitForSeconds(15);
 
-            isFreezing = false;
             anim.SetBool("isChanging", true);
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
 
             anim.SetBool("isChanging", false);
             gameObject.tag = "Water";
+            isFreezing = false;
             gameObject.layer = LayerMask.NameToLayer("Water");
             isWater = true;
         }
