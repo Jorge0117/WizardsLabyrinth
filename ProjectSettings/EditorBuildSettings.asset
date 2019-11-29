@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Castle.unity
     guid: 2fd00b46ab2c788489cf8c127ea4d21b
+  - enabled: 1
+    path: Assets/Scenes/Win Scene.unity
+    guid: 46421b7255588484c9d42b6a6fb11dc7
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: eb798e6164e9a354ba401fd7013e01c6
   m_configObjects: {}

@@ -111,7 +111,7 @@ public class EnemyController : MonoBehaviour
             currentHealth -= damage;
             if (currentHealth <= 0)
             {
-                SceneManager.LoadScene("Won");
+                SceneManager.LoadScene("Win Scene");
                 sfx.PlayEnemyDie(gameObject.transform.position);
                 //Destroy(gameObject);
             }
