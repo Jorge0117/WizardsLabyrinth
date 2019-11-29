@@ -171,7 +171,7 @@ public class PlayerAttack : MonoBehaviour
             }
         }
 
-        if (Input.GetKey("e") && Time.time > nextSpellChange)
+        if (Input.GetButton("ChangeRight") && Time.time > nextSpellChange)
         {
             if (unlockedSpellCount > 1)
             {
@@ -183,7 +183,7 @@ public class PlayerAttack : MonoBehaviour
             }
         }
         
-        if (Input.GetKey("q") && Time.time > nextSpellChange)
+        if (Input.GetButton("ChangeLeft") && Time.time > nextSpellChange)
         {
             if (unlockedSpellCount > 1)
             {
