@@ -44,6 +44,9 @@ public class EnemyController : MonoBehaviour
     //tag para saber que es aabbeell, si es otro solo dice enemy
     public string enemyName = "Enemy";
 
+    //sonidos
+    private SFXController sfx;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +55,8 @@ public class EnemyController : MonoBehaviour
         enemyTransform = GetComponent<Transform> ();
         
         currentHealth = maxHealth;
+
+        sfx = GameObject.Find("SFX Controller").GetComponent<SFXController>();
     }
 
     void Update()
@@ -87,6 +92,7 @@ public class EnemyController : MonoBehaviour
         if(!isTakingDamage)
         {
             isTakingDamage = true;
+            sfx.PlayEnemyTakeDamage(gameObject.transform.position);
             currentHealth -= damage;
             if (currentHealth <= 0)
             {
@@ -95,6 +101,7 @@ public class EnemyController : MonoBehaviour
                 {
                     Instantiate(drop, transform.position, Quaternion.identity);
                 }
+                sfx.PlayEnemyDie(gameObject.transform.position);
                 Destroy(gameObject);
             }
             StartCoroutine(wait(invencibilitySeconds));
@@ -119,7 +126,8 @@ public class EnemyController : MonoBehaviour
             currentHealth -= damage;
             if (currentHealth <= 0)
             {
-                SceneManager.LoadScene("Won");
+                SceneManager.LoadScene("Win Scene");
+                sfx.PlayEnemyDie(gameObject.transform.position);
                 //Destroy(gameObject);
             }
             StartCoroutine(wait(invencibilitySeconds));
