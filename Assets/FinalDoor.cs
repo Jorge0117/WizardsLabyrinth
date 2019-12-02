@@ -30,7 +30,7 @@ public class FinalDoor : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown("w") && inArea && numKeys == 3)
+        if (Input.GetAxisRaw("Vertical") >= 1 && inArea && numKeys == 3)
         {
             PlayerPrefs.SetFloat("checkpointPositionX", 0);
             PlayerPrefs.SetFloat("checkpointPositionY", 0);
