@@ -493,36 +493,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4539394805572184026, guid: 0013ebf820c1d4a4e856fb66a42924f0,
-        type: 3}
-      propertyPath: orthographic size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4539394805572184026, guid: 0013ebf820c1d4a4e856fb66a42924f0,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4539394805572184026, guid: 0013ebf820c1d4a4e856fb66a42924f0,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4539394805572184026, guid: 0013ebf820c1d4a4e856fb66a42924f0,
-        type: 3}
-      propertyPath: orthographic size
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 4539394805572184027, guid: 0013ebf820c1d4a4e856fb66a42924f0,
         type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 6544904025669557709}
-    - target: {fileID: 4539394805572184027, guid: 0013ebf820c1d4a4e856fb66a42924f0,
-        type: 3}
-      propertyPath: verticalOffset
-      value: 0.2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0013ebf820c1d4a4e856fb66a42924f0, type: 3}
 --- !u!4 &7318063163793233717 stripped

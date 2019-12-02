@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -270,8 +270,8 @@ PrefabInstance:
     - target: {fileID: 4130891918127609069, guid: 9403699a164c1274c9adf84e734c404f,
         type: 3}
       propertyPath: m_Text
-      value: "Wizard\xB4s Labyrinth\n\n\nCreators:\nEstiven Alfaro\nJorge Araya\nChristopher
-        Gonz\xE1les\nJorge Mel\xE9ndez\n\n\nEspecial thanks to:\nMarkus Eger\n\n\n\nAssets:\n\nTitle
+      value: "Wizard\xB4s Labyrinth\n\n\nCreators:\nEstiven Alfaro\nJorge Araya\nChristofer
+        Rodr\xEDguez\nJorge Mel\xE9ndez\n\n\nEspecial thanks to:\nMarkus Eger\n\n\n\nAssets:\n\nTitle
         Background: https://opengameart.org/content/forest-background\r\n\nTile sets:
         https://www.openpixelproject.com/\r\n\nHouse: https://opengameart.org/content/wooden-house-with-animated-door-pixel-art\r\n\nKeys:
         https://gerald-burke.itch.io/geralds-keys\r\n\nHouse's interior: http://www.openpixelproject.com/file-manager/?drawer=environment*tiles*room\n\n\nSFX:\r\nStep:
