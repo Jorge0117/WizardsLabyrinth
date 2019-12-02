@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
@@ -20,6 +21,8 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject HeartsText;
     private MusicController musicController;
+
+    public GameObject resumeButton;
 
     private void Awake()
     {
@@ -128,6 +131,7 @@ public class PauseMenu : MonoBehaviour
             key2.SetActive(false);
             key3.SetActive(false);
         }
+        EventSystem.current.SetSelectedGameObject(resumeButton);
         Time.timeScale = 0;
         IsPaused = true;
     }

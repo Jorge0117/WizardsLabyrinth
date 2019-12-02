@@ -2,20 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
     private MusicController musicController;
-    public Button continueButton;
+    public GameObject continueButton;
+    public GameObject newGameButton;
+    public GameObject backButton;
 
     private void Start()
     {
-        if (!PlayerPrefs.HasKey("currentScene"))
-        {
-            continueButton.enabled = false;
-        }
+        SelectMainMenuButton();
     }
 
     private void Awake()
@@ -23,6 +23,18 @@ public class MainMenu : MonoBehaviour
         musicController = GameObject.Find("Music Controller").GetComponent<MusicController>();
     }
 
+    public void SelectMainMenuButton()
+    {
+        if (!PlayerPrefs.HasKey("currentScene"))
+        {
+            continueButton.GetComponent<Button>().enabled = false;
+            EventSystem.current.SetSelectedGameObject(newGameButton);
+        }
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(continueButton);
+        }
+    }
     public void NewGame()
     {
         musicController.PlayMainTheme();
@@ -47,5 +59,10 @@ public class MainMenu : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
+    }
+
+    public void SelectBackButton()
+    {
+        EventSystem.current.SetSelectedGameObject(backButton);
     }
 }

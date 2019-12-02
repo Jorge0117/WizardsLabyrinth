@@ -2,10 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class DeathMenu : MonoBehaviour
 {
+    public GameObject continueButton;
+
+    private void Awake()
+    {
+        EventSystem.current.SetSelectedGameObject(continueButton);
+    }
+
     public void Continue()
     {
         string scene = PlayerPrefs.GetString("currentScene");

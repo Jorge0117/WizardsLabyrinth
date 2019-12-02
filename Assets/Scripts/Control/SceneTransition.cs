@@ -21,7 +21,8 @@ public class SceneTransition : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("w") && inArea)
+        
+        if (Input.GetAxisRaw("Vertical") >= 1 && inArea)
         {
             PlayerPrefs.SetFloat("checkpointPositionX", spawnPosition.x);
             PlayerPrefs.SetFloat("checkpointPositionY", spawnPosition.y);

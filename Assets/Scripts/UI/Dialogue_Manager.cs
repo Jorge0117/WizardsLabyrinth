@@ -27,7 +27,7 @@ public class Dialogue_Manager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && displayText.text == activeSentence)
+        if (Input.GetButtonDown("Submit") && displayText.text == activeSentence)
         {
             DisplayNextSentence();
         }
@@ -84,7 +84,7 @@ public class Dialogue_Manager : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (Input.GetKeyDown(KeyCode.Space) && displayText.text == activeSentence)
+            if (Input.GetButtonDown("Submit") && displayText.text == activeSentence)
             {
                 DisplayNextSentence();
             }
